@@ -1,150 +1,1074 @@
 {
+  "schema_version": 1,
+  "sources": {
+    "juz_boundaries_verified_against": [
+      "manually mufti tashfeen sb will verify it. yet todo."
+    ]
+  },
   "surahs": [
-    {"number": 1, "name_arabic": "الفاتحة", "name_english": "Al-Fatihah", "name_transliteration": "Al-Faatihah", "total_verses": 7, "revelation_type": "Meccan"},
-    {"number": 2, "name_arabic": "البقرة", "name_english": "Al-Baqarah", "name_transliteration": "Al-Baqarah", "total_verses": 286, "revelation_type": "Medinan"},
-    {"number": 3, "name_arabic": "آل عمران", "name_english": "Ali 'Imran", "name_transliteration": "Aal-i-Imraan", "total_verses": 200, "revelation_type": "Medinan"},
-    {"number": 4, "name_arabic": "النساء", "name_english": "An-Nisa", "name_transliteration": "An-Nisaa", "total_verses": 176, "revelation_type": "Medinan"},
-    {"number": 5, "name_arabic": "المائدة", "name_english": "Al-Ma'idah", "name_transliteration": "Al-Maaida", "total_verses": 120, "revelation_type": "Medinan"},
-    {"number": 6, "name_arabic": "الأنعام", "name_english": "Al-An'am", "name_transliteration": "Al-An'aam", "total_verses": 165, "revelation_type": "Meccan"},
-    {"number": 7, "name_arabic": "الأعراف", "name_english": "Al-A'raf", "name_transliteration": "Al-A'raaf", "total_verses": 206, "revelation_type": "Meccan"},
-    {"number": 8, "name_arabic": "الأنفال", "name_english": "Al-Anfal", "name_transliteration": "Al-Anfaal", "total_verses": 75, "revelation_type": "Medinan"},
-    {"number": 9, "name_arabic": "التوبة", "name_english": "At-Tawbah", "name_transliteration": "At-Tawba", "total_verses": 129, "revelation_type": "Medinan"},
-    {"number": 10, "name_arabic": "يونس", "name_english": "Yunus", "name_transliteration": "Yunus", "total_verses": 109, "revelation_type": "Meccan"},
-    {"number": 11, "name_arabic": "هود", "name_english": "Hud", "name_transliteration": "Hud", "total_verses": 123, "revelation_type": "Meccan"},
-    {"number": 12, "name_arabic": "يوسف", "name_english": "Yusuf", "name_transliteration": "Yusuf", "total_verses": 111, "revelation_type": "Meccan"},
-    {"number": 13, "name_arabic": "الرعد", "name_english": "Ar-Ra'd", "name_transliteration": "Ar-Ra'd", "total_verses": 43, "revelation_type": "Medinan"},
-    {"number": 14, "name_arabic": "ابراهيم", "name_english": "Ibrahim", "name_transliteration": "Ibrahim", "total_verses": 52, "revelation_type": "Meccan"},
-    {"number": 15, "name_arabic": "الحجر", "name_english": "Al-Hijr", "name_transliteration": "Al-Hijr", "total_verses": 99, "revelation_type": "Meccan"},
-    {"number": 16, "name_arabic": "النحل", "name_english": "An-Nahl", "name_transliteration": "An-Nahl", "total_verses": 128, "revelation_type": "Meccan"},
-    {"number": 17, "name_arabic": "الإسراء", "name_english": "Al-Isra", "name_transliteration": "Al-Israa", "total_verses": 111, "revelation_type": "Meccan"},
-    {"number": 18, "name_arabic": "الكهف", "name_english": "Al-Kahf", "name_transliteration": "Al-Kahf", "total_verses": 110, "revelation_type": "Meccan"},
-    {"number": 19, "name_arabic": "مريم", "name_english": "Maryam", "name_transliteration": "Maryam", "total_verses": 98, "revelation_type": "Meccan"},
-    {"number": 20, "name_arabic": "طه", "name_english": "Taha", "name_transliteration": "Taa-Haa", "total_verses": 135, "revelation_type": "Meccan"},
-    {"number": 21, "name_arabic": "الأنبياء", "name_english": "Al-Anbya", "name_transliteration": "Al-Anbiyaa", "total_verses": 112, "revelation_type": "Meccan"},
-    {"number": 22, "name_arabic": "الحج", "name_english": "Al-Hajj", "name_transliteration": "Al-Hajj", "total_verses": 78, "revelation_type": "Medinan"},
-    {"number": 23, "name_arabic": "المؤمنون", "name_english": "Al-Mu'minun", "name_transliteration": "Al-Muminoon", "total_verses": 118, "revelation_type": "Meccan"},
-    {"number": 24, "name_arabic": "النور", "name_english": "An-Nur", "name_transliteration": "An-Noor", "total_verses": 64, "revelation_type": "Medinan"},
-    {"number": 25, "name_arabic": "الفرقان", "name_english": "Al-Furqan", "name_transliteration": "Al-Furqaan", "total_verses": 77, "revelation_type": "Meccan"},
-    {"number": 26, "name_arabic": "الشعراء", "name_english": "Ash-Shu'ara", "name_transliteration": "Ash-Shu'araa", "total_verses": 227, "revelation_type": "Meccan"},
-    {"number": 27, "name_arabic": "النمل", "name_english": "An-Naml", "name_transliteration": "An-Naml", "total_verses": 93, "revelation_type": "Meccan"},
-    {"number": 28, "name_arabic": "القصص", "name_english": "Al-Qasas", "name_transliteration": "Al-Qasas", "total_verses": 88, "revelation_type": "Meccan"},
-    {"number": 29, "name_arabic": "العنكبوت", "name_english": "Al-'Ankabut", "name_transliteration": "Al-Ankaboot", "total_verses": 69, "revelation_type": "Meccan"},
-    {"number": 30, "name_arabic": "الروم", "name_english": "Ar-Rum", "name_transliteration": "Ar-Room", "total_verses": 60, "revelation_type": "Meccan"},
-    {"number": 31, "name_arabic": "لقمان", "name_english": "Luqman", "name_transliteration": "Luqman", "total_verses": 34, "revelation_type": "Meccan"},
-    {"number": 32, "name_arabic": "السجدة", "name_english": "As-Sajdah", "name_transliteration": "As-Sajda", "total_verses": 30, "revelation_type": "Meccan"},
-    {"number": 33, "name_arabic": "الأحزاب", "name_english": "Al-Ahzab", "name_transliteration": "Al-Ahzaab", "total_verses": 73, "revelation_type": "Medinan"},
-    {"number": 34, "name_arabic": "سبأ", "name_english": "Saba", "name_transliteration": "Saba", "total_verses": 54, "revelation_type": "Meccan"},
-    {"number": 35, "name_arabic": "فاطر", "name_english": "Fatir", "name_transliteration": "Faatir", "total_verses": 45, "revelation_type": "Meccan"},
-    {"number": 36, "name_arabic": "يس", "name_english": "Ya-Sin", "name_transliteration": "Yaseen", "total_verses": 83, "revelation_type": "Meccan"},
-    {"number": 37, "name_arabic": "الصافات", "name_english": "As-Saffat", "name_transliteration": "As-Saaffaat", "total_verses": 182, "revelation_type": "Meccan"},
-    {"number": 38, "name_arabic": "ص", "name_english": "Sad", "name_transliteration": "Saad", "total_verses": 88, "revelation_type": "Meccan"},
-    {"number": 39, "name_arabic": "الزمر", "name_english": "Az-Zumar", "name_transliteration": "Az-Zumar", "total_verses": 75, "revelation_type": "Meccan"},
-    {"number": 40, "name_arabic": "غافر", "name_english": "Ghafir", "name_transliteration": "Ghafir", "total_verses": 85, "revelation_type": "Meccan"},
-    {"number": 41, "name_arabic": "فصلت", "name_english": "Fussilat", "name_transliteration": "Fussilat", "total_verses": 54, "revelation_type": "Meccan"},
-    {"number": 42, "name_arabic": "الشورى", "name_english": "Ash-Shuraa", "name_transliteration": "Ash-Shura", "total_verses": 53, "revelation_type": "Meccan"},
-    {"number": 43, "name_arabic": "الزخرف", "name_english": "Az-Zukhruf", "name_transliteration": "Az-Zukhruf", "total_verses": 89, "revelation_type": "Meccan"},
-    {"number": 44, "name_arabic": "الدخان", "name_english": "Ad-Dukhan", "name_transliteration": "Ad-Dukhaan", "total_verses": 59, "revelation_type": "Meccan"},
-    {"number": 45, "name_arabic": "الجاثية", "name_english": "Al-Jathiyah", "name_transliteration": "Al-Jaathiya", "total_verses": 37, "revelation_type": "Meccan"},
-    {"number": 46, "name_arabic": "الأحقاف", "name_english": "Al-Ahqaf", "name_transliteration": "Al-Ahqaf", "total_verses": 35, "revelation_type": "Meccan"},
-    {"number": 47, "name_arabic": "محمد", "name_english": "Muhammad", "name_transliteration": "Muhammad", "total_verses": 38, "revelation_type": "Medinan"},
-    {"number": 48, "name_arabic": "الفتح", "name_english": "Al-Fath", "name_transliteration": "Al-Fath", "total_verses": 29, "revelation_type": "Medinan"},
-    {"number": 49, "name_arabic": "الحجرات", "name_english": "Al-Hujurat", "name_transliteration": "Al-Hujuraat", "total_verses": 18, "revelation_type": "Medinan"},
-    {"number": 50, "name_arabic": "ق", "name_english": "Qaf", "name_transliteration": "Qaaf", "total_verses": 45, "revelation_type": "Meccan"},
-    {"number": 51, "name_arabic": "الذاريات", "name_english": "Adh-Dhariyat", "name_transliteration": "Adh-Dhaariyat", "total_verses": 60, "revelation_type": "Meccan"},
-    {"number": 52, "name_arabic": "الطور", "name_english": "At-Tur", "name_transliteration": "At-Tur", "total_verses": 49, "revelation_type": "Meccan"},
-    {"number": 53, "name_arabic": "النجم", "name_english": "An-Najm", "name_transliteration": "An-Najm", "total_verses": 62, "revelation_type": "Meccan"},
-    {"number": 54, "name_arabic": "القمر", "name_english": "Al-Qamar", "name_transliteration": "Al-Qamar", "total_verses": 55, "revelation_type": "Meccan"},
-    {"number": 55, "name_arabic": "الرحمن", "name_english": "Ar-Rahman", "name_transliteration": "Ar-Rahmaan", "total_verses": 78, "revelation_type": "Medinan"},
-    {"number": 56, "name_arabic": "الواقعة", "name_english": "Al-Waqi'ah", "name_transliteration": "Al-Waaqia", "total_verses": 96, "revelation_type": "Meccan"},
-    {"number": 57, "name_arabic": "الحديد", "name_english": "Al-Hadid", "name_transliteration": "Al-Hadid", "total_verses": 29, "revelation_type": "Medinan"},
-    {"number": 58, "name_arabic": "المجادلة", "name_english": "Al-Mujadila", "name_transliteration": "Al-Mujaadila", "total_verses": 22, "revelation_type": "Medinan"},
-    {"number": 59, "name_arabic": "الحشر", "name_english": "Al-Hashr", "name_transliteration": "Al-Hashr", "total_verses": 24, "revelation_type": "Medinan"},
-    {"number": 60, "name_arabic": "الممتحنة", "name_english": "Al-Mumtahanah", "name_transliteration": "Al-Mumtahana", "total_verses": 13, "revelation_type": "Medinan"},
-    {"number": 61, "name_arabic": "الصف", "name_english": "As-Saf", "name_transliteration": "As-Saff", "total_verses": 14, "revelation_type": "Medinan"},
-    {"number": 62, "name_arabic": "الجمعة", "name_english": "Al-Jumu'ah", "name_transliteration": "Al-Jumu'a", "total_verses": 11, "revelation_type": "Medinan"},
-    {"number": 63, "name_arabic": "المنافقون", "name_english": "Al-Munafiqun", "name_transliteration": "Al-Munaafiqoon", "total_verses": 11, "revelation_type": "Medinan"},
-    {"number": 64, "name_arabic": "التغابن", "name_english": "At-Taghabun", "name_transliteration": "At-Taghaabun", "total_verses": 18, "revelation_type": "Medinan"},
-    {"number": 65, "name_arabic": "الطلاق", "name_english": "At-Talaq", "name_transliteration": "At-Talaaq", "total_verses": 12, "revelation_type": "Medinan"},
-    {"number": 66, "name_arabic": "التحريم", "name_english": "At-Tahrim", "name_transliteration": "At-Tahrim", "total_verses": 12, "revelation_type": "Medinan"},
-    {"number": 67, "name_arabic": "الملك", "name_english": "Al-Mulk", "name_transliteration": "Al-Mulk", "total_verses": 30, "revelation_type": "Meccan"},
-    {"number": 68, "name_arabic": "القلم", "name_english": "Al-Qalam", "name_transliteration": "Al-Qalam", "total_verses": 52, "revelation_type": "Meccan"},
-    {"number": 69, "name_arabic": "الحاقة", "name_english": "Al-Haqqah", "name_transliteration": "Al-Haaqqa", "total_verses": 52, "revelation_type": "Meccan"},
-    {"number": 70, "name_arabic": "المعارج", "name_english": "Al-Ma'arij", "name_transliteration": "Al-Ma'aarij", "total_verses": 44, "revelation_type": "Meccan"},
-    {"number": 71, "name_arabic": "نوح", "name_english": "Nuh", "name_transliteration": "Nooh", "total_verses": 28, "revelation_type": "Meccan"},
-    {"number": 72, "name_arabic": "الجن", "name_english": "Al-Jinn", "name_transliteration": "Al-Jinn", "total_verses": 28, "revelation_type": "Meccan"},
-    {"number": 73, "name_arabic": "المزمل", "name_english": "Al-Muzzammil", "name_transliteration": "Al-Muzzammil", "total_verses": 20, "revelation_type": "Meccan"},
-    {"number": 74, "name_arabic": "المدثر", "name_english": "Al-Muddaththir", "name_transliteration": "Al-Muddaththir", "total_verses": 56, "revelation_type": "Meccan"},
-    {"number": 75, "name_arabic": "القيامة", "name_english": "Al-Qiyamah", "name_transliteration": "Al-Qiyaama", "total_verses": 40, "revelation_type": "Meccan"},
-    {"number": 76, "name_arabic": "الانسان", "name_english": "Al-Insan", "name_transliteration": "Al-Insaan", "total_verses": 31, "revelation_type": "Medinan"},
-    {"number": 77, "name_arabic": "المرسلات", "name_english": "Al-Mursalat", "name_transliteration": "Al-Mursalaat", "total_verses": 50, "revelation_type": "Meccan"},
-    {"number": 78, "name_arabic": "النبإ", "name_english": "An-Naba", "name_transliteration": "An-Naba", "total_verses": 40, "revelation_type": "Meccan"},
-    {"number": 79, "name_arabic": "النازعات", "name_english": "An-Nazi'at", "name_transliteration": "An-Naazi'aat", "total_verses": 46, "revelation_type": "Meccan"},
-    {"number": 80, "name_arabic": "عبس", "name_english": "Abasa", "name_transliteration": "Abasa", "total_verses": 42, "revelation_type": "Meccan"},
-    {"number": 81, "name_arabic": "التكوير", "name_english": "At-Takwir", "name_transliteration": "At-Takwir", "total_verses": 29, "revelation_type": "Meccan"},
-    {"number": 82, "name_arabic": "الإنفطار", "name_english": "Al-Infitar", "name_transliteration": "Al-Infitaar", "total_verses": 19, "revelation_type": "Meccan"},
-    {"number": 83, "name_arabic": "المطففين", "name_english": "Al-Mutaffifin", "name_transliteration": "Al-Mutaffifin", "total_verses": 36, "revelation_type": "Meccan"},
-    {"number": 84, "name_arabic": "الإنشقاق", "name_english": "Al-Inshiqaq", "name_transliteration": "Al-Inshiqaaq", "total_verses": 25, "revelation_type": "Meccan"},
-    {"number": 85, "name_arabic": "البروج", "name_english": "Al-Buruj", "name_transliteration": "Al-Burooj", "total_verses": 22, "revelation_type": "Meccan"},
-    {"number": 86, "name_arabic": "الطارق", "name_english": "At-Tariq", "name_transliteration": "At-Taariq", "total_verses": 17, "revelation_type": "Meccan"},
-    {"number": 87, "name_arabic": "الأعلى", "name_english": "Al-A'la", "name_transliteration": "Al-A'laa", "total_verses": 19, "revelation_type": "Meccan"},
-    {"number": 88, "name_arabic": "الغاشية", "name_english": "Al-Ghashiyah", "name_transliteration": "Al-Ghaashiya", "total_verses": 26, "revelation_type": "Meccan"},
-    {"number": 89, "name_arabic": "الفجر", "name_english": "Al-Fajr", "name_transliteration": "Al-Fajr", "total_verses": 30, "revelation_type": "Meccan"},
-    {"number": 90, "name_arabic": "البلد", "name_english": "Al-Balad", "name_transliteration": "Al-Balad", "total_verses": 20, "revelation_type": "Meccan"},
-    {"number": 91, "name_arabic": "الشمس", "name_english": "Ash-Shams", "name_transliteration": "Ash-Shams", "total_verses": 15, "revelation_type": "Meccan"},
-    {"number": 92, "name_arabic": "الليل", "name_english": "Al-Layl", "name_transliteration": "Al-Lail", "total_verses": 21, "revelation_type": "Meccan"},
-    {"number": 93, "name_arabic": "الضحى", "name_english": "Ad-Duhaa", "name_transliteration": "Ad-Dhuhaa", "total_verses": 11, "revelation_type": "Meccan"},
-    {"number": 94, "name_arabic": "الشرح", "name_english": "Ash-Sharh", "name_transliteration": "Ash-Sharh", "total_verses": 8, "revelation_type": "Meccan"},
-    {"number": 95, "name_arabic": "التين", "name_english": "At-Tin", "name_transliteration": "At-Tin", "total_verses": 8, "revelation_type": "Meccan"},
-    {"number": 96, "name_arabic": "العلق", "name_english": "Al-'Alaq", "name_transliteration": "Al-Alaq", "total_verses": 19, "revelation_type": "Meccan"},
-    {"number": 97, "name_arabic": "القدر", "name_english": "Al-Qadr", "name_transliteration": "Al-Qadr", "total_verses": 5, "revelation_type": "Meccan"},
-    {"number": 98, "name_arabic": "البينة", "name_english": "Al-Bayyinah", "name_transliteration": "Al-Bayyina", "total_verses": 8, "revelation_type": "Medinan"},
-    {"number": 99, "name_arabic": "الزلزلة", "name_english": "Az-Zalzalah", "name_transliteration": "Az-Zalzala", "total_verses": 8, "revelation_type": "Medinan"},
-    {"number": 100, "name_arabic": "العاديات", "name_english": "Al-'Adiyat", "name_transliteration": "Al-Aadiyaat", "total_verses": 11, "revelation_type": "Meccan"},
-    {"number": 101, "name_arabic": "القارعة", "name_english": "Al-Qari'ah", "name_transliteration": "Al-Qaari'a", "total_verses": 11, "revelation_type": "Meccan"},
-    {"number": 102, "name_arabic": "التكاثر", "name_english": "At-Takathur", "name_transliteration": "At-Takaathur", "total_verses": 8, "revelation_type": "Meccan"},
-    {"number": 103, "name_arabic": "العصر", "name_english": "Al-'Asr", "name_transliteration": "Al-Asr", "total_verses": 3, "revelation_type": "Meccan"},
-    {"number": 104, "name_arabic": "الهمزة", "name_english": "Al-Humazah", "name_transliteration": "Al-Humaza", "total_verses": 9, "revelation_type": "Meccan"},
-    {"number": 105, "name_arabic": "الفيل", "name_english": "Al-Fil", "name_transliteration": "Al-Fil", "total_verses": 5, "revelation_type": "Meccan"},
-    {"number": 106, "name_arabic": "قريش", "name_english": "Quraysh", "name_transliteration": "Quraish", "total_verses": 4, "revelation_type": "Meccan"},
-    {"number": 107, "name_arabic": "الماعون", "name_english": "Al-Ma'un", "name_transliteration": "Al-Maa'un", "total_verses": 7, "revelation_type": "Meccan"},
-    {"number": 108, "name_arabic": "الكوثر", "name_english": "Al-Kawthar", "name_transliteration": "Al-Kawthar", "total_verses": 3, "revelation_type": "Meccan"},
-    {"number": 109, "name_arabic": "الكافرون", "name_english": "Al-Kafirun", "name_transliteration": "Al-Kaafiroon", "total_verses": 6, "revelation_type": "Meccan"},
-    {"number": 110, "name_arabic": "النصر", "name_english": "An-Nasr", "name_transliteration": "An-Nasr", "total_verses": 3, "revelation_type": "Medinan"},
-    {"number": 111, "name_arabic": "المسد", "name_english": "Al-Masad", "name_transliteration": "Al-Masad", "total_verses": 5, "revelation_type": "Meccan"},
-    {"number": 112, "name_arabic": "الإخلاص", "name_english": "Al-Ikhlas", "name_transliteration": "Al-Ikhlaas", "total_verses": 4, "revelation_type": "Meccan"},
-    {"number": 113, "name_arabic": "الفلق", "name_english": "Al-Falaq", "name_transliteration": "Al-Falaq", "total_verses": 5, "revelation_type": "Meccan"},
-    {"number": 114, "name_arabic": "الناس", "name_english": "An-Nas", "name_transliteration": "An-Naas", "total_verses": 6, "revelation_type": "Meccan"}
+    {
+      "number": 1,
+      "name_arabic": "الفاتحة",
+      "name_english": "Al-Fatihah",
+      "name_transliteration": "Al-Faatihah",
+      "total_verses": 7,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 2,
+      "name_arabic": "البقرة",
+      "name_english": "Al-Baqarah",
+      "name_transliteration": "Al-Baqarah",
+      "total_verses": 286,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 3,
+      "name_arabic": "آل عمران",
+      "name_english": "Ali 'Imran",
+      "name_transliteration": "Aal-i-Imraan",
+      "total_verses": 200,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 4,
+      "name_arabic": "النساء",
+      "name_english": "An-Nisa",
+      "name_transliteration": "An-Nisaa",
+      "total_verses": 176,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 5,
+      "name_arabic": "المائدة",
+      "name_english": "Al-Ma'idah",
+      "name_transliteration": "Al-Maaida",
+      "total_verses": 120,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 6,
+      "name_arabic": "الأنعام",
+      "name_english": "Al-An'am",
+      "name_transliteration": "Al-An'aam",
+      "total_verses": 165,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 7,
+      "name_arabic": "الأعراف",
+      "name_english": "Al-A'raf",
+      "name_transliteration": "Al-A'raaf",
+      "total_verses": 206,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 8,
+      "name_arabic": "الأنفال",
+      "name_english": "Al-Anfal",
+      "name_transliteration": "Al-Anfaal",
+      "total_verses": 75,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 9,
+      "name_arabic": "التوبة",
+      "name_english": "At-Tawbah",
+      "name_transliteration": "At-Tawba",
+      "total_verses": 129,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 10,
+      "name_arabic": "يونس",
+      "name_english": "Yunus",
+      "name_transliteration": "Yunus",
+      "total_verses": 109,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 11,
+      "name_arabic": "هود",
+      "name_english": "Hud",
+      "name_transliteration": "Hud",
+      "total_verses": 123,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 12,
+      "name_arabic": "يوسف",
+      "name_english": "Yusuf",
+      "name_transliteration": "Yusuf",
+      "total_verses": 111,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 13,
+      "name_arabic": "الرعد",
+      "name_english": "Ar-Ra'd",
+      "name_transliteration": "Ar-Ra'd",
+      "total_verses": 43,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 14,
+      "name_arabic": "ابراهيم",
+      "name_english": "Ibrahim",
+      "name_transliteration": "Ibrahim",
+      "total_verses": 52,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 15,
+      "name_arabic": "الحجر",
+      "name_english": "Al-Hijr",
+      "name_transliteration": "Al-Hijr",
+      "total_verses": 99,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 16,
+      "name_arabic": "النحل",
+      "name_english": "An-Nahl",
+      "name_transliteration": "An-Nahl",
+      "total_verses": 128,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 17,
+      "name_arabic": "الإسراء",
+      "name_english": "Al-Isra",
+      "name_transliteration": "Al-Israa",
+      "total_verses": 111,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 18,
+      "name_arabic": "الكهف",
+      "name_english": "Al-Kahf",
+      "name_transliteration": "Al-Kahf",
+      "total_verses": 110,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 19,
+      "name_arabic": "مريم",
+      "name_english": "Maryam",
+      "name_transliteration": "Maryam",
+      "total_verses": 98,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 20,
+      "name_arabic": "طه",
+      "name_english": "Taha",
+      "name_transliteration": "Taa-Haa",
+      "total_verses": 135,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 21,
+      "name_arabic": "الأنبياء",
+      "name_english": "Al-Anbya",
+      "name_transliteration": "Al-Anbiyaa",
+      "total_verses": 112,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 22,
+      "name_arabic": "الحج",
+      "name_english": "Al-Hajj",
+      "name_transliteration": "Al-Hajj",
+      "total_verses": 78,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 23,
+      "name_arabic": "المؤمنون",
+      "name_english": "Al-Mu'minun",
+      "name_transliteration": "Al-Muminoon",
+      "total_verses": 118,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 24,
+      "name_arabic": "النور",
+      "name_english": "An-Nur",
+      "name_transliteration": "An-Noor",
+      "total_verses": 64,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 25,
+      "name_arabic": "الفرقان",
+      "name_english": "Al-Furqan",
+      "name_transliteration": "Al-Furqaan",
+      "total_verses": 77,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 26,
+      "name_arabic": "الشعراء",
+      "name_english": "Ash-Shu'ara",
+      "name_transliteration": "Ash-Shu'araa",
+      "total_verses": 227,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 27,
+      "name_arabic": "النمل",
+      "name_english": "An-Naml",
+      "name_transliteration": "An-Naml",
+      "total_verses": 93,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 28,
+      "name_arabic": "القصص",
+      "name_english": "Al-Qasas",
+      "name_transliteration": "Al-Qasas",
+      "total_verses": 88,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 29,
+      "name_arabic": "العنكبوت",
+      "name_english": "Al-'Ankabut",
+      "name_transliteration": "Al-Ankaboot",
+      "total_verses": 69,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 30,
+      "name_arabic": "الروم",
+      "name_english": "Ar-Rum",
+      "name_transliteration": "Ar-Room",
+      "total_verses": 60,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 31,
+      "name_arabic": "لقمان",
+      "name_english": "Luqman",
+      "name_transliteration": "Luqman",
+      "total_verses": 34,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 32,
+      "name_arabic": "السجدة",
+      "name_english": "As-Sajdah",
+      "name_transliteration": "As-Sajda",
+      "total_verses": 30,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 33,
+      "name_arabic": "الأحزاب",
+      "name_english": "Al-Ahzab",
+      "name_transliteration": "Al-Ahzaab",
+      "total_verses": 73,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 34,
+      "name_arabic": "سبأ",
+      "name_english": "Saba",
+      "name_transliteration": "Saba",
+      "total_verses": 54,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 35,
+      "name_arabic": "فاطر",
+      "name_english": "Fatir",
+      "name_transliteration": "Faatir",
+      "total_verses": 45,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 36,
+      "name_arabic": "يس",
+      "name_english": "Ya-Sin",
+      "name_transliteration": "Yaseen",
+      "total_verses": 83,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 37,
+      "name_arabic": "الصافات",
+      "name_english": "As-Saffat",
+      "name_transliteration": "As-Saaffaat",
+      "total_verses": 182,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 38,
+      "name_arabic": "ص",
+      "name_english": "Sad",
+      "name_transliteration": "Saad",
+      "total_verses": 88,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 39,
+      "name_arabic": "الزمر",
+      "name_english": "Az-Zumar",
+      "name_transliteration": "Az-Zumar",
+      "total_verses": 75,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 40,
+      "name_arabic": "غافر",
+      "name_english": "Ghafir",
+      "name_transliteration": "Ghafir",
+      "total_verses": 85,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 41,
+      "name_arabic": "فصلت",
+      "name_english": "Fussilat",
+      "name_transliteration": "Fussilat",
+      "total_verses": 54,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 42,
+      "name_arabic": "الشورى",
+      "name_english": "Ash-Shuraa",
+      "name_transliteration": "Ash-Shura",
+      "total_verses": 53,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 43,
+      "name_arabic": "الزخرف",
+      "name_english": "Az-Zukhruf",
+      "name_transliteration": "Az-Zukhruf",
+      "total_verses": 89,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 44,
+      "name_arabic": "الدخان",
+      "name_english": "Ad-Dukhan",
+      "name_transliteration": "Ad-Dukhaan",
+      "total_verses": 59,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 45,
+      "name_arabic": "الجاثية",
+      "name_english": "Al-Jathiyah",
+      "name_transliteration": "Al-Jaathiya",
+      "total_verses": 37,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 46,
+      "name_arabic": "الأحقاف",
+      "name_english": "Al-Ahqaf",
+      "name_transliteration": "Al-Ahqaf",
+      "total_verses": 35,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 47,
+      "name_arabic": "محمد",
+      "name_english": "Muhammad",
+      "name_transliteration": "Muhammad",
+      "total_verses": 38,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 48,
+      "name_arabic": "الفتح",
+      "name_english": "Al-Fath",
+      "name_transliteration": "Al-Fath",
+      "total_verses": 29,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 49,
+      "name_arabic": "الحجرات",
+      "name_english": "Al-Hujurat",
+      "name_transliteration": "Al-Hujuraat",
+      "total_verses": 18,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 50,
+      "name_arabic": "ق",
+      "name_english": "Qaf",
+      "name_transliteration": "Qaaf",
+      "total_verses": 45,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 51,
+      "name_arabic": "الذاريات",
+      "name_english": "Adh-Dhariyat",
+      "name_transliteration": "Adh-Dhaariyat",
+      "total_verses": 60,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 52,
+      "name_arabic": "الطور",
+      "name_english": "At-Tur",
+      "name_transliteration": "At-Tur",
+      "total_verses": 49,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 53,
+      "name_arabic": "النجم",
+      "name_english": "An-Najm",
+      "name_transliteration": "An-Najm",
+      "total_verses": 62,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 54,
+      "name_arabic": "القمر",
+      "name_english": "Al-Qamar",
+      "name_transliteration": "Al-Qamar",
+      "total_verses": 55,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 55,
+      "name_arabic": "الرحمن",
+      "name_english": "Ar-Rahman",
+      "name_transliteration": "Ar-Rahmaan",
+      "total_verses": 78,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 56,
+      "name_arabic": "الواقعة",
+      "name_english": "Al-Waqi'ah",
+      "name_transliteration": "Al-Waaqia",
+      "total_verses": 96,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 57,
+      "name_arabic": "الحديد",
+      "name_english": "Al-Hadid",
+      "name_transliteration": "Al-Hadid",
+      "total_verses": 29,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 58,
+      "name_arabic": "المجادلة",
+      "name_english": "Al-Mujadila",
+      "name_transliteration": "Al-Mujaadila",
+      "total_verses": 22,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 59,
+      "name_arabic": "الحشر",
+      "name_english": "Al-Hashr",
+      "name_transliteration": "Al-Hashr",
+      "total_verses": 24,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 60,
+      "name_arabic": "الممتحنة",
+      "name_english": "Al-Mumtahanah",
+      "name_transliteration": "Al-Mumtahana",
+      "total_verses": 13,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 61,
+      "name_arabic": "الصف",
+      "name_english": "As-Saf",
+      "name_transliteration": "As-Saff",
+      "total_verses": 14,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 62,
+      "name_arabic": "الجمعة",
+      "name_english": "Al-Jumu'ah",
+      "name_transliteration": "Al-Jumu'a",
+      "total_verses": 11,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 63,
+      "name_arabic": "المنافقون",
+      "name_english": "Al-Munafiqun",
+      "name_transliteration": "Al-Munaafiqoon",
+      "total_verses": 11,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 64,
+      "name_arabic": "التغابن",
+      "name_english": "At-Taghabun",
+      "name_transliteration": "At-Taghaabun",
+      "total_verses": 18,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 65,
+      "name_arabic": "الطلاق",
+      "name_english": "At-Talaq",
+      "name_transliteration": "At-Talaaq",
+      "total_verses": 12,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 66,
+      "name_arabic": "التحريم",
+      "name_english": "At-Tahrim",
+      "name_transliteration": "At-Tahrim",
+      "total_verses": 12,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 67,
+      "name_arabic": "الملك",
+      "name_english": "Al-Mulk",
+      "name_transliteration": "Al-Mulk",
+      "total_verses": 30,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 68,
+      "name_arabic": "القلم",
+      "name_english": "Al-Qalam",
+      "name_transliteration": "Al-Qalam",
+      "total_verses": 52,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 69,
+      "name_arabic": "الحاقة",
+      "name_english": "Al-Haqqah",
+      "name_transliteration": "Al-Haaqqa",
+      "total_verses": 52,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 70,
+      "name_arabic": "المعارج",
+      "name_english": "Al-Ma'arij",
+      "name_transliteration": "Al-Ma'aarij",
+      "total_verses": 44,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 71,
+      "name_arabic": "نوح",
+      "name_english": "Nuh",
+      "name_transliteration": "Nooh",
+      "total_verses": 28,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 72,
+      "name_arabic": "الجن",
+      "name_english": "Al-Jinn",
+      "name_transliteration": "Al-Jinn",
+      "total_verses": 28,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 73,
+      "name_arabic": "المزمل",
+      "name_english": "Al-Muzzammil",
+      "name_transliteration": "Al-Muzzammil",
+      "total_verses": 20,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 74,
+      "name_arabic": "المدثر",
+      "name_english": "Al-Muddaththir",
+      "name_transliteration": "Al-Muddaththir",
+      "total_verses": 56,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 75,
+      "name_arabic": "القيامة",
+      "name_english": "Al-Qiyamah",
+      "name_transliteration": "Al-Qiyaama",
+      "total_verses": 40,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 76,
+      "name_arabic": "الانسان",
+      "name_english": "Al-Insan",
+      "name_transliteration": "Al-Insaan",
+      "total_verses": 31,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 77,
+      "name_arabic": "المرسلات",
+      "name_english": "Al-Mursalat",
+      "name_transliteration": "Al-Mursalaat",
+      "total_verses": 50,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 78,
+      "name_arabic": "النبإ",
+      "name_english": "An-Naba",
+      "name_transliteration": "An-Naba",
+      "total_verses": 40,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 79,
+      "name_arabic": "النازعات",
+      "name_english": "An-Nazi'at",
+      "name_transliteration": "An-Naazi'aat",
+      "total_verses": 46,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 80,
+      "name_arabic": "عبس",
+      "name_english": "Abasa",
+      "name_transliteration": "Abasa",
+      "total_verses": 42,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 81,
+      "name_arabic": "التكوير",
+      "name_english": "At-Takwir",
+      "name_transliteration": "At-Takwir",
+      "total_verses": 29,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 82,
+      "name_arabic": "الإنفطار",
+      "name_english": "Al-Infitar",
+      "name_transliteration": "Al-Infitaar",
+      "total_verses": 19,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 83,
+      "name_arabic": "المطففين",
+      "name_english": "Al-Mutaffifin",
+      "name_transliteration": "Al-Mutaffifin",
+      "total_verses": 36,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 84,
+      "name_arabic": "الإنشقاق",
+      "name_english": "Al-Inshiqaq",
+      "name_transliteration": "Al-Inshiqaaq",
+      "total_verses": 25,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 85,
+      "name_arabic": "البروج",
+      "name_english": "Al-Buruj",
+      "name_transliteration": "Al-Burooj",
+      "total_verses": 22,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 86,
+      "name_arabic": "الطارق",
+      "name_english": "At-Tariq",
+      "name_transliteration": "At-Taariq",
+      "total_verses": 17,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 87,
+      "name_arabic": "الأعلى",
+      "name_english": "Al-A'la",
+      "name_transliteration": "Al-A'laa",
+      "total_verses": 19,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 88,
+      "name_arabic": "الغاشية",
+      "name_english": "Al-Ghashiyah",
+      "name_transliteration": "Al-Ghaashiya",
+      "total_verses": 26,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 89,
+      "name_arabic": "الفجر",
+      "name_english": "Al-Fajr",
+      "name_transliteration": "Al-Fajr",
+      "total_verses": 30,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 90,
+      "name_arabic": "البلد",
+      "name_english": "Al-Balad",
+      "name_transliteration": "Al-Balad",
+      "total_verses": 20,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 91,
+      "name_arabic": "الشمس",
+      "name_english": "Ash-Shams",
+      "name_transliteration": "Ash-Shams",
+      "total_verses": 15,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 92,
+      "name_arabic": "الليل",
+      "name_english": "Al-Layl",
+      "name_transliteration": "Al-Lail",
+      "total_verses": 21,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 93,
+      "name_arabic": "الضحى",
+      "name_english": "Ad-Duhaa",
+      "name_transliteration": "Ad-Dhuhaa",
+      "total_verses": 11,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 94,
+      "name_arabic": "الشرح",
+      "name_english": "Ash-Sharh",
+      "name_transliteration": "Ash-Sharh",
+      "total_verses": 8,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 95,
+      "name_arabic": "التين",
+      "name_english": "At-Tin",
+      "name_transliteration": "At-Tin",
+      "total_verses": 8,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 96,
+      "name_arabic": "العلق",
+      "name_english": "Al-'Alaq",
+      "name_transliteration": "Al-Alaq",
+      "total_verses": 19,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 97,
+      "name_arabic": "القدر",
+      "name_english": "Al-Qadr",
+      "name_transliteration": "Al-Qadr",
+      "total_verses": 5,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 98,
+      "name_arabic": "البينة",
+      "name_english": "Al-Bayyinah",
+      "name_transliteration": "Al-Bayyina",
+      "total_verses": 8,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 99,
+      "name_arabic": "الزلزلة",
+      "name_english": "Az-Zalzalah",
+      "name_transliteration": "Az-Zalzala",
+      "total_verses": 8,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 100,
+      "name_arabic": "العاديات",
+      "name_english": "Al-'Adiyat",
+      "name_transliteration": "Al-Aadiyaat",
+      "total_verses": 11,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 101,
+      "name_arabic": "القارعة",
+      "name_english": "Al-Qari'ah",
+      "name_transliteration": "Al-Qaari'a",
+      "total_verses": 11,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 102,
+      "name_arabic": "التكاثر",
+      "name_english": "At-Takathur",
+      "name_transliteration": "At-Takaathur",
+      "total_verses": 8,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 103,
+      "name_arabic": "العصر",
+      "name_english": "Al-'Asr",
+      "name_transliteration": "Al-Asr",
+      "total_verses": 3,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 104,
+      "name_arabic": "الهمزة",
+      "name_english": "Al-Humazah",
+      "name_transliteration": "Al-Humaza",
+      "total_verses": 9,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 105,
+      "name_arabic": "الفيل",
+      "name_english": "Al-Fil",
+      "name_transliteration": "Al-Fil",
+      "total_verses": 5,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 106,
+      "name_arabic": "قريش",
+      "name_english": "Quraysh",
+      "name_transliteration": "Quraish",
+      "total_verses": 4,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 107,
+      "name_arabic": "الماعون",
+      "name_english": "Al-Ma'un",
+      "name_transliteration": "Al-Maa'un",
+      "total_verses": 7,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 108,
+      "name_arabic": "الكوثر",
+      "name_english": "Al-Kawthar",
+      "name_transliteration": "Al-Kawthar",
+      "total_verses": 3,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 109,
+      "name_arabic": "الكافرون",
+      "name_english": "Al-Kafirun",
+      "name_transliteration": "Al-Kaafiroon",
+      "total_verses": 6,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 110,
+      "name_arabic": "النصر",
+      "name_english": "An-Nasr",
+      "name_transliteration": "An-Nasr",
+      "total_verses": 3,
+      "revelation_type": "Medinan"
+    },
+    {
+      "number": 111,
+      "name_arabic": "المسد",
+      "name_english": "Al-Masad",
+      "name_transliteration": "Al-Masad",
+      "total_verses": 5,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 112,
+      "name_arabic": "الإخلاص",
+      "name_english": "Al-Ikhlas",
+      "name_transliteration": "Al-Ikhlaas",
+      "total_verses": 4,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 113,
+      "name_arabic": "الفلق",
+      "name_english": "Al-Falaq",
+      "name_transliteration": "Al-Falaq",
+      "total_verses": 5,
+      "revelation_type": "Meccan"
+    },
+    {
+      "number": 114,
+      "name_arabic": "الناس",
+      "name_english": "An-Nas",
+      "name_transliteration": "An-Naas",
+      "total_verses": 6,
+      "revelation_type": "Meccan"
+    }
   ],
   "juz_mappings": [
-    {"juz": 1, "start": "1:1", "end": "2:141"},
-    {"juz": 2, "start": "2:142", "end": "2:252"},
-    {"juz": 3, "start": "2:253", "end": "3:92"},
-    {"juz": 4, "start": "3:93", "end": "4:23"},
-    {"juz": 5, "start": "4:24", "end": "4:147"},
-    {"juz": 6, "start": "4:148", "end": "5:81"},
-    {"juz": 7, "start": "5:82", "end": "6:110"},
-    {"juz": 8, "start": "6:111", "end": "7:87"},
-    {"juz": 9, "start": "7:88", "end": "8:40"},
-    {"juz": 10, "start": "8:41", "end": "9:92"},
-    {"juz": 11, "start": "9:93", "end": "11:5"},
-    {"juz": 12, "start": "11:6", "end": "12:52"},
-    {"juz": 13, "start": "12:53", "end": "15:1"},
-    {"juz": 14, "start": "15:2", "end": "16:128"},
-    {"juz": 15, "start": "17:1", "end": "18:74"},
-    {"juz": 16, "start": "18:75", "end": "20:135"},
-    {"juz": 17, "start": "21:1", "end": "22:78"},
-    {"juz": 18, "start": "23:1", "end": "25:20"},
-    {"juz": 19, "start": "25:21", "end": "27:55"},
-    {"juz": 20, "start": "27:56", "end": "29:45"},
-    {"juz": 21, "start": "29:46", "end": "33:30"},
-    {"juz": 22, "start": "33:31", "end": "36:27"},
-    {"juz": 23, "start": "36:28", "end": "39:31"},
-    {"juz": 24, "start": "39:32", "end": "41:46"},
-    {"juz": 25, "start": "41:47", "end": "45:37"},
-    {"juz": 26, "start": "46:1", "end": "51:30"},
-    {"juz": 27, "start": "51:31", "end": "57:29"},
-    {"juz": 28, "start": "58:1", "end": "66:12"},
-    {"juz": 29, "start": "67:1", "end": "77:50"},
-    {"juz": 30, "start": "78:1", "end": "114:6"}
+    {
+      "juz": 1,
+      "start": "1:1",
+      "end": "2:141"
+    },
+    {
+      "juz": 2,
+      "start": "2:142",
+      "end": "2:252"
+    },
+    {
+      "juz": 3,
+      "start": "2:253",
+      "end": "3:92"
+    },
+    {
+      "juz": 4,
+      "start": "3:93",
+      "end": "4:23"
+    },
+    {
+      "juz": 5,
+      "start": "4:24",
+      "end": "4:147"
+    },
+    {
+      "juz": 6,
+      "start": "4:148",
+      "end": "5:81"
+    },
+    {
+      "juz": 7,
+      "start": "5:82",
+      "end": "6:110"
+    },
+    {
+      "juz": 8,
+      "start": "6:111",
+      "end": "7:87"
+    },
+    {
+      "juz": 9,
+      "start": "7:88",
+      "end": "8:40"
+    },
+    {
+      "juz": 10,
+      "start": "8:41",
+      "end": "9:92"
+    },
+    {
+      "juz": 11,
+      "start": "9:93",
+      "end": "11:5"
+    },
+    {
+      "juz": 12,
+      "start": "11:6",
+      "end": "12:52"
+    },
+    {
+      "juz": 13,
+      "start": "12:53",
+      "end": "15:1"
+    },
+    {
+      "juz": 14,
+      "start": "15:2",
+      "end": "16:128"
+    },
+    {
+      "juz": 15,
+      "start": "17:1",
+      "end": "18:74"
+    },
+    {
+      "juz": 16,
+      "start": "18:75",
+      "end": "20:135"
+    },
+    {
+      "juz": 17,
+      "start": "21:1",
+      "end": "22:78"
+    },
+    {
+      "juz": 18,
+      "start": "23:1",
+      "end": "25:20"
+    },
+    {
+      "juz": 19,
+      "start": "25:21",
+      "end": "27:55"
+    },
+    {
+      "juz": 20,
+      "start": "27:56",
+      "end": "29:45"
+    },
+    {
+      "juz": 21,
+      "start": "29:46",
+      "end": "33:30"
+    },
+    {
+      "juz": 22,
+      "start": "33:31",
+      "end": "36:27"
+    },
+    {
+      "juz": 23,
+      "start": "36:28",
+      "end": "39:31"
+    },
+    {
+      "juz": 24,
+      "start": "39:32",
+      "end": "41:46"
+    },
+    {
+      "juz": 25,
+      "start": "41:47",
+      "end": "45:37"
+    },
+    {
+      "juz": 26,
+      "start": "46:1",
+      "end": "51:30"
+    },
+    {
+      "juz": 27,
+      "start": "51:31",
+      "end": "57:29"
+    },
+    {
+      "juz": 28,
+      "start": "58:1",
+      "end": "66:12"
+    },
+    {
+      "juz": 29,
+      "start": "67:1",
+      "end": "77:50"
+    },
+    {
+      "juz": 30,
+      "start": "78:1",
+      "end": "114:6"
+    }
   ]
 }

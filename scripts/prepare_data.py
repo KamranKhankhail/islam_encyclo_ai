@@ -75,7 +75,8 @@ def load_translations():
     }
     
     # Load Urdu translations
-    urdu_files = glob.glob(str(DATA_DIR / "*urdu-simple.json"))
+    urdu_dir = DATA_DIR / "quran_urdu_translations"
+    urdu_files = glob.glob(str(urdu_dir / "*urdu-simple.json"))
     print(f"\nFound {len(urdu_files)} Urdu translation files:")
     
     for filepath in urdu_files:
@@ -87,7 +88,8 @@ def load_translations():
         print(f"  ✓ {translator_name}: {len(data)} verses")
     
     # Load English translations
-    english_files = glob.glob(str(DATA_DIR / "*en-simple.json"))
+    english_dir = DATA_DIR / "quran_english_translations"
+    english_files = glob.glob(str(english_dir / "*en-simple.json"))
     print(f"\nFound {len(english_files)} English translation files:")
     
     for filepath in english_files:

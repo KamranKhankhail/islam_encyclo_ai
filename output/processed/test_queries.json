@@ -1,0 +1,62 @@
+[
+  {
+    "query": "بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ",
+    "expected": "1:1",
+    "type": "exact_arabic"
+  },
+  {
+    "query": "Alhamdu lillahi rabbi alAAalameen",
+    "expected": "1:2",
+    "type": "transliteration"
+  },
+  {
+    "query": "surah 2 ayah 255",
+    "expected": "2:255",
+    "type": "structural"
+  },
+  {
+    "query": "ayat ul kursi",
+    "expected": "2:255",
+    "type": "common_name"
+  },
+  {
+    "query": "what does Quran say about patience",
+    "expected": "2:153",
+    "type": "semantic_en"
+  },
+  {
+    "query": "verse about prayer",
+    "expected": "2:45",
+    "type": "semantic_en"
+  },
+  {
+    "query": "صبر کے بارے میں آیت",
+    "expected": "2:153",
+    "type": "semantic_ur"
+  },
+  {
+    "query": "Allah is with those who are patient",
+    "expected": "2:153",
+    "type": "partial_en"
+  },
+  {
+    "query": "اللہ صبر کرنے والوں کے ساتھ",
+    "expected": "2:153",
+    "type": "partial_ar"
+  },
+  {
+    "query": "In the name of Allah",
+    "expected": "1:1",
+    "type": "translation"
+  },
+  {
+    "query": "surah fatiha",
+    "expected": "1:1",
+    "type": "surah_name"
+  },
+  {
+    "query": "surah baqara",
+    "expected": "2:1",
+    "type": "surah_name"
+  }
+]

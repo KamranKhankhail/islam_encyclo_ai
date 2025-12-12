@@ -5,6 +5,7 @@ Ensures data integrity and quality
 
 import pytest
 import json
+import unicodedata
 from pathlib import Path
 
 # Paths
@@ -122,6 +123,23 @@ def test_searchable_text(dataset):
         f"{len(empty_search)} verses have empty searchable_text"
 
 
+def normalize_arabic(text):
+    """Normalize Arabic text for reliable comparison"""
+    # Remove diacritics (combining marks)
+    text = ''.join(c for c in text if unicodedata.category(c) != 'Mn')
+    
+    # Normalize letter variations (Urdu/Persian influenced)
+    text = text.replace('ی', 'ي')  # Farsi Yeh → Arabic Yeh
+    text = text.replace('ک', 'ك')  # Farsi Kaf → Arabic Kaf
+    text = text.replace('ہ', 'ه')  # Urdu Heh → Arabic Heh
+    text = text.replace('ے', 'ي')  # Urdu Yeh → Arabic Yeh
+    
+    # Remove extra whitespace
+    text = ' '.join(text.split())
+    
+    return text
+
+
 def test_famous_verses(dataset):
     """Spot check famous verses for correctness"""
     verse_lookup = {v['verse_key']: v for v in dataset}
@@ -129,12 +147,25 @@ def test_famous_verses(dataset):
     # Test Ayat al-Kursi (2:255)
     ayat_kursi = verse_lookup.get('2:255')
     assert ayat_kursi is not None, "Ayat al-Kursi (2:255) not found"
-    assert 'اللَّهُ' in ayat_kursi['arabic'], "Ayat al-Kursi text incorrect"
+    
+    # Normalize for reliable checking
+    text_clean = normalize_arabic(ayat_kursi['arabic'])
+    
+    # Check for core words (normalized)
+    assert 'الله' in text_clean, f"Missing 'Allah' - got: {text_clean[:50]}"
+    assert 'الحي' in text_clean, f"Missing 'Al-Hayy' - got: {text_clean[:50]}"
+    assert 'القيوم' in text_clean, f"Missing 'Al-Qayyum' - got: {text_clean[:50]}"
+    assert 'الكرسي' in text_clean or 'كرسي' in text_clean, f"Missing 'Kursi' - got: {text_clean[:100]}"
+    assert len(ayat_kursi['arabic']) > 400, f"Ayat al-Kursi too short: {len(ayat_kursi['arabic'])} chars"
     
     # Test Al-Ikhlas (112:1)
     ikhlas = verse_lookup.get('112:1')
     assert ikhlas is not None, "Surah Al-Ikhlas (112:1) not found"
-    assert 'أَحَدٌ' in ikhlas['arabic'], "Al-Ikhlas text incorrect"
+    
+    text_clean = normalize_arabic(ikhlas['arabic'])
+    assert 'الله' in text_clean, f"Missing 'Allah' - got: {text_clean}"
+    assert 'احد' in text_clean or 'أحد' in text_clean, f"Missing 'Ahad' - got: {text_clean}"
+
 
 
 def test_surah_al_fatiha(dataset):

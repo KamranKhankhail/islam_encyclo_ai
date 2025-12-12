@@ -1,0 +1,16 @@
+# Python artefacts
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Generated data/outputs
+output/

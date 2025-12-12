@@ -14,3 +14,4 @@ Thumbs.db
 
 # Generated data/outputs
 output/
+.bm25_cache/

@@ -30,6 +30,207 @@ from search_engine import QuranSearchEngine, QuranSearchConfig
 # Shared defaults
 DEFAULT_SEMANTIC_TOPN = 1000
 
+# Default alias expansions for common verse nicknames and misspellings
+DEFAULT_ALIAS_MAP: Dict[str, str] = {
+    # === Ayat al-Kursi (The Throne Verse) ===
+    "ayat ul kursi": "2:255",
+    "ayatul kursi": "2:255",
+    "ayat al kursi": "2:255",
+    "ayatulkursi": "2:255",
+    "throne verse": "2:255",
+    "kursi verse": "2:255",
+    "ayat kursi": "2:255",
+
+    # === Last Two Verses of Al-Baqarah ===
+    "last two verses of baqarah": "2:285-286",
+    "amanarrasul": "2:285-286",
+    "aman ar rasul": "2:285-286",
+    "aaman ar rasuul": "2:285-286",
+
+    # === Al-Fatihah (The Opening) ===
+    "al fatiha": "1:1-7",
+    "fatiha": "1:1-7",
+    "surah fatiha": "1:1-7",
+    "al fatihah": "1:1-7",
+    "the opening": "1:1-7",
+    "surah al fatiha": "1:1-7",
+    "fatiḥa": "1:1-7",
+
+    # === Al-Ikhlas (The Sincerity) ===
+    "al ikhlas": "112:1-4",
+    "ikhlas": "112:1-4",
+    "surah ikhlas": "112:1-4",
+    "tawhid": "112:1-4",
+    "monotheism": "112:1-4",
+    "sincerity": "112:1-4",
+    "qul hu allahu ahad": "112:1-4",
+
+    # === Al-Falaq (The Daybreak) ===
+    "al falaq": "113:1-5",
+    "falaq": "113:1-5",
+    "surah falaq": "113:1-5",
+    "daybreak": "113:1-5",
+
+    # === An-Nas (Mankind) ===
+    "an nas": "114:1-6",
+    "nas": "114:1-6",
+    "surah nas": "114:1-6",
+    "mankind": "114:1-6",
+
+    # === The Four Quls ===
+    "four quls": "109,112-114",
+    "qul surahs": "109,112-114",
+    "char qul": "109,112-114",
+
+    # === Ayat al-Birr (Righteousness Verse) ===
+    "ayat al birr": "2:177",
+    "birr verse": "2:177",
+    "righteousness verse": "2:177",
+    "ayatul birr": "2:177",
+
+    # === Light Verse (Ayat an-Nur) ===
+    "ayat al nur": "24:35",
+    "ayat an nur": "24:35",
+    "nur verse": "24:35",
+    "light verse": "24:35",
+    "ayatun nur": "24:35",
+
+    # === Debt Verse (Ayat ad-Dayn) ===
+    "ayat al dayn": "2:282",
+    "debt verse": "2:282",
+    "longest verse": "2:282",
+    "ayat ud dayn": "2:282",
+
+    # === Khilafah Verse ===
+    "khilafah verse": "24:55",
+    "caliphate verse": "24:55",
+    "succession verse": "24:55",
+
+    # === Sabaq Verse (Patience) ===
+    "sabr verse": "2:153",
+    "patience verse": "2:153",
+    "ayat as sabr": "2:153",
+
+    # === Hajj Verse ===
+    "hajj verse": "3:97",
+    "hajj obligation": "3:97",
+
+    # === Parents Verse ===
+    "parents verse": "17:23-24",
+    "respect parents": "17:23-24",
+
+    # === Marriage Verses ===
+    "marriage verse": "4:1",
+    "spouse verse": "30:21",
+    "ayat an nisa": "4:1",
+
+    # === Al-Kahf (The Cave) ===
+    "al kahf": "18:1-110",
+    "kahf": "18:1-110",
+    "surah kahf": "18:1-110",
+    "the cave": "18:1-110",
+
+    # === Yaseen ===
+    "yaseen": "36:1-83",
+    "ya seen": "36:1-83",
+    "surah yasin": "36:1-83",
+    "heart of quran": "36:1-83",
+
+    # === Ar-Rahman ===
+    "ar rahman": "55:1-78",
+    "rahman": "55:1-78",
+    "surah rahman": "55:1-78",
+
+    # === Al-Waqiah ===
+    "al waqiah": "56:1-96",
+    "waqiah": "56:1-96",
+    "surah waqiah": "56:1-96",
+    "the event": "56:1-96",
+
+    # === Al-Mulk ===
+    "al mulk": "67:1-30",
+    "mulk": "67:1-30",
+    "surah mulk": "67:1-30",
+    "the sovereignty": "67:1-30",
+    "tabarak": "67:1-30",
+
+    # === Short Surahs for Prayer ===
+    "al kafirun": "109:1-6",
+    "kafirun": "109:1-6",
+    "surah kafiroon": "109:1-6",
+
+    # === Juz/Para References ===
+    "juz amma": "78-114",
+    "para 30": "78-114",
+    "juz 30": "78-114",
+    "amma": "78-114",
+
+    "juz tabarak": "67-77",
+    "para 29": "67-77",
+    "juz 29": "67-77",
+
+    "sajdah tilawah": "32:15",
+    "prostration verse": "32:15",
+
+    # === Morning/Evening Adhkar Verses ===
+    "ayat al kursi morning": "2:255",
+    "three quls": "112-114",
+
+    # === Common Misspellings/Variations ===
+    "ayatul kursiy": "2:255",
+    "ayatulkursee": "2:255",
+    "ayat el kursi": "2:255",
+
+    "alfatiha": "1:1-7",
+    "alfatihah": "1:1-7",
+    "surah alfatiha": "1:1-7",
+
+    "alikhlas": "112:1-4",
+    "iklas": "112:1-4",
+    "qulhu": "112:1-4",
+
+    # === Special Groups ===
+    "muawwadhāt": "113-114",
+    "al-mu'awwidhatayn": "113-114",
+    "the two protectors": "113-114",
+
+    "musabbihat": "57,59,61,62,64",
+    "al-musabbihat": "57,59,61,62,64",
+
+    # === First Revelation ===
+    "first revelation": "96:1-5",
+    "iqra": "96:1-5",
+    "alaq": "96:1-5",
+
+    # === Last Revelation ===
+    "last revelation": "5:3",
+    "today perfected": "5:3",
+
+    # === Specific Famous Verses ===
+    "no compulsion": "2:256",
+    "la ikraha": "2:256",
+    "no compulsion in religion": "2:256",
+
+    "half of knowledge": "2:269",
+    "wisdom verse": "2:269",
+
+    "oppression verse": "2:286",
+    "allah burdens not": "2:286",
+
+    # === Frequently Recited in Prayer ===
+    "sajdah verse": "32:15",
+    "sajda verse": "32:15",
+
+    # === Dua/Verses for Protection ===
+    "ayat al hifz": "41:36",
+    "protection verse": "41:36",
+
+    # === Medical/Sickness Verses ===
+    "shifa verses": "17:82",
+    "healing verses": "17:82",
+    "ruqyah verses": "2:255, 1:1-7, 112:1-4, 113:1-5, 114:1-6",
+}
+
 
 # ----------------------------
 # Config
@@ -96,8 +297,9 @@ class E5HybridSearchEngine(QuranSearchEngine):
 
         # Alias map (normalized)
         self.alias_map: Dict[str, str] = {}
-        if alias_map:
-            for k, vk in alias_map.items():
+        alias_source = alias_map or DEFAULT_ALIAS_MAP
+        if alias_source:
+            for k, vk in alias_source.items():
                 self.alias_map[self._norm_alias(k)] = vk
 
         # Semantic components
@@ -237,6 +439,48 @@ class E5HybridSearchEngine(QuranSearchEngine):
     # Alias
     # ----------------------------
 
+    def _parse_alias_target(self, target: str) -> List[Dict[str, Any]]:
+        """
+        Parse alias target strings into structural specs consumable by _resolve_structural.
+        Supports ayah ranges, surah ranges/lists, and comma-separated groups.
+        """
+        specs: List[Dict[str, Any]] = []
+        parts = [p.strip() for p in str(target).split(",") if p.strip()]
+
+        for p in parts:
+            # Ayah range within a surah, e.g., 2:285-286
+            m = re.fullmatch(r"(\d+):(\d+)-(\d+)", p)
+            if m:
+                s, a1, a2 = map(int, m.groups())
+                specs.append({"surah": s, "ayah": a1, "ayah_end": a2})
+                continue
+
+            # Single ayah, e.g., 2:255
+            m = re.fullmatch(r"(\d+):(\d+)", p)
+            if m:
+                s, a = m.groups()
+                specs.append({"verse_key": f"{int(s)}:{int(a)}"})
+                continue
+
+            # Surah range, e.g., 112-114 -> first ayah of each
+            m = re.fullmatch(r"(\d+)-(\d+)", p)
+            if m:
+                s1, s2 = map(int, m.groups())
+                if s2 < s1:
+                    s1, s2 = s2, s1
+                for surah in range(s1, s2 + 1):
+                    specs.append({"verse_key": f"{surah}:1"})
+                continue
+
+            # Single surah number -> first ayah
+            m = re.fullmatch(r"(\d+)", p)
+            if m:
+                surah = int(m.group(1))
+                specs.append({"verse_key": f"{surah}:1"})
+                continue
+
+        return specs
+
     def _norm_alias(self, s: str) -> str:
         import unicodedata
         s = unicodedata.normalize("NFKC", str(s))
@@ -247,16 +491,25 @@ class E5HybridSearchEngine(QuranSearchEngine):
 
     def _resolve_alias(self, query: str) -> Optional[List[Dict[str, Any]]]:
         k = self._norm_alias(query)
-        vk = self.alias_map.get(k)
-        if not vk:
+        target = self.alias_map.get(k)
+        if not target:
             return None
-        v = self._verse_by_key.get(vk)
-        if not v:
+        specs = self._parse_alias_target(target)
+        if not specs:
             return None
-        out = v.copy()
-        out["match_type"] = "alias"
-        out["relevance_score"] = 1.0
-        return [out]
+        results: List[Dict[str, Any]] = []
+        for spec in specs:
+            resolved = self._resolve_structural(spec)
+            if not resolved:
+                continue
+            for r in resolved:
+                out = r.copy()
+                out["match_type"] = "alias"
+                out["relevance_score"] = 1.0
+                results.append(out)
+        if not results:
+            return None
+        return results
 
     # ----------------------------
     # Semantic retrieval
@@ -462,14 +715,6 @@ def get_e5_engine(
 
     config = QuranSearchConfig(enable_cache=enable_cache)
 
-    # Expand over time (this is what makes named queries flawless)
-    alias_map = {
-        "ayat ul kursi": "2:255",
-        "ayatul kursi": "2:255",
-        "ayat al kursi": "2:255",
-        "ayatulkursi": "2:255",
-    }
-
     hybrid = HybridConfig(
         enable_semantic=True,
         bm25_weight=1.0 - float(semantic_weight),
@@ -494,7 +739,7 @@ def get_e5_engine(
         verse_keys_path=str(verse_keys_path),
         model_name="intfloat/multilingual-e5-small",
         hybrid=hybrid,
-        alias_map=alias_map,
+        alias_map=DEFAULT_ALIAS_MAP,
     )
 
 

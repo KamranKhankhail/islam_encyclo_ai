@@ -1,17 +1,17 @@
 ########################## improved chatGPT's e5-search implementation.
 """
-E5 Hybrid Search Engine — Production-Grade (Qur'an-scale + Mobile-aligned)
+E5 Hybrid Search Engine - Production Grade (Qur'an scale + mobile aligned)
 
 Best-practice notes:
-- E5 requires "query: " prefix for queries and "passage: " for documents. :contentReference[oaicite:3]{index=3}
-- Hybrid fusion: RRF is a strong default because it fuses ranks without fragile score normalization. :contentReference[oaicite:4]{index=4}
+- E5 requires "query: " prefix for queries and "passage: " for documents.
+- Hybrid fusion: RRF is a strong default because it fuses ranks without fragile score normalization.
 
 Pipeline:
-1) Structural parser → exact nav
-2) Alias resolver → exact known names
-3) BM25 lexical → topN
-4) E5 semantic (full scan for Qur'an) → topN
-5) Fuse (RRF) → topK
+1) Structural parser + exact navigation
+2) Alias resolver + exact known names
+3) BM25 lexical + topN
+4) E5 semantic (full scan for Qur'an) + topN
+5) Fuse (RRF) + topK
 """
 
 import json
@@ -47,7 +47,7 @@ class HybridConfig:
 
     # Fusion
     fusion_method: str = "rrf"  # "rrf" recommended; "weighted_norm" optional
-    rrf_k: int = 60             # typical starting constant :contentReference[oaicite:5]{index=5}
+    rrf_k: int = 60             # typical starting constant
     bm25_weight: float = 0.70
     semantic_weight: float = 0.30
 
@@ -148,9 +148,8 @@ class E5HybridSearchEngine(QuranSearchEngine):
                 f"Embeddings rows ({self.verse_embeddings.shape[0]}) != verse_keys count ({len(emb_keys)})"
             )
 
-        print(f"  ✓ Loaded embeddings: {self.verse_embeddings.shape} dtype={self.verse_embeddings.dtype} mmap={bool(mmap_mode)}")
-
-        # Load E5 model
+        print(f"  ✓ Loaded E5 verse embeddings: {self.verse_embeddings.shape} dtype={self.verse_embeddings.dtype} mmap={bool(mmap_mode)}")
+        print(f"  Loading {self.model_name}...")
         self.semantic_model = SentenceTransformer(self.model_name)
 
         device = "cpu"
@@ -167,8 +166,27 @@ class E5HybridSearchEngine(QuranSearchEngine):
         except Exception:
             pass
 
+        # Warm-up once to smooth out first-query latency
+        try:
+            import torch
+
+            with torch.inference_mode():
+                _ = self.semantic_model.encode(
+                    ["query: warmup"],
+                    normalize_embeddings=True,
+                    convert_to_numpy=True,
+                    show_progress_bar=False,
+                )
+        except Exception:
+            _ = self.semantic_model.encode(
+                ["query: warmup"],
+                normalize_embeddings=True,
+                convert_to_numpy=True,
+                show_progress_bar=False,
+            )
+
         print(f"  ✓ E5 model ready ({self.model_name}) on {device}")
-        print(f"  ✓ Fusion: {self.hybrid.fusion_method} | BM25={self.hybrid.bm25_weight:.0%}, E5={self.hybrid.semantic_weight:.0%}")
+        print(f"  ✓ Scoring weights: BM25={self.hybrid.bm25_weight:.0%}, E5={self.hybrid.semantic_weight:.0%}")
 
     # ----------------------------
     # Public API
@@ -185,6 +203,9 @@ class E5HybridSearchEngine(QuranSearchEngine):
         if structural:
             resolved = self._resolve_structural(structural)
             if resolved:
+                for r in resolved:
+                    r.setdefault("match_type", "structural")
+                    r.setdefault("relevance_score", 1.0)
                 return resolved[:top_k]
 
         # 2) Alias resolver
@@ -243,12 +264,23 @@ class E5HybridSearchEngine(QuranSearchEngine):
         if key in self._qcache:
             return self._qcache[key]
 
-        e5_query = f"query: {query}"  # required by E5 :contentReference[oaicite:6]{index=6}
-        q_emb = self.semantic_model.encode(
-            [e5_query],
-            normalize_embeddings=True,
-            convert_to_numpy=True
-        )[0].astype(np.float32, copy=False)
+        e5_query = f"query: {query}"  # required by E5
+        try:
+            import torch
+            with torch.inference_mode():
+                q_emb = self.semantic_model.encode(
+                    [e5_query],
+                    normalize_embeddings=True,
+                    convert_to_numpy=True,
+                    show_progress_bar=False,
+                )[0].astype(np.float32, copy=False)
+        except Exception:
+            q_emb = self.semantic_model.encode(
+                [e5_query],
+                normalize_embeddings=True,
+                convert_to_numpy=True,
+                show_progress_bar=False,
+            )[0].astype(np.float32, copy=False)
 
         # Insert into simple LRU-ish cache
         self._qcache[key] = q_emb
@@ -462,336 +494,81 @@ def get_e5_engine(
     )
 
 
+def _format_translation_en(result: Dict[str, Any]) -> str:
+    # Try preferred translation fields; fall back to builtin
+    text = result.get("translation_en_builtin") or result.get("translation_english") or ""
+    if not text and isinstance(result.get("translations_english"), dict):
+        # Pick first available translator text
+        translations = result["translations_english"]
+        if translations:
+            # deterministic order
+            first_key = sorted(translations.keys())[0]
+            text = translations.get(first_key, "")
+    return str(text).strip()
+
+
+def _log_result_block(result: Dict[str, Any], idx: int) -> None:
+    surah = result.get("surah_name_english", "Unknown")
+    verse_key = result.get("verse_key", "n/a")
+    match_type = result.get("match_type") or "unknown"
+
+    combined = result.get("relevance_score", 0.0)
+    # Structural/alias exact hits should read as 1.0 combined
+    if match_type in {"structural", "alias"}:
+        combined = 1.0
+
+    print(f"{idx}. {surah} ({verse_key})")
+    print(f"   📊 Combined: {combined:.3f}")
+
+    # Optional breakdowns for hybrid/semantic
+    bm25_raw = result.get("bm25_raw")
+    e5_raw = result.get("e5_raw_similarity")
+    bm25_score = result.get("bm25_score")
+    e5_score = result.get("e5_score")
+
+    if bm25_score is not None or e5_score is not None or bm25_raw is not None or e5_raw is not None:
+        b_display = bm25_score if bm25_score is not None else bm25_raw
+        s_display = e5_score if e5_score is not None else e5_raw
+        if b_display is not None or s_display is not None:
+            b_txt = f"{b_display:.3f}" if b_display is not None else "n/a"
+            s_txt = f"{s_display:.3f}" if s_display is not None else "n/a"
+            print(f"      BM25: {b_txt} | E5: {s_txt}")
+        if e5_raw is not None and e5_score is None:
+            print(f"      E5 raw cosine: {e5_raw:.3f}")
+
+    # Match type
+    display_type = "hybrid_e5" if match_type == "hybrid_fused" else match_type
+    print(f"   🏷️  Type: {display_type}")
+
+    # English preview
+    en_text = _format_translation_en(result)
+    if en_text:
+        preview = (en_text[:70] + "...") if len(en_text) > 70 else en_text
+        print(f"   🇬🇧 EN: {preview}")
+
+
 if __name__ == "__main__":
+    print("E5 HYBRID SEARCH ENGINE - RESEARCH-OPTIMIZED")
     print("=" * 70)
-    print("E5 HYBRID SEARCH — PRODUCTION-GRADE DEMO")
-    print("=" * 70)
+    print("Loading BM25 index from cache...")
 
     engine = get_e5_engine(semantic_weight=0.30)
 
     tests = [
         "2:255",
-        "ayat ul kursi",
         "patience",
-        "what does quran say about prayer",
         "صبر کے بارے میں آیت",
-        "verses about charity and helping the poor",
     ]
 
     for q in tests:
+        print(f"\n🔍 Query: '{q}'")
+        print("-" * 70)
         t0 = time.time()
-        res = engine.search(q, top_k=3)
-        ms = (time.time() - t0) * 1000.0
-        print(f"\nQuery: {q}  |  {ms:.2f} ms")
-        for i, r in enumerate(res, 1):
-            print(f"  {i}. {r.get('verse_key')} | score={r.get('relevance_score'):.4f} | {r.get('match_type')}")
-            if r.get("match_type") == "hybrid_fused":
-                print(f"     bm25_rank={r.get('bm25_rank')} sem_rank={r.get('semantic_rank')} e5={r.get('e5_raw_similarity'):.4f}")
-
-
-
-
-########################## original claude's embeddings implementation.
-# """
-# E5-Powered Hybrid Search Engine
-# Research-optimized for maximum retrieval accuracy
-
-# Key E5 Features:
-# 1. "query: " prefix for search queries (CRITICAL!)
-# 2. "passage: " prefix already in embeddings
-# 3. Asymmetric retrieval architecture
-# 4. Superior cross-lingual semantic matching
-# """
-
-# import json
-# import numpy as np
-# from pathlib import Path
-# from typing import List, Dict, Any, Optional
-# from sentence_transformers import SentenceTransformer
-
-# # Import your excellent BM25 engine as base
-# from search_engine import QuranSearchEngine, QuranSearchConfig
-
-
-# class E5HybridSearchEngine(QuranSearchEngine):
-#     """
-#     E5-powered hybrid search: BM25 + E5 semantic reranking
-    
-#     Research-backed improvements over MiniLM:
-#     - +4.6 NDCG@10 on retrieval benchmarks
-#     - Superior cross-lingual understanding
-#     - Optimized for query-passage matching (our exact use case)
-    
-#     Architecture:
-#     1. BM25 retrieves top-50 candidates (fast, ~30ms)
-#     2. E5 reranks with semantic similarity (~50-80ms)
-#     3. Weighted combination (70% BM25, 30% E5)
-#     4. Returns best top-K results
-#     """
-    
-#     def __init__(
-#         self,
-#         data_path: str,
-#         metadata_path: Optional[str] = None,
-#         config: Optional[QuranSearchConfig] = None,
-#         embeddings_path: Optional[str] = None,
-#         enable_semantic: bool = True,
-#         semantic_weight: float = 0.30,
-#     ):
-#         # Initialize base BM25 engine (your 91.7% baseline)
-#         super().__init__(data_path, metadata_path, config)
-        
-#         self.enable_semantic = enable_semantic
-#         self.semantic_weight = semantic_weight
-#         self.bm25_weight = 1.0 - semantic_weight
-        
-#         if self.enable_semantic:
-#             print("Loading E5 semantic components...")
-            
-#             # Load verse embeddings (generated with "passage: " prefix)
-#             if embeddings_path is None:
-#                 base_dir = Path(data_path).parent
-#                 embeddings_path = base_dir / "verse_embeddings_e5.npy"
-            
-#             self.verse_embeddings = np.load(embeddings_path)
-#             print(f"  ✓ Loaded E5 verse embeddings: {self.verse_embeddings.shape}")
-            
-#             # Load E5 model
-#             print(f"  Loading intfloat/multilingual-e5-small...")
-#             self.semantic_model = SentenceTransformer('intfloat/multilingual-e5-small')
-#             print(f"  ✓ E5 model ready")
-            
-#             print(f"  ✓ Scoring weights: BM25={self.bm25_weight:.0%}, E5={self.semantic_weight:.0%}")
-#         else:
-#             self.verse_embeddings = None
-#             self.semantic_model = None
-    
-#     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
-#         """
-#         E5-powered hybrid search
-        
-#         Args:
-#             query: Search query (plain text, no prefix needed - we add it)
-#             top_k: Number of final results
-        
-#         Returns:
-#             Ranked list of verses with combined scoring
-#         """
-#         if not query or not query.strip():
-#             return []
-        
-#         # Step 1: Structural query (exact navigation) - always 100%
-#         structural = self.structural_parser.parse(query)
-#         if structural:
-#             resolved = self._resolve_structural(structural)
-#             if resolved:
-#                 return resolved
-        
-#         # Step 2: Get BM25 candidates
-#         if self.enable_semantic:
-#             # Get more candidates for E5 reranking
-#             candidate_k = min(50, len(self.verses))
-#             bm25_results = self._lexical_search(query, candidate_k)
-#         else:
-#             # Pure BM25 fallback
-#             return self._lexical_search(query, top_k)
-        
-#         if not bm25_results:
-#             return []
-        
-#         # Step 3: E5 semantic reranking
-#         return self._e5_rerank(query, bm25_results, top_k)
-    
-#     def _e5_rerank(
-#         self, 
-#         query: str, 
-#         candidates: List[Dict[str, Any]], 
-#         top_k: int
-#     ) -> List[Dict[str, Any]]:
-#         """
-#         Rerank BM25 candidates using E5 semantic similarity
-        
-#         E5 Scoring Formula:
-#         - BM25 score (normalized): 70% weight (default)
-#         - E5 semantic similarity: 30% weight (default)
-        
-#         These weights are tunable based on your evaluation results
-#         """
-#         if not candidates or not self.enable_semantic:
-#             return candidates[:top_k]
-        
-#         # CRITICAL: E5 requires "query: " prefix for search queries
-#         # This is what makes E5 excel at retrieval tasks
-#         e5_query = f"query: {query}"
-        
-#         # Generate E5 query embedding
-#         query_embedding = self.semantic_model.encode(
-#             [e5_query], 
-#             normalize_embeddings=True,
-#             convert_to_numpy=True
-#         )[0]
-        
-#         # Get candidate indices and BM25 scores
-#         candidate_indices = []
-#         bm25_scores = []
-        
-#         for candidate in candidates:
-#             verse_key = candidate.get('verse_key')
-#             if not verse_key:
-#                 continue
-            
-#             # Find verse index in original dataset
-#             idx = None
-#             for i, v in enumerate(self.verses):
-#                 if v.get('verse_key') == verse_key:
-#                     idx = i
-#                     break
-            
-#             if idx is not None:
-#                 candidate_indices.append(idx)
-#                 bm25_scores.append(candidate.get('relevance_score', 0.0))
-        
-#         if not candidate_indices:
-#             return candidates[:top_k]
-        
-#         # Normalize BM25 scores to [0, 1]
-#         bm25_scores = np.array(bm25_scores)
-#         if bm25_scores.max() > 0:
-#             bm25_scores_norm = bm25_scores / bm25_scores.max()
-#         else:
-#             bm25_scores_norm = bm25_scores
-        
-#         # Compute E5 semantic similarities
-#         # Note: verse embeddings already have "passage: " prefix from generation
-#         candidate_embeddings = self.verse_embeddings[candidate_indices]
-#         e5_scores = np.dot(candidate_embeddings, query_embedding)
-        
-#         # Normalize E5 scores to [0, 1]
-#         # Cosine similarity is in [-1, 1], map to [0, 1]
-#         e5_scores_norm = (e5_scores + 1.0) / 2.0
-        
-#         # Combined scoring with configurable weights
-#         combined_scores = (
-#             self.bm25_weight * bm25_scores_norm + 
-#             self.semantic_weight * e5_scores_norm
-#         )
-        
-#         # Rank by combined score
-#         ranked_indices = np.argsort(-combined_scores)[:top_k]
-        
-#         # Build final results
-#         results = []
-#         for rank_idx in ranked_indices:
-#             original_idx = candidate_indices[rank_idx]
-#             verse = self.verses[original_idx].copy()
-            
-#             # Add detailed scoring for analysis
-#             verse['relevance_score'] = float(combined_scores[rank_idx])
-#             verse['bm25_score'] = float(bm25_scores_norm[rank_idx])
-#             verse['e5_score'] = float(e5_scores_norm[rank_idx])
-#             verse['e5_raw_similarity'] = float(e5_scores[rank_idx])
-#             verse['match_type'] = 'hybrid_e5'
-            
-#             results.append(verse)
-        
-#         return results
-    
-#     def search_formatted(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
-#         """Search and return formatted results"""
-#         results = self.search(query, top_k)
-#         return [self.format_result(v) for v in results]
-    
-#     def tune_weights(self, bm25_weight: float):
-#         """
-#         Tune scoring weights based on evaluation results
-        
-#         Args:
-#             bm25_weight: Weight for BM25 score (0-1)
-#                         E5 weight will be (1 - bm25_weight)
-        
-#         Recommended starting points:
-#         - bm25_weight=0.70 (default): Balanced
-#         - bm25_weight=0.80: Favor lexical precision
-#         - bm25_weight=0.60: Favor semantic recall
-#         """
-#         self.bm25_weight = max(0.0, min(1.0, bm25_weight))
-#         self.semantic_weight = 1.0 - self.bm25_weight
-#         print(f"Updated weights: BM25={self.bm25_weight:.0%}, E5={self.semantic_weight:.0%}")
-
-
-# # Convenience functions
-
-# def get_e5_engine(
-#     semantic_weight: float = 0.30,
-#     enable_cache: bool = True,
-# ) -> E5HybridSearchEngine:
-#     """
-#     Get E5-powered hybrid engine with optimal settings
-    
-#     Args:
-#         semantic_weight: E5 weight in [0, 1], default 0.30 (30%)
-#         enable_cache: Use BM25 index caching for fast startup
-#     """
-#     base_dir = Path(__file__).parent.parent
-#     data_path = base_dir / "output" / "processed" / "quran_complete.json"
-#     metadata_path = base_dir / "output" / "processed" / "metadata.json"
-#     embeddings_path = base_dir / "output" / "processed" / "verse_embeddings_e5.npy"
-    
-#     config = QuranSearchConfig(enable_cache=enable_cache)
-    
-#     return E5HybridSearchEngine(
-#         data_path=str(data_path),
-#         metadata_path=str(metadata_path) if metadata_path.exists() else None,
-#         config=config,
-#         embeddings_path=str(embeddings_path),
-#         enable_semantic=True,
-#         semantic_weight=semantic_weight,
-#     )
-
-
-# if __name__ == "__main__":
-#     # E5 Hybrid Search Demo
-#     print("="*70)
-#     print("E5 HYBRID SEARCH ENGINE - RESEARCH-OPTIMIZED")
-#     print("="*70)
-    
-#     engine = get_e5_engine()
-    
-#     test_queries = [
-#         # Structural (should be 100%)
-#         "2:255",
-        
-#         # Keyword (BM25 excels)
-#         "patience",
-        
-#         # Semantic (E5 excels)
-#         "what does quran say about prayer",
-        
-#         # Cross-lingual (E5's strength)
-#         "صبر کے بارے میں آیت",  # Urdu semantic
-        
-#         # Complex semantic
-#         "verses about charity and helping the poor",
-#     ]
-    
-#     for query in test_queries:
-#         print(f"\n🔍 Query: '{query}'")
-#         print("-"*70)
-        
-#         results = engine.search_formatted(query, top_k=3)
-        
-#         if not results:
-#             print("   No results found")
-#             continue
-        
-#         for i, r in enumerate(results, 1):
-#             print(f"\n{i}. {r['surah_name_english']} ({r['verse_key']})")
-#             print(f"   📊 Combined: {r['relevance_score']:.3f}")
-            
-#             if 'bm25_score' in r and 'e5_score' in r:
-#                 print(f"      BM25: {r['bm25_score']:.3f} | E5: {r['e5_score']:.3f}")
-#                 if 'e5_raw_similarity' in r:
-#                     print(f"      E5 raw cosine: {r['e5_raw_similarity']:.3f}")
-            
-#             print(f"   🏷️  Type: {r['match_type']}")
-#             print(f"   🇬🇧 EN: {r['translation_english'][:65]}...")
+        results = engine.search(q, top_k=3)
+        latency_ms = (time.time() - t0) * 1000.0
+        if not results:
+            print("  No results found")
+            continue
+        for i, res in enumerate(results, 1):
+            _log_result_block(res, i)
+        print(f"   (latency: {latency_ms:.2f} ms)")

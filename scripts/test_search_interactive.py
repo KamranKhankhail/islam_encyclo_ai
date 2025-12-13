@@ -5,6 +5,8 @@ Test search engine with custom queries
 
 from pathlib import Path
 from search_engine import QuranSearchEngine
+# Line 4: Change import
+from hybrid_search_e5 import get_e5_engine
 
 
 def print_result(result, index):
@@ -35,7 +37,8 @@ def main():
     print("="*60)
     print("\nInitializing search engine...")
     
-    engine = QuranSearchEngine(str(data_path))
+    # Line 19: Change engine initialization
+    engine = get_e5_engine()
     
     print("✓ Ready!")
     print("\nTips:")

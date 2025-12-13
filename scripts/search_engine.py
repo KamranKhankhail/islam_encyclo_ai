@@ -105,6 +105,13 @@ _SYNONYMS = {
 }
 
 
+# Reverse synonym lookup: map a synonym token back to its canonical key (one-to-one, first wins)
+_REVERSE_SYNONYMS: Dict[str, str] = {}
+for _canon, _syns in _SYNONYMS.items():
+    for _s in _syns:
+        _REVERSE_SYNONYMS.setdefault(_s, _canon)
+
+
 def _is_arabic_script(s: str) -> bool:
     return bool(_ARABIC_BLOCK_RE.search(s or ""))
 
@@ -178,6 +185,9 @@ def expand_query_tokens(tokens: List[str]) -> List[str]:
         syns = _SYNONYMS.get(t)
         if syns:
             out.extend(syns)
+        rev = _REVERSE_SYNONYMS.get(t)
+        if rev:
+            out.append(rev)
     return out
 
 

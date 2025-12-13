@@ -27,6 +27,10 @@ from sentence_transformers import SentenceTransformer
 from search_engine import QuranSearchEngine, QuranSearchConfig
 
 
+# Shared defaults
+DEFAULT_SEMANTIC_TOPN = 1000
+
+
 # ----------------------------
 # Config
 # ----------------------------
@@ -37,7 +41,7 @@ class HybridConfig:
 
     # Retrieval depths
     bm25_topn: int = 80
-    semantic_topn: int = 80
+    semantic_topn: int = DEFAULT_SEMANTIC_TOPN
     final_topk: int = 5
 
     # Semantic scan mode:
@@ -473,7 +477,7 @@ def get_e5_engine(
         fusion_method="rrf",
         rrf_k=60,
         bm25_topn=80,
-        semantic_topn=80,
+        semantic_topn=DEFAULT_SEMANTIC_TOPN,
         final_topk=5,
         semantic_scan_mode="full",
         mmap_embeddings=True,

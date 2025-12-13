@@ -16,7 +16,7 @@ import time
 from pathlib import Path
 from typing import Any, Dict, Tuple, Optional, List
 
-from hybrid_search_e5 import E5HybridSearchEngine, HybridConfig
+from hybrid_search_e5 import DEFAULT_SEMANTIC_TOPN, E5HybridSearchEngine, HybridConfig
 from search_engine import QuranSearchConfig
 from evaluate import SearchEvaluator
 
@@ -80,7 +80,7 @@ def _build_engine(
         fusion_method="rrf",
         rrf_k=60,
         bm25_topn=80,
-        semantic_topn=80,
+        semantic_topn=DEFAULT_SEMANTIC_TOPN,
         final_topk=DEFAULT_K,
         semantic_scan_mode="full",   # Qur’an-scale: best recall
         mmap_embeddings=True,

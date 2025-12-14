@@ -4,16 +4,19 @@ from pathlib import Path
 import numpy as np
 
 BASE = Path(__file__).resolve().parents[1]  # repo root
-SRC = BASE / "output" / "processed"
+PROCESSED_DIR = BASE / "output" / "processed"
+DATA_DIR = BASE / "data"
 OUT = BASE / "askquran_pack" / "v1"
 OUT.mkdir(parents=True, exist_ok=True)
 
-FILES_TO_COPY = [
-    "quran_compact.json",
-    "metadata.json",
-    "verse_keys_e5.json",
-    "embeddings_meta_e5.json",
-]
+# Source locations differ: most artifacts live under output/processed,
+# but metadata.json remains in the canonical data/ folder.
+FILES_TO_COPY = {
+    "quran_compact.json": PROCESSED_DIR / "quran_compact.json",
+    "metadata.json": DATA_DIR / "metadata.json",
+    "verse_keys_e5.json": PROCESSED_DIR / "verse_keys_e5.json",
+    "embeddings_meta_e5.json": PROCESSED_DIR / "embeddings_meta_e5.json",
+}
 
 def sha256_file(p: Path) -> str:
     h = hashlib.sha256()
@@ -26,8 +29,7 @@ def main():
     # 1) Copy JSON files
     manifest = {"version": "v1", "files": {}}
 
-    for name in FILES_TO_COPY:
-        src = SRC / name
+    for name, src in FILES_TO_COPY.items():
         if not src.exists():
             raise FileNotFoundError(f"Missing: {src}")
         dst = OUT / name
@@ -38,7 +40,7 @@ def main():
         }
 
     # 2) Convert embeddings .npy -> float16 raw binary (smaller + faster to load)
-    emb_npy = SRC / "verse_embeddings_e5.npy"
+    emb_npy = PROCESSED_DIR / "verse_embeddings_e5.npy"
     if not emb_npy.exists():
         raise FileNotFoundError(f"Missing: {emb_npy}")
 

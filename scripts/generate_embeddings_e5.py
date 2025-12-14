@@ -32,6 +32,26 @@ from sentence_transformers import SentenceTransformer
 
 MODEL_NAME = "intfloat/multilingual-e5-small"
 
+################################################################
+# Requires: 3GB phone RAM, any 64-bit ARM processor
+# MODEL_NAME = jeffh/intfloat-multilingual-e5-small-int8
+# Recommended stack for mobile:
+# - ONNX Runtime Mobile (best performance)
+# - PyTorch Mobile (easier development)
+# - TensorFlow Lite (good for Android)
+# ✅ Can run on:
+# - Samsung Galaxy A13 (4GB RAM)
+# - iPhone SE 2nd gen (3GB RAM)
+# - Pixel 4a (6GB RAM)
+# - Most phones from 2019+
+#
+# # For even low-end devices, Consider these smaller alternatives:
+# "thenlper/gte-small"  # ~60MB
+# "sentence-transformers/all-MiniLM-L6-v2"  # ~80MB
+# "intfloat/multilingual-e5-base"  # Larger but more accurate
+################################################################
+
+
 # Translator preferences (your request)
 EN_PREF = ["yusuf-ali"]
 UR_PREF = ["fatah-muhammad-jalandhari"]

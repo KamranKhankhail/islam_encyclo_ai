@@ -1,91 +1,58 @@
 """
-Interactive Search Testing
-Test search engine with custom queries
+Interactive Search Testing - AskQuran Response Format v1
 """
 
-from pathlib import Path
-from search_engine import QuranSearchEngine
-# Line 4: Change import
 from hybrid_search_e5 import get_e5_engine
 
 
-def print_result(result, index):
-    """Pretty print a search result"""
-    print(f"\n{'─'*60}")
-    print(f"Result #{index}")
-    print(f"{'─'*60}")
-    print(f"📍 Location: {result['surah_name_english']} {result['surah']}:{result['ayah']}")
-    print(f"📊 Score: {result['relevance_score']:.3f} | Type: {result['match_type']}")
-    if result.get('juz'):
-        print(f"📖 Juz: {result['juz']}")
-    print(f"\n🔤 Arabic:")
-    print(f"   {result['arabic']}")
-    print(f"\n🇬🇧 English:")
-    print(f"   {result['translation_english']}")
-    print(f"\n🇵🇰 Urdu:")
-    print(f"   {result['translation_urdu']}")
+def print_result(result: dict, index: int) -> None:
+    score = result.get("score") or {}
+    display = result.get("display") or {}
+
+    print(f"\n{'-'*60}")
+    print(f"Result #{index}  {result.get('verseKey')}")
+    print(f"{'-'*60}")
+    print(
+        "mode={mode} | rrf={rrf} | bm25={bm25} | semantic={semantic}".format(
+            mode=score.get("mode"),
+            rrf=score.get("rrf"),
+            bm25=score.get("bm25"),
+            semantic=score.get("semantic"),
+        )
+    )
+    print(f"display [{display.get('lang')}]: {display.get('text')}")
+    print("arabic:")
+    print(f"  {result.get('arabic')}")
 
 
-def main():
-    """Interactive search loop"""
-    # Initialize engine
-    base_dir = Path(__file__).parent.parent
-    data_path = base_dir / "output" / "processed" / "quran_complete.json"
-    
-    print("="*60)
-    print("ISLAM ENCYCLO AI - INTERACTIVE SEARCH")
-    print("="*60)
-    print("\nInitializing search engine...")
-    
-    # Line 19: Change engine initialization
+def main() -> None:
     engine = get_e5_engine()
-    
-    print("✓ Ready!")
-    print("\nTips:")
-    print("  - Try structural queries: '2:255', 'surah fatiha'")
-    print("  - Try keywords: 'patience', 'prayer', 'صبر'")
-    print("  - Try questions: 'what does quran say about...?'")
-    print("  - Type 'quit' or 'exit' to stop")
-    print("="*60)
-    
+
+    print("=" * 60)
+    print("ISLAM ENCYCLO AI - INTERACTIVE SEARCH")
+    print("=" * 60)
+    print("Type 'quit' to exit.\n")
+
     while True:
-        # Get query from user
-        query = input("\n🔍 Enter query: ").strip()
-        
+        query = input("\nQuery: ").strip()
         if not query:
             continue
-        
-        if query.lower() in ['quit', 'exit', 'q']:
+        if query.lower() in {"quit", "exit", "q"}:
             print("Goodbye!")
             break
-        
-        # Search
-        results = engine.search_formatted(query, top_k=5)
-        
+
+        resp = engine.search(query, top_k=10)
+        results = resp.get("results", [])
+        intent = resp.get("query", {}).get("intent")
+
         if not results:
-            print("\n❌ No results found. Try different keywords.")
+            print("No results found.")
             continue
-        
-        print(f"\n✓ Found {len(results)} results:")
-        
-        # Display results
+
+        print(f"\nFound {len(results)} results (intent={intent}):")
         for i, result in enumerate(results, 1):
             print_result(result, i)
-        
-        # Ask if user wants to see more details
-        if len(results) > 3:
-            show_more = input("\n👉 Show all results? (y/n): ").lower()
-            if show_more == 'y':
-                for i, result in enumerate(results[3:], 4):
-                    print_result(result, i)
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\n\nGoodbye!")
-    except Exception as e:
-        print(f"\n❌ Error: {e}")
-        import traceback
-        traceback.print_exc()
+    main()

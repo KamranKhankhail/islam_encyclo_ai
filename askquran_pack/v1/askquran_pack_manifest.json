@@ -1,0 +1,31 @@
+{
+  "version": "v1",
+  "files": {
+    "quran_compact.json": {
+      "bytes": 45945977,
+      "sha256": "86f5f16eb43a589180bf59b56577ffd09dfadcd3b2531b18eea65b8708e5ed0c"
+    },
+    "metadata.json": {
+      "bytes": 27048,
+      "sha256": "c7b0ef6567d9545b2a0c21dd99af9e52b8a515792d3b79f27f5775c20646188f"
+    },
+    "verse_keys_e5.json": {
+      "bytes": 54849,
+      "sha256": "478335805761fc292bd8a692d6aa4965658af52a11117aeb1e296685ccb47282"
+    },
+    "embeddings_meta_e5.json": {
+      "bytes": 1161,
+      "sha256": "e68b3bd0efeda2a5a66247a353644ab405dd0858041087d7a52979613b8bf239"
+    },
+    "verse_embeddings_e5.f16.bin": {
+      "bytes": 4789248,
+      "sha256": "7423126b91aff7aaaa77233dff13b43e32fa0ff4769c4467ac09af6855475de6",
+      "dtype": "float16",
+      "shape": [
+        6236,
+        384
+      ],
+      "row_major": true
+    }
+  }
+}

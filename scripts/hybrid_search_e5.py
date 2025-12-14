@@ -24,11 +24,19 @@ from typing import List, Dict, Any, Optional, Tuple
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
+from arabic_normalizer import normalize_for_search
+from response_format_v1 import (
+    DEFAULT_PACK_VERSION,
+    build_ayah_result_v1,
+    build_search_response_v1,
+    qround,
+)
 from search_engine import QuranSearchEngine, QuranSearchConfig
 
 
 # Shared defaults
 DEFAULT_SEMANTIC_TOPN = 1000
+DEFAULT_MAX_RESULTS = 300
 
 # Default alias expansions for common verse nicknames and misspellings
 DEFAULT_ALIAS_MAP: Dict[str, str] = {
@@ -243,7 +251,8 @@ class HybridConfig:
     # Retrieval depths
     bm25_topn: int = 80
     semantic_topn: int = DEFAULT_SEMANTIC_TOPN
-    final_topk: int = 5
+    final_topk: int = DEFAULT_MAX_RESULTS
+    max_results: int = DEFAULT_MAX_RESULTS
 
     # Semantic scan mode:
     # - "full": score all embeddings (recommended for Qur'an ~6k)
@@ -398,42 +407,213 @@ class E5HybridSearchEngine(QuranSearchEngine):
     # Public API
     # ----------------------------
 
-    def search(self, query: str, top_k: Optional[int] = None) -> List[Dict[str, Any]]:
-        if not query or not str(query).strip():
-            return []
+    @staticmethod
+    def _vk_tuple(vk: str) -> Tuple[int, int]:
+        try:
+            s, a = str(vk).split(":")
+            return int(s), int(a)
+        except Exception:
+            return (10**9, 10**9)
 
-        top_k = top_k or self.hybrid.final_topk
+    def _stable_rank(
+        self,
+        keys: List[str],
+        score_by_key: Dict[str, Dict[str, Optional[float]]],
+        primary_field: str,
+    ) -> List[str]:
+        def _score(vk: str) -> float:
+            val = score_by_key.get(vk, {}).get(primary_field)
+            if val is None:
+                return float("-inf")
+            try:
+                return float(val)
+            except Exception:
+                return float("-inf")
+
+        return sorted(keys, key=lambda k: (-_score(k), self._vk_tuple(k), k))
+
+    @staticmethod
+    def _ensure_score_entry(score_by_key: Dict[str, Dict[str, Optional[float]]], vk: str) -> Dict[str, Optional[float]]:
+        if vk not in score_by_key:
+            score_by_key[vk] = {"bm25": None, "semantic": None, "rrf": None}
+        return score_by_key[vk]
+
+    def _add_score(self, score_by_key: Dict[str, Dict[str, Optional[float]]], vk: str, field: str, value: Any) -> None:
+        entry = self._ensure_score_entry(score_by_key, vk)
+        entry[field] = qround(value)
+
+    def _format_results(
+        self,
+        ranked_keys: List[str],
+        score_by_key: Dict[str, Dict[str, Optional[float]]],
+        ui_lang: str,
+        mode: str,
+    ) -> List[Dict[str, Any]]:
+        out: List[Dict[str, Any]] = []
+        for vk in ranked_keys:
+            verse = self._verse_by_key.get(vk)
+            if not verse:
+                continue
+            scores = score_by_key.get(vk, {})
+            out.append(
+                build_ayah_result_v1(
+                    verse=verse,
+                    mode=mode,
+                    bm25=scores.get("bm25"),
+                    semantic=scores.get("semantic"),
+                    rrf=scores.get("rrf"),
+                    ui_lang=ui_lang,
+                )
+            )
+        return out
+
+    def _cap_limit(self, limit: int) -> int:
+        return max(0, min(int(limit), int(self.hybrid.max_results)))
+
+    def _sort_structural_keys(self, verses: List[Dict[str, Any]]) -> List[str]:
+        keys = []
+        for v in verses:
+            vk = v.get("verse_key") or v.get("id")
+            if vk:
+                keys.append(str(vk))
+        keys = list(dict.fromkeys(keys))
+        return sorted(keys, key=lambda k: self._vk_tuple(k))
+
+    def search(
+        self,
+        query: str,
+        top_k: Optional[int] = None,
+        ui_lang: str = "en",
+        pack_version: str = DEFAULT_PACK_VERSION,
+    ) -> Dict[str, Any]:
+        raw_query = "" if query is None else str(query)
+        normalized_query = normalize_for_search(raw_query) if raw_query else ""
+        intent = "lexical"
+        limit = self._cap_limit(top_k if top_k is not None else self.hybrid.final_topk)
+
+        if not raw_query.strip():
+            return build_search_response_v1(
+                raw_query=raw_query,
+                normalized_query=normalized_query,
+                intent=intent,
+                ui_lang=ui_lang,
+                results=[],
+                pack_version=pack_version,
+            )
 
         # 1) Structural parser
-        structural = self.structural_parser.parse(query)
+        structural = self.structural_parser.parse(raw_query)
         if structural:
             resolved = self._resolve_structural(structural)
             if resolved:
-                for r in resolved:
-                    r.setdefault("match_type", "structural")
-                    r.setdefault("relevance_score", 1.0)
-                return resolved[:top_k]
+                intent = "structural"
+                ranked_keys = self._sort_structural_keys(resolved)[:limit]
+                score_by_key = {vk: {"bm25": None, "semantic": None, "rrf": None} for vk in ranked_keys}
+                results = self._format_results(ranked_keys, score_by_key, ui_lang, mode=intent)
+                return build_search_response_v1(
+                    raw_query=raw_query,
+                    normalized_query=normalized_query,
+                    intent=intent,
+                    ui_lang=ui_lang,
+                    results=results,
+                    pack_version=pack_version,
+                )
 
-        # 2) Alias resolver
-        alias_hit = self._resolve_alias(query)
+        # 2) Alias resolver (treated as structural)
+        alias_hit = self._resolve_alias(raw_query)
         if alias_hit:
-            return alias_hit[:top_k]
+            intent = "structural"
+            ranked_keys = self._sort_structural_keys(alias_hit)[:limit]
+            score_by_key = {vk: {"bm25": None, "semantic": None, "rrf": None} for vk in ranked_keys}
+            results = self._format_results(ranked_keys, score_by_key, ui_lang, mode=intent)
+            return build_search_response_v1(
+                raw_query=raw_query,
+                normalized_query=normalized_query,
+                intent=intent,
+                ui_lang=ui_lang,
+                results=results,
+                pack_version=pack_version,
+            )
 
         # 3) BM25 lexical
         bm25_n = min(self.hybrid.bm25_topn, len(self.verses))
-        bm25_results = self._lexical_search(query, bm25_n)
+        bm25_results = self._lexical_search(raw_query, bm25_n)
+
+        score_by_key: Dict[str, Dict[str, Optional[float]]] = {}
+        for r in bm25_results:
+            vk = r.get("verse_key")
+            if not vk:
+                continue
+            self._add_score(score_by_key, str(vk), "bm25", r.get("relevance_score"))
 
         if not self.hybrid.enable_semantic or self.semantic_model is None or self.verse_embeddings is None:
-            return bm25_results[:top_k]
+            ranked_keys = self._stable_rank(list(score_by_key.keys()), score_by_key, "bm25")[:limit]
+            results = self._format_results(ranked_keys, score_by_key, ui_lang, mode=intent)
+            return build_search_response_v1(
+                raw_query=raw_query,
+                normalized_query=normalized_query,
+                intent=intent,
+                ui_lang=ui_lang,
+                results=results,
+                pack_version=pack_version,
+            )
 
         # 4) Semantic retrieval
-        sem_results = self._semantic_retrieve(query, bm25_results)
+        sem_results = self._semantic_retrieve(raw_query, bm25_results)
+        for r in sem_results:
+            vk = r.get("verse_key")
+            if not vk:
+                continue
+            self._add_score(score_by_key, str(vk), "semantic", r.get("e5_raw_similarity"))
 
-        # 5) Fuse
-        return self._fuse(bm25_results, sem_results, top_k)
+        # 5) Fusion (RRF with deterministic tie-break)
+        intent = "hybrid"
+        bm25_rank = {
+            vk: idx + 1
+            for idx, vk in enumerate(
+                self._stable_rank(
+                    [k for k, v in score_by_key.items() if v.get("bm25") is not None],
+                    score_by_key,
+                    "bm25",
+                )
+            )
+        }
+        sem_rank = {
+            vk: idx + 1
+            for idx, vk in enumerate(
+                self._stable_rank(
+                    [k for k, v in score_by_key.items() if v.get("semantic") is not None],
+                    score_by_key,
+                    "semantic",
+                )
+            )
+        }
 
-    def search_formatted(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
-        return [self.format_result(v) for v in self.search(query, top_k)]
+        k_const = max(1, int(self.hybrid.rrf_k))
+        for vk in list(score_by_key.keys()):
+            rrf_score = 0.0
+            rb = bm25_rank.get(vk)
+            rs = sem_rank.get(vk)
+            if rb is not None:
+                rrf_score += float(self.hybrid.bm25_weight) * (1.0 / (k_const + rb))
+            if rs is not None:
+                rrf_score += float(self.hybrid.semantic_weight) * (1.0 / (k_const + rs))
+            self._add_score(score_by_key, vk, "rrf", rrf_score)
+
+        ranked_keys = self._stable_rank(list(score_by_key.keys()), score_by_key, "rrf")[:limit]
+        results = self._format_results(ranked_keys, score_by_key, ui_lang, mode=intent)
+        return build_search_response_v1(
+            raw_query=raw_query,
+            normalized_query=normalized_query,
+            intent=intent,
+            ui_lang=ui_lang,
+            results=results,
+            pack_version=pack_version,
+        )
+
+    def search_formatted(self, query: str, top_k: int = 5, ui_lang: str = "en") -> List[Dict[str, Any]]:
+        resp = self.search(query, top_k=top_k, ui_lang=ui_lang)
+        return resp.get("results", [])
 
     # ----------------------------
     # Alias
@@ -723,7 +903,8 @@ def get_e5_engine(
         rrf_k=60,
         bm25_topn=80,
         semantic_topn=DEFAULT_SEMANTIC_TOPN,
-        final_topk=5,
+        final_topk=DEFAULT_MAX_RESULTS,
+        max_results=DEFAULT_MAX_RESULTS,
         semantic_scan_mode="full",
         mmap_embeddings=True,
         prefer_cuda=True,
@@ -744,56 +925,24 @@ def get_e5_engine(
 
 
 def _format_translation_en(result: Dict[str, Any]) -> str:
-    # Try preferred translation fields; fall back to builtin
-    text = result.get("translation_en_builtin") or result.get("translation_english") or ""
-    if not text and isinstance(result.get("translations_english"), dict):
-        # Pick first available translator text
-        translations = result["translations_english"]
-        if translations:
-            # deterministic order
-            first_key = sorted(translations.keys())[0]
-            text = translations.get(first_key, "")
+    display = result.get("display") or {}
+    text = display.get("text") or ""
     return str(text).strip()
 
 
-def _log_result_block(result: Dict[str, Any], idx: int) -> None:
-    surah = result.get("surah_name_english", "Unknown")
-    verse_key = result.get("verse_key", "n/a")
-    match_type = result.get("match_type") or "unknown"
+def _log_result_block(result: dict, idx: int) -> None:
+    verse_key = result.get("verseKey", "n/a")
+    score = result.get("score") or {}
 
-    combined = result.get("relevance_score", 0.0)
-    # Structural/alias exact hits should read as 1.0 combined
-    if match_type in {"structural", "alias"}:
-        combined = 1.0
+    print(f"{idx}. {verse_key}")
+    print("   mode={mode} | rrf={rrf} | bm25={bm25} | semantic={semantic}".format(
+        mode=score.get('mode'), rrf=score.get('rrf'), bm25=score.get('bm25'), semantic=score.get('semantic'),
+    ))
 
-    print(f"{idx}. {surah} ({verse_key})")
-    print(f"   📊 Combined: {combined:.3f}")
-
-    # Optional breakdowns for hybrid/semantic
-    bm25_raw = result.get("bm25_raw")
-    e5_raw = result.get("e5_raw_similarity")
-    bm25_score = result.get("bm25_score")
-    e5_score = result.get("e5_score")
-
-    if bm25_score is not None or e5_score is not None or bm25_raw is not None or e5_raw is not None:
-        b_display = bm25_score if bm25_score is not None else bm25_raw
-        s_display = e5_score if e5_score is not None else e5_raw
-        if b_display is not None or s_display is not None:
-            b_txt = f"{b_display:.3f}" if b_display is not None else "n/a"
-            s_txt = f"{s_display:.3f}" if s_display is not None else "n/a"
-            print(f"      BM25: {b_txt} | E5: {s_txt}")
-        if e5_raw is not None and e5_score is None:
-            print(f"      E5 raw cosine: {e5_raw:.3f}")
-
-    # Match type
-    display_type = "hybrid_e5" if match_type == "hybrid_fused" else match_type
-    print(f"   🏷️  Type: {display_type}")
-
-    # English preview
     en_text = _format_translation_en(result)
     if en_text:
-        preview = (en_text[:70] + "...") if len(en_text) > 70 else en_text
-        print(f"   🇬🇧 EN: {preview}")
+        preview = (en_text[:90] + '...') if len(en_text) > 90 else en_text
+        print(f"   text: {preview}")
 
 
 if __name__ == "__main__":
@@ -810,14 +959,17 @@ if __name__ == "__main__":
     ]
 
     for q in tests:
-        print(f"\n🔍 Query: '{q}'")
+        print(f"\nQuery: '{q}'")
         print("-" * 70)
         t0 = time.time()
-        results = engine.search(q, top_k=3)
+        resp = engine.search(q, top_k=3)
+        results = resp.get("results", [])
         latency_ms = (time.time() - t0) * 1000.0
         if not results:
             print("  No results found")
             continue
+        intent = resp.get("query", {}).get("intent")
+        print(f"  intent={intent} total={len(results)}")
         for i, res in enumerate(results, 1):
             _log_result_block(res, i)
         print(f"   (latency: {latency_ms:.2f} ms)")

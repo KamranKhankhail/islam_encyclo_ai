@@ -53,7 +53,7 @@ MODEL_NAME = "intfloat/multilingual-e5-small"
 
 
 # Translator preferences (your request)
-EN_PREF = ["yusuf-ali"]
+EN_PREF = ["sahih-international"]
 UR_PREF = ["fatah-muhammad-jalandhari"]
 
 # Passage construction
@@ -69,7 +69,7 @@ INCLUDE_UR_PREFS = True  # includes UR_PREF in passage if present
 INCLUDE_SAHIH_INTERNATIONAL = False  # set True if you want a common baseline
 
 # Hard cap to avoid token truncation/noise (chars is a practical proxy)
-MAX_PASSAGE_CHARS = 5000
+MAX_PASSAGE_CHARS = 1200
 
 # Performance settings
 BATCH_SIZE_GPU = 128
@@ -78,7 +78,7 @@ BATCH_SIZE_CPU = 32
 # Mobile size optimization:
 # - float16 halves size and is usually fine for cosine retrieval at this scale.
 # - If you want maximum numeric fidelity, set EXPORT_DTYPE="float32".
-EXPORT_DTYPE = "float32"  # "float16" or "float32"
+EXPORT_DTYPE = "float16"  # "float16" or "float32"
 
 # Evaluation (golden queries)
 # Put expected verse_key(s) as list (some queries map to multiple acceptable verses)

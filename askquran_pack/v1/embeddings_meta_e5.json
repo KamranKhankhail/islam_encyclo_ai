@@ -1,0 +1,38 @@
+{
+  "model": "intfloat/multilingual-e5-small",
+  "device": "cuda",
+  "torch_info": {
+    "torch_version": "2.9.1+cu126",
+    "cuda_available": true,
+    "cuda_device_count": 1,
+    "cuda_device_name": "NVIDIA GeForce RTX 4080 SUPER",
+    "cuda_capability": "(8, 9)"
+  },
+  "count": 6236,
+  "dim": 384,
+  "normalized": true,
+  "dtype": "float32",
+  "max_passage_chars": 5000,
+  "include": {
+    "arabic": true,
+    "transliteration": true,
+    "transliteration_alt": false,
+    "en_prefs": [
+      "yusuf-ali"
+    ],
+    "ur_prefs": [
+      "fatah-muhammad-jalandhari"
+    ],
+    "include_sahih_international": false
+  },
+  "paths": {
+    "input_json": "D:\\projects\\IslamEncycloAI\\output\\processed\\quran_complete.json",
+    "embeddings_npy": "D:\\projects\\IslamEncycloAI\\output\\processed\\verse_embeddings_e5.npy",
+    "keys_json": "D:\\projects\\IslamEncycloAI\\output\\processed\\verse_keys_e5.json"
+  },
+  "sha256": "bac2162b90c6731ec66a19df30527a0bd3806d98801302432096a4f5b9e8ddda",
+  "created_at_unix": 1765634057,
+  "encode_seconds": 5.989798069000244,
+  "load_seconds": 6.045632362365723,
+  "batch_size": 128
+}

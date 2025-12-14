@@ -1,0 +1,664 @@
+venv) PS D:\projects\IslamEncycloAI> python .\scripts\prepare_data.py
+
+████████████████████████████████████████████████████████████
+ISLAM ENCYCLO AI - DATA PREPARATION PIPELINE
+████████████████████████████████████████████████████████████
+
+============================================================
+STEP 1: Loading Arabic Base Data
+============================================================
+Loading: D:\projects\IslamEncycloAI\data\quran_arabic.json
+✓ Loaded 6236 verses
+
+============================================================
+STEP 2: Loading Translation Files
+============================================================
+
+Found 7 Urdu translation files:
+Loading: D:\projects\IslamEncycloAI\data\quran_urdu_translations\bayan-ul-quran-urdu-simple.json
+  ✓ bayan-ul-quran: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_urdu_translations\fatah-muhammad-jalandhari-urdu-simple.json
+  ✓ fatah-muhammad-jalandhari: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_urdu_translations\mahmud-al-hasan-urdu-simple.json
+  ✓ mahmud-al-hasan: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_urdu_translations\maulana-abu-al-maududi-urdu-simple.json
+  ✓ maulana-abu-al-maududi: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_urdu_translations\maulana-muhammad-junagarhi-urdu-simple.json
+  ✓ maulana-muhammad-junagarhi: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_urdu_translations\maulana-wahid-uddin-khan-urdu-simple.json
+  ✓ maulana-wahid-uddin-khan: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_urdu_translations\sayyid-qatab-urdu-simple.json
+  ✓ sayyid-qatab: 6236 verses
+
+Found 21 English translation files:
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\al-maududi-en-simple.json
+  ✓ al-maududi: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\arberry-en-simple.json
+  ✓ arberry: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\asad-en-simple.json
+  ✓ asad: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\bridges-en-simple.json
+  ✓ bridges: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\daryabadi-en-simple.json
+  ✓ daryabadi: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\dr-t-b-irving-en-simple.json
+  ✓ dr-t-b-irving: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\dr-waleed-bleyhesh-omary-en-simple.json
+  ✓ dr-waleed-bleyhesh-omary: 2250 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\ghali-en-simple.json
+  ✓ ghali: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\haleem-en-simple.json
+  ✓ haleem: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\maarif-ul-quran-en-simple.json
+  ✓ maarif-ul-quran: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\maulana-wahiduddin-khan-en-simple.json
+  ✓ maulana-wahiduddin-khan: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\muhsin-khan-en-simple.json
+  ✓ muhsin-khan: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\pickthall-en-simple.json
+  ✓ pickthall: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\qaribullah-en-simple.json
+  ✓ qaribullah: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\ruwwad-center-en-simple.json
+  ✓ ruwwad-center: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\sahih-international-en-simple.json
+  ✓ sahih-international: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\sarwar-en-simple.json
+  ✓ sarwar: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\shakir-en-simple.json
+  ✓ shakir: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\taqi-ud-din-al-hilali-muhsin-khan-en-simple.json
+  ✓ taqi-ud-din-al-hilali-muhsin-khan: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\taqi-usmani-en-simple.json
+  ✓ taqi-usmani: 6236 verses
+Loading: D:\projects\IslamEncycloAI\data\quran_english_translations\yusuf-ali-en-simple.json
+  ✓ yusuf-ali: 6236 verses
+
+============================================================
+STEP 3: Loading Metadata
+============================================================
+Loading: D:\projects\IslamEncycloAI\data\metadata.json
+✓ Loaded metadata for 114 Surahs
+✓ Loaded 30 Juz mappings
+
+============================================================
+STEP 4: Building Unified Dataset
+============================================================
+✓ Processed 6236 verses
+
+⚠ 3986 warnings (missing translations in some files)
+  - Missing English translation: dr-waleed-bleyhesh-omary - 19:1
+  - Missing English translation: dr-waleed-bleyhesh-omary - 19:2
+  - Missing English translation: dr-waleed-bleyhesh-omary - 19:3
+  - Missing English translation: dr-waleed-bleyhesh-omary - 19:4
+  - Missing English translation: dr-waleed-bleyhesh-omary - 19:5
+  ... and 3981 more
+
+============================================================
+STEP 5: Validating Dataset
+============================================================
+  ✓ Verse count: 6236 (expected 6236)
+  ✓ Duplicates: 0 (should be 0)
+  ✓ Sequential numbering: 0 gaps
+  ✓ Null Arabic text: 0 (should be 0)
+  ✓ Verses without translations: 0
+  ✓ Verses without Juz: 0
+
+------------------------------------------------------------
+✓ ALL VALIDATION CHECKS PASSED
+------------------------------------------------------------
+
+============================================================
+STEP 6: Generating Sample Test Queries
+============================================================
+✓ Generated 12 test queries
+  Saved to: D:\projects\IslamEncycloAI\output\processed\test_queries.json
+
+============================================================
+STEP 7: Saving Output Files
+============================================================
+✓ Saved complete dataset: D:\projects\IslamEncycloAI\output\processed\quran_complete.json
+  Size: 46.15 MB
+✓ Saved compact version: D:\projects\IslamEncycloAI\output\processed\quran_compact.json
+  Size: 43.82 MB
+✓ Saved verse lookup: D:\projects\IslamEncycloAI\output\processed\verse_lookup.json
+✓ Saved statistics: D:\projects\IslamEncycloAI\output\processed\dataset_stats.json
+
+████████████████████████████████████████████████████████████
+✓ DATA PREPARATION COMPLETE
+████████████████████████████████████████████████████████████
+
+Processed 6236 verses successfully
+Output directory: D:\projects\IslamEncycloAI\output\processed
+
+Next steps:
+  1. Run validation tests: pytest tests/test_data.py -v
+  2. Inspect output files in output/processed/
+  3. Proceed to Day 2: Building search engine
+(venv) PS D:\projects\IslamEncycloAI> python generate_embeddings_e5.py
+D:\projects\IslamEncycloAI\venv\Scripts\python.exe: can't open file 'D:\\projects\\IslamEncycloAI\\generate_embeddings_e5.py': [Errno 2] No such file or directory
+(venv) PS D:\projects\IslamEncycloAI> python .\scripts\python generate_embeddings_e5.py
+
+D:\projects\IslamEncycloAI\venv\Scripts\python.exe: can't open file 'D:\\projects\\IslamEncycloAI\\scripts\\python': [Errno 2] No such file or directory
+(venv) PS D:\projects\IslamEncycloAI> python .\scripts\generate_embeddings_e5.py
+================================================================================
+QURAN E5 EMBEDDINGS BUILD — GPU-FIRST, MOBILE-FRIENDLY, DETERMINISTIC
+================================================================================
+
+1) Loading dataset...
+   ✓ Verses loaded: 6236
+
+2) Loading model...
+   ✓ Model: intfloat/multilingual-e5-small
+   ✓ Load time: 5.42s
+
+3) Selecting device (GPU-first)...
+   ✓ Device selected: cuda
+     - torch_version: 2.9.1+cu126
+     - cuda_available: True
+     - cuda_device_count: 1
+     - cuda_device_name: NVIDIA GeForce RTX 4080 SUPER
+     - cuda_capability: (8, 9)
+
+4) Building passages (retrieval-optimized, bounded)...
+   ✓ Passages built: 6236
+   ✓ Example:
+     passage: ar: وَالْعٰدِیٰتِ ضَبْحًا ۟ۙ | tr: WalAAadiyati dabha | en(yusuf-ali): By the (Steeds) that run, with panting (breath), | ur(fatah...
+
+5) Encoding embeddings...
+   ✓ Batch size: 128
+   ✓ Normalize embeddings: True (cosine via dot product)
+Batches: 100%|████████████████████████████████████████| 49/49 [00:05<00:00,  8.24it/s]
+
+   ✓ Encode time: 6.04s
+   ✓ Shape: (6236, 384), dtype: float16
+   ✓ Speed: 1032.9 verses/sec
+
+6) Saving artifacts...
+   ✓ Embeddings: D:\projects\IslamEncycloAI\output\processed\verse_embeddings_e5.npy (4.57 MB)
+   ✓ Keys:       D:\projects\IslamEncycloAI\output\processed\verse_keys_e5.json
+   ✓ Meta:       D:\projects\IslamEncycloAI\output\processed\embeddings_meta_e5.json
+   ✓ SHA256:     8752e668483b0ef6c8c8d68dfa12950c0afb3367b453d9dbb5d8815cb2df11e5
+
+7) Verification (shape + sha256)...
+   ✓ Verification passed
+
+8) Evaluation (golden queries)...
+   ✓ Eval saved: D:\projects\IslamEncycloAI\output\processed\eval_report_e5.json
+   Metrics:
+     - mrr@10: 0.1296
+     - recall@1: 0.0000
+     - recall@3: 0.1667
+     - recall@5: 0.1667
+     - recall@10: 0.5000
+
+   Query: patience
+   Expected: ['2:153']
+   Top10: ['16:127', '42:43', '11:11', '38:17', '70:5'] ...
+   RR@10: 0.1111
+
+   Query: what does quran say about patience
+   Expected: ['2:153']
+   Top10: ['16:127', '49:5', '76:24', '18:75', '18:72'] ...
+   RR@10: 0.0000
+
+   Query: ayat ul kursi
+   Expected: ['2:255']
+   Top10: ['41:26', '29:45', '8:64', '5:19', '3:139'] ...
+   RR@10: 0.0000
+
+================================================================================
+✓ BUILD COMPLETE — READY FOR MOBILE SHIPPING
+================================================================================
+
+Next (mentor guidance):
+1) On-device search: encode query as 'query: ...', normalize, dot with embeddings
+2) Hybrid pipeline for 'flawless' UX: exact parser → lexical (searchable_text) → E5 dense
+3) Expand GOLDEN_QUERIES continuously using real user searches + expected verse_keys
+(venv) PS D:\projects\IslamEncycloAI> python .\scripts\generate_embeddings_e5.py
+================================================================================
+QURAN E5 EMBEDDINGS BUILD — GPU-FIRST, MOBILE-FRIENDLY, DETERMINISTIC
+================================================================================
+
+1) Loading dataset...
+   ✓ Verses loaded: 6236
+
+2) Loading model...
+   ✓ Model: intfloat/multilingual-e5-small
+   ✓ Load time: 6.15s
+
+3) Selecting device (GPU-first)...
+   ✓ Device selected: cuda
+     - torch_version: 2.9.1+cu126
+     - cuda_available: True
+     - cuda_device_count: 1
+     - cuda_device_name: NVIDIA GeForce RTX 4080 SUPER
+     - cuda_capability: (8, 9)
+
+4) Building passages (retrieval-optimized, bounded)...
+   ✓ Passages built: 6236
+   ✓ Example:
+     passage: ar: وَالْعٰدِیٰتِ ضَبْحًا ۟ۙ | tr: WalAAadiyati dabha | en(sahih-international): By the racers, panting, | ur(fatah-muhammad-jalan...
+
+5) Encoding embeddings...
+   ✓ Batch size: 128
+   ✓ Normalize embeddings: True (cosine via dot product)
+Batches: 100%|████████████████████████████████████████| 49/49 [00:05<00:00,  8.39it/s]
+
+   ✓ Encode time: 5.93s
+   ✓ Shape: (6236, 384), dtype: float16
+   ✓ Speed: 1051.3 verses/sec
+
+6) Saving artifacts...
+.57 MB)                                                                                   ✓ Keys:       D:\projects\IslamEncycloAI\output\processed\verse_keys_e5.json
+   ✓ Meta:       D:\projects\IslamEncycloAI\output\processed\embeddings_meta_e5.json
+   ✓ SHA256:     9ac521c13b8717f112dd39354da93321f68f91e224eced78d20bfc11e242a6c0
+
+7) Verification (shape + sha256)...
+   ✓ Verification passed
+
+8) Evaluation (golden queries)...
+   ✓ Eval saved: D:\projects\IslamEncycloAI\output\processed\eval_report_e5.json
+   Metrics:
+     - mrr@10: 0.2014
+     - recall@1: 0.0000
+     - recall@3: 0.3333
+     - recall@5: 0.5000
+     - recall@10: 0.6667
+
+   Query: patience
+   Expected: ['2:153']
+   Top10: ['16:127', '2:153', '103:3', '2:45', '42:43'] ...
+   RR@10: 0.5000
+
+   Query: what does quran say about patience
+   Expected: ['2:153']
+   Top10: ['16:127', '8:46', '2:45', '2:153', '50:39'] ...
+   RR@10: 0.2500
+
+   Query: ayat ul kursi
+   Expected: ['2:255']
+   Top10: ['42:19', '5:15', '41:26', '21:108', '5:56'] ...
+   RR@10: 0.0000
+
+================================================================================
+================================================================================
+
+Next (mentor guidance):
+1) On-device search: encode query as 'query: ...', normalize, dot with embeddings
+2) Hybrid pipeline for 'flawless' UX: exact parser → lexical (searchable_text) → E5 den
+se
+3) Expand GOLDEN_QUERIES continuously using real user searches + expected verse_keys   (venv) PS D:\projects\IslamEncycloAI> python scripts/test_search_interactive.py
+============================================================
+ISLAM ENCYCLO AI - INTERACTIVE SEARCH
+============================================================
+
+Initializing search engine...
+INFO Loading Quran data: D:\projects\IslamEncycloAI\output\processed\quran_complete.jso
+n
+INFO Loaded 6236 verses                                                                INFO Building BM25 indexes (fielded)...
+INFO Saved BM25 index cache: .bm25_cache\quran_complete.json__48392033__1765714250__k11
+.5_b0.75__stem0.pkl
+Loading E5 semantic components...                                                        ✓ Loaded E5 verse embeddings: (6236, 384) dtype=float16 mmap=True
+  Loading intfloat/multilingual-e5-small...
+INFO Use pytorch device_name: cuda:0
+INFO Load pretrained SentenceTransformer: intfloat/multilingual-e5-small
+  ✓ E5 model ready (intfloat/multilingual-e5-small) on cuda
+  ✓ Scoring weights: BM25=70%, E5=30%
+✓ Ready!
+
+Tips:
+  - Try structural queries: '2:255', 'surah fatiha'
+  - Try keywords: 'patience', 'prayer', 'صبر'
+  - Try questions: 'what does quran say about...?'
+  - Type 'quit' or 'exit' to stop
+============================================================
+
+🔍 Enter query:2:255
+
+✓ Found 1 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:255
+📊 Score: 1.000 | Type: structural
+📖 Juz: 3
+
+🔤 Arabic:
+   اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ۬ لَا تَاْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌ ؕ لَهٗ مَا فِی السَّمٰوٰتِ وَمَا فِی الْاَرْضِ ؕ
+ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ؕ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَمَا خَلْفَهُمْ ۚ وَلَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَالْاَرْضَ ۚ وَلَا یَـُٔوْدُهٗ حِفْظُهُمَا ۚ وَهُوَ الْعَلِیُّ الْعَظِیْمُ ۟             
+🇬🇧 English:
+   Allāh - there is no deity except Him, the Ever-Living, the Self-Sustaining. Neither
+drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursī extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.                                                                              
+🇵🇰 Urdu:
+   اللہ، وہ زندہ جاوید ہستی ، جو تمام کائنات کو سنبھالے ہوئے ہے، اس کے سوا کوئی خدا نہی
+ں ہے۔نہ وہ سوتا ہے ، اور نہ اسے اونگھ لگتی ہے۔ زمین اور آسمانوں میں جو کچھ ہے، اسی کا ہے۔، کون ہے جو اس کی جناب میں اس کی اجازت کے بغیر سفارش کر سکے؟ جو کچھ بندوں کے سامنے ہے اسے بھی وہ جانتا ہے او ر جو کچھ ان سے اوجھل ہے، اس سے بھی وہ واقف ہے اور اس کی معلومات میں سے کوئی چیز ان کی گرفت ادراک میں نہیں آسکتی اِلّا یہ کہ کسی چیز کا علم وہ خود ہی ان کو دینا چاہے۔ اس کی حکومت آسمانوں اور زمین پر چھائی ہوئی ہے اور ان کی نگہبانی اس کے لیے کوئی تھکا دینے والا کام نہیں ہے۔ بس وہی ایک بزرگ و برتر ذات ہے۔                       
+🔍 Enter query:ayat ul kursu
+
+✓ Found 5 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: At-Tur 52:4
+📊 Score: 0.011 | Type: hybrid_fused
+📖 Juz: 27
+
+🔤 Arabic:
+   وَّالْبَیْتِ الْمَعْمُوْرِ ۟ۙ
+
+🇬🇧 English:
+   And [by] the frequented House
+
+🇵🇰 Urdu:
+   اور آباد گھر کی،
+
+────────────────────────────────────────────────────────────
+Result #2
+────────────────────────────────────────────────────────────
+📍 Location: Al-Isra 17:1
+📊 Score: 0.011 | Type: hybrid_fused
+📖 Juz: 15
+
+🔤 Arabic:
+نْ اٰیٰتِنَا ؕ اِنَّهٗ هُوَ السَّمِیْعُ الْبَصِیْرُ ۟                                                        🇬🇧 English:
+   Exalted is He who took His Servant [i.e., Prophet Muḥammad (ﷺ)] by night from al-Mas
+jid al-Ḥarām to al-Masjid al-Aqṣā, whose surroundings We have blessed, to show him of O
+ur signs. Indeed, He is the Hearing, the Seeing.                                                                                                                              🇵🇰 Urdu:
+   پاک ہے وہ جو لے گیا ایک رات اپنے بندے کو مسجد حرام سے دُور کی اُس مسجد تک جس کے ماحول
+کو اس نے برکت دی ہے، تاکہ اسے اپنی کچھ نشانیوں کا مشاہدہ کرائے۔حقیقت میں وہی ہے سب کچھ
+سُننے اور دیکھنے والا۔                                                                                                                                                         ────────────────────────────────────────────────────────────
+Result #3
+────────────────────────────────────────────────────────────
+📍 Location: At-Tawbah 9:28
+📊 Score: 0.011 | Type: hybrid_fused
+📖 Juz: 10
+
+🔤 Arabic:
+   یٰۤاَیُّهَا الَّذِیْنَ اٰمَنُوْۤا اِنَّمَا الْمُشْرِكُوْنَ نَجَسٌ فَلَا یَقْرَبُوا الْمَسْجِدَ الْحَرَامَ بَعْدَ عَامِهِمْ هٰذَا ۚ وَاِنْ خِفْتُمْ
+ عَیْلَةً فَسَوْفَ یُغْنِیْكُمُ اللّٰهُ مِنْ فَضْلِهٖۤ اِنْ شَآءَ ؕ اِنَّ اللّٰهَ عَلِیْمٌ حَكِیْمٌ ۟
+                                                                                       🇬🇧 English:
+   O you who have believed, indeed the polytheists are unclean, so let them not approac
+h al-Masjid al-Ḥarām after this, their [final] year. And if you fear privation, Allāh w
+ill enrich you from His bounty if He wills. Indeed, Allāh is Knowing and Wise.                                                                                                🇵🇰 Urdu:
+   اے ایمان لانے والو، مشرکین ناپاک ہیں لہٰذا اس سال کے بعد یہ مسجدِ حرام کے قریب نہ پھٹک
+نے پائیں۔ اور اگر تمہیں تنگ دستی کا خوف ہے تو بعید نہیں کہ اللہ چاہے تو تمہیں اپنے فضل
+سے غنی کر دے، اللہ علیم و حکیم ہے                                                                                                                                             ────────────────────────────────────────────────────────────
+Result #4
+📍 Location: Al-Baqarah 2:149
+📊 Score: 0.011 | Type: hybrid_fused
+📖 Juz: 2
+
+🔤 Arabic:
+   وَمِنْ حَیْثُ خَرَجْتَ فَوَلِّ وَجْهَكَ شَطْرَ الْمَسْجِدِ الْحَرَامِ ؕ وَاِنَّهٗ لَلْحَقُّ مِنْ رَّبِّكَ ؕ وَمَا اللّٰهُ بِغَافِلٍ عَمَّا تَعْمَلُوْنَ
+ ۟
+
+🇬🇧 English:                                                                               So from wherever you go out [for prayer, O Muḥammad], turn your face toward al-Masji
+d al-Ḥarām, and indeed, it is the truth from your Lord. And Allāh is not unaware of wha
+t you do.
+                                                                                       🇵🇰 Urdu:                                                                                  تمہارا گزر جس مقام سے بھی ہو، وہیں اپنا رُخ (نماز کے وقت) مسجد حرام کی طرف پھیر دو، ک
+یونکہ یہ تمہارے رب کا بالکل حق فیصلہ ہے اور اللہ تم لوگوں کے اعمال سے بے خبر نہیں ہے
+
+────────────────────────────────────────────────────────────                           Result #5
+────────────────────────────────────────────────────────────
+📍 Location: An-Najm 53:14
+📊 Score: 0.011 | Type: hybrid_fused
+📖 Juz: 27
+
+🔤 Arabic:
+   عِنْدَ سِدْرَةِ الْمُنْتَهٰی ۟
+
+🇬🇧 English:
+   At the Lote Tree of the Utmost Boundary -
+
+🇵🇰 Urdu:
+   سدرۃالمنتہیٰ کے پاس اُس کو دیکھا
+
+
+🔍 Enter query:kursi
+
+✓ Found 1 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:255
+📊 Score: 1.000 | Type: structural
+📖 Juz: 3
+
+🔤 Arabic:
+   اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ۬ لَا تَاْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌ ؕ لَهٗ مَا فِی السَّمٰوٰتِ وَمَا فِی الْاَرْضِ ؕ
+ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ؕ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَمَا خَلْفَهُمْ ۚ وَلَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ
+اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَالْاَرْضَ ۚ وَلَا یَـُٔوْدُهٗ حِفْظُهُمَا ۚ وَهُوَ الْعَلِیُّ الْعَظِیْمُ ۟                                                                                                    🇬🇧 English:
+   Allāh - there is no deity except Him, the Ever-Living, the Self-Sustaining. Neither
+drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whate
+ver is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursī extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.                                                                                                                                                                     🇵🇰 Urdu:
+   اللہ، وہ زندہ جاوید ہستی ، جو تمام کائنات کو سنبھالے ہوئے ہے، اس کے سوا کوئی خدا نہی
+ں ہے۔نہ وہ سوتا ہے ، اور نہ اسے اونگھ لگتی ہے۔ زمین اور آسمانوں میں جو کچھ ہے، اسی کا ہ
+ے۔، کون ہے جو اس کی جناب میں اس کی اجازت کے بغیر سفارش کر سکے؟ جو کچھ بندوں کے سامنے ہے اسے بھی وہ جانتا ہے او ر جو کچھ ان سے اوجھل ہے، اس سے بھی وہ واقف ہے اور اس کی معلومات میں سے کوئی چیز ان کی گرفت ادراک میں نہیں آسکتی اِلّا یہ کہ کسی چیز کا علم وہ خود ہی ان کو دینا چاہے۔ اس کی حکومت آسمانوں اور زمین پر چھائی ہوئی ہے اور ان کی نگہبانی اس کے لیے                                                                                       🔍 Enter query:ayat al kursi                                                           
+✓ Found 1 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:255
+📊 Score: 1.000 | Type: structural
+📖 Juz: 3
+
+🔤 Arabic:
+   اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ۬ لَا تَاْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌ ؕ لَهٗ مَا فِی السَّمٰوٰتِ وَمَا فِی الْاَرْضِ ؕ
+ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ؕ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَمَا خَلْفَهُمْ ۚ وَلَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ
+اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَالْاَرْضَ ۚ وَلَا یَـُٔوْدُهٗ حِفْظُهُمَا ۚ وَهُوَ الْعَلِیُّ الْعَظِیْمُ ۟                                                                                                    🇬🇧 English:
+   Allāh - there is no deity except Him, the Ever-Living, the Self-Sustaining. Neither
+ver is on the earth. Who is it that can intercede with Him except by His permission? He
+ knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursī extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.                                                                                                                                                                     🇵🇰 Urdu:                                                                                  اللہ، وہ زندہ جاوید ہستی ، جو تمام کائنات کو سنبھالے ہوئے ہے، اس کے سوا کوئی خدا نہی
+ں ہے۔نہ وہ سوتا ہے ، اور نہ اسے اونگھ لگتی ہے۔ زمین اور آسمانوں میں جو کچھ ہے، اسی کا ہ
+ے۔، کون ہے جو اس کی جناب میں اس کی اجازت کے بغیر سفارش کر سکے؟ جو کچھ بندوں کے سامنے ہے
+ اسے بھی وہ جانتا ہے او ر جو کچھ ان سے اوجھل ہے، اس سے بھی وہ واقف ہے اور اس کی معلومات میں سے کوئی چیز ان کی گرفت ادراک میں نہیں آسکتی اِلّا یہ کہ کسی چیز کا علم وہ خود ہی ان کو دینا چاہے۔ اس کی حکومت آسمانوں اور زمین پر چھائی ہوئی ہے اور ان کی نگہبانی اس کے لیے کوئی تھکا دینے والا کام نہیں ہے۔ بس وہی ایک بزرگ و برتر ذات ہے۔                                                                                                              🔍 Enter query:ayat ul kursi                                                           
+✓ Found 1 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:255
+📊 Score: 1.000 | Type: structural
+📖 Juz: 3
+
+🔤 Arabic:
+   اَللّٰهُ لَاۤ اِلٰهَ اِلَّا هُوَ ۚ اَلْحَیُّ الْقَیُّوْمُ ۚ۬ لَا تَاْخُذُهٗ سِنَةٌ وَّلَا نَوْمٌ ؕ لَهٗ مَا فِی السَّمٰوٰتِ وَمَا فِی الْاَرْضِ ؕ
+ مَنْ ذَا الَّذِیْ یَشْفَعُ عِنْدَهٗۤ اِلَّا بِاِذْنِهٖ ؕ یَعْلَمُ مَا بَیْنَ اَیْدِیْهِمْ وَمَا خَلْفَهُمْ ۚ وَلَا یُحِیْطُوْنَ بِشَیْءٍ مِّنْ عِلْمِهٖۤ
+اِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِیُّهُ السَّمٰوٰتِ وَالْاَرْضَ ۚ وَلَا یَـُٔوْدُهٗ حِفْظُهُمَا ۚ وَهُوَ الْعَلِیُّ الْعَظِیْمُ ۟                                                                                                    🇬🇧 English:
+   Allāh - there is no deity except Him, the Ever-Living, the Self-Sustaining. Neither
+drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whate
+ver is on the earth. Who is it that can intercede with Him except by His permission? He knows what is [presently] before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His Kursī extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.                                                                                                                                                                     🇵🇰 Urdu:
+   اللہ، وہ زندہ جاوید ہستی ، جو تمام کائنات کو سنبھالے ہوئے ہے، اس کے سوا کوئی خدا نہی
+ں ہے۔نہ وہ سوتا ہے ، اور نہ اسے اونگھ لگتی ہے۔ زمین اور آسمانوں میں جو کچھ ہے، اسی کا ہ
+ے۔، کون ہے جو اس کی جناب میں اس کی اجازت کے بغیر سفارش کر سکے؟ جو کچھ بندوں کے سامنے ہے اسے بھی وہ جانتا ہے او ر جو کچھ ان سے اوجھل ہے، اس سے بھی وہ واقف ہے اور اس کی معلومات میں سے کوئی چیز ان کی گرفت ادراک میں نہیں آسکتی اِلّا یہ کہ کسی چیز کا علم وہ خود ہی ان کو دینا چاہے۔ اس کی حکومت آسمانوں اور زمین پر چھائی ہوئی ہے اور ان کی نگہبانی اس کے لیے کوئی تھکا دینے والا کام نہیں ہے۔ بس وہی ایک بزرگ و برتر ذات ہے۔                                                                                                              🔍 Enter query:surah fatiha
+
+✓ Found 1 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: Al-Fatihah 1:1
+📊 Score: 0.750 | Type: structural
+📖 Juz: 1
+
+🔤 Arabic:
+   بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِیْمِ ۟
+
+🇬🇧 English:
+   In the name of Allāh, the Entirely Merciful, the Especially Merciful.
+
+🇵🇰 Urdu:
+   اللہ کےنام سے جو رحمان و رحیم ہے
+
+🔍 Enter query:where to spend zakat
+
+✓ Found 5 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:215
+📊 Score: 0.014 | Type: hybrid_fused
+📖 Juz: 2
+
+🔤 Arabic:
+   یَسْـَٔلُوْنَكَ مَاذَا یُنْفِقُوْنَ ؕ۬ قُلْ مَاۤ اَنْفَقْتُمْ مِّنْ خَیْرٍ فَلِلْوَالِدَیْنِ وَالْاَقْرَبِیْنَ وَالْیَتٰمٰی وَالْمَسٰكِیْنِ وَابْنِ السَّبِیْلِ ؕ وَمَا تَفْعَلُوْا مِنْ خَیْرٍ فَاِنَّ اللّٰهَ بِهٖ عَلِیْمٌ ۟
+
+🇬🇧 English:
+   They ask you, [O Muḥammad], what they should spend. Say, "Whatever you spend of good is [to be] for parents and relatives and orphans and the needy and the traveler. And whatever you do of good - indeed, Allāh is Knowing of it."
+
+🇵🇰 Urdu:
+   لوگ پوچھتے ہیں کہ ہم کیا خرچ کریں؟ جواب دو کہ جو مال بھی تم خرچ کرو اپنے والدین پر، رشتے داروں پر، یتیموں اور مسکینوں اور مسافروں پر خرچ کرو اور جو بھلائی بھی تم کرو گے، اللہ اس سے باخبر ہوگا
+
+────────────────────────────────────────────────────────────
+Result #2
+────────────────────────────────────────────────────────────
+📍 Location: Al-Munafiqun 63:10
+📊 Score: 0.014 | Type: hybrid_fused
+📖 Juz: 28
+
+🔤 Arabic:
+   وَاَنْفِقُوْا مِنْ مَّا رَزَقْنٰكُمْ مِّنْ قَبْلِ اَنْ یَّاْتِیَ اَحَدَكُمُ الْمَوْتُ فَیَقُوْلَ رَبِّ لَوْلَاۤ اَخَّرْتَنِیْۤ اِلٰۤی اَجَلٍ قَرِیْبٍ ۙ فَاَصَّدَّقَ وَاَكُنْ مِّنَ الصّٰلِحِیْنَ ۟
+
+🇬🇧 English:
+   And spend [in the way of Allāh] from what We have provided you before death approaches one of you and he says, "My Lord, if only You would delay me for a brief term so I would give charity and be of the righteous."
+
+🇵🇰 Urdu:
+   جو رزق ہم نے تمہیں دیا ہے اس میں سے خرچ کرو قبل اس کے کہ تم میں سے کسی کی موت کا وقت میں صدقہ دیتا اور صالح لوگوں میں شامل ہو جاتا"                                        ────────────────────────────────────────────────────────────
+Result #3
+────────────────────────────────────────────────────────────
+📍 Location: At-Talaq 65:6
+📊 Score: 0.014 | Type: hybrid_fused
+📖 Juz: 28
+
+🔤 Arabic:
+   اَسْكِنُوْهُنَّ مِنْ حَیْثُ سَكَنْتُمْ مِّنْ وُّجْدِكُمْ وَلَا تُضَآرُّوْهُنَّ لِتُضَیِّقُوْا عَلَیْهِنَّ ؕ وَاِنْ كُنَّ اُولَاتِ حَمْلٍ فَاَنْفِقُوْا عَلَ
+یْهِنَّ حَتّٰی یَضَعْنَ حَمْلَهُنَّ ۚ فَاِنْ اَرْضَعْنَ لَكُمْ فَاٰتُوْهُنَّ اُجُوْرَهُنَّ ۚ وَاْتَمِرُوْا بَیْنَكُمْ بِمَعْرُوْفٍ ۚ وَاِنْ تَعَاسَرْتُمْ فَسَتُرْ
+ضِعُ لَهٗۤ اُخْرٰی ۟ؕ                                                                                                                                                                  🇬🇧 English:
+   Lodge them [in a section] of where you dwell out of your means and do not harm them
+in order to oppress them. And if they should be pregnant, then spend on them until they
+ give birth. And if they breastfeed for you, then give them their payment and confer among yourselves in the acceptable way; but if you are in discord, then there may breastfeed for him [i.e., the father] another woman.                                                                                                                                 🇵🇰 Urdu:
+   اُن کو (زمانہ عدّت میں) اُسی جگہ رکھو جہاں تم رہتے ہو، جیسی کچھ بھی جگہ تمہیں میسّر ہو،ا
+ور انہیں تنگ کرنے کے لیے ان کو نہ ستاؤ۔  اور اگر وہ حاملہ ہوں تو ان پر اُس وقت تک خرچ کر
+تے رہو جب تک ان کا وضع حمل نہ ہوجائے۔ پھر اگر وہ تمہارے لیے (بچےکو) دُودھ پلائیں تو ان کی اُجرت انہیں دو، اور بھلے طریقےسے (اُجرت کا معاملہ) باہمی گفت وشنید سے طے کر لو۔ لیکن اگر تم نے (اُجرت طے کرنے میں) ایک دُوسرے کو تنگ کیا تو بچے کو کوئی اور عورت دُودھ پلالے گی۔                                                                                        ────────────────────────────────────────────────────────────
+Result #4
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:272
+📊 Score: 0.013 | Type: hybrid_fused
+📖 Juz: 3
+
+🔤 Arabic:
+   لَیْسَ عَلَیْكَ هُدٰىهُمْ وَلٰكِنَّ اللّٰهَ یَهْدِیْ مَنْ یَّشَآءُ ؕ وَمَا تُنْفِقُوْا مِنْ خَیْرٍ فَلِاَنْفُسِكُمْ ؕ وَمَا تُنْفِقُوْنَ اِلَّا ابْ
+تِغَآءَ وَجْهِ اللّٰهِ ؕ وَمَا تُنْفِقُوْا مِنْ خَیْرٍ یُّوَفَّ اِلَیْكُمْ وَاَنْتُمْ لَا تُظْلَمُوْنَ ۟
+                                                                                       🇬🇧 English:
+   Not upon you, [O Muḥammad], is [responsibility for] their guidance, but Allāh guides
+ whom He wills. And whatever good you [believers] spend is for yourselves, and you do n
+ot spend except seeking the face [i.e., approval] of Allāh. And whatever you spend of good - it will be fully repaid to you, and you will not be wronged.                                                                                                            🇵🇰 Urdu:
+   لوگوں کو ہدایت بخش دینے کی ذمّےداری تم پر نہیں ہے۔ ہدایت تو اللہ ہی جسے چاہتا ہے بخشت
+ا ہے۔ اور خیرات میں جو مال تم خرچ کرتے ہو وہ تمہارے اپنے لیے بھلاہے۔ آخر تم اسی لیے تو
+خرچ کرتے ہو کہ اللہ کی رضا حاصل ہو۔ تو جو کچھ مال تم خیرات کروگے، اس کا پُورا پُورا اجر تمہیں دیا جائے گا اور تمہاری حق تلفی ہرگز نہ ہوگی۔                                                                                                                             ────────────────────────────────────────────────────────────
+Result #5
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:270
+📊 Score: 0.013 | Type: hybrid_fused
+📖 Juz: 3
+
+🔤 Arabic:
+   وَمَاۤ اَنْفَقْتُمْ مِّنْ نَّفَقَةٍ اَوْ نَذَرْتُمْ مِّنْ نَّذْرٍ فَاِنَّ اللّٰهَ یَعْلَمُهٗ ؕ وَمَا لِلظّٰلِمِیْنَ مِنْ اَنْصَارٍ ۟
+
+🇬🇧 English:
+   And whatever you spend of expenditures or make of vows - indeed, Allāh knows of it.
+And for the wrongdoers there are no helpers.
+                                                                                       🇵🇰 Urdu:
+   تم نے جو کچھ بھی خرچ کیا ہو اور جو نظر بھی مانی ہو ، اللہ کو اُس کا علم ہے، اور ظالمو
+ں کا کوئی مدد گار نہیں۔
+                                                                                       👉 Show all results? (y/n):zakat
+
+🔍 Enter query:صبر
+
+✓ Found 5 results:
+
+────────────────────────────────────────────────────────────
+Result #1
+────────────────────────────────────────────────────────────
+📍 Location: Al-Ma'arij 70:5
+📊 Score: 0.016 | Type: hybrid_fused
+📖 Juz: 29
+
+🔤 Arabic:
+   فَاصْبِرْ صَبْرًا جَمِیْلًا ۟
+
+🇬🇧 English:
+   So be patient with gracious patience.
+
+🇵🇰 Urdu:
+   پس اے نبیؐ ، صبر کرو، شائستہ صبر۔
+────────────────────────────────────────────────────────────
+Result #2
+────────────────────────────────────────────────────────────
+📍 Location: Ash-Shuraa 42:43
+📊 Score: 0.016 | Type: hybrid_fused
+📖 Juz: 25
+
+🔤 Arabic:
+   وَلَمَنْ صَبَرَ وَغَفَرَ اِنَّ ذٰلِكَ لَمِنْ عَزْمِ الْاُمُوْرِ ۟۠
+
+🇬🇧 English:
+   And whoever is patient and forgives - indeed, that is of the matters [worthy] of res
+olve.                                                                                  
+🇵🇰 Urdu:
+   البتہ جو شخص صبر سے کام لے اور درگزر کرے ، تو یہ بڑی اُولو العزمی  کے کاموں میں سے ہے
+۔                                                                                      
+────────────────────────────────────────────────────────────
+Result #3
+────────────────────────────────────────────────────────────
+📍 Location: Al-Baqarah 2:153
+📊 Score: 0.016 | Type: hybrid_fused
+📖 Juz: 2
+
+🔤 Arabic:
+   یٰۤاَیُّهَا الَّذِیْنَ اٰمَنُوا اسْتَعِیْنُوْا بِالصَّبْرِ وَالصَّلٰوةِ ؕ اِنَّ اللّٰهَ مَعَ الصّٰبِرِیْنَ ۟
+
+🇬🇧 English:
+   O you who have believed, seek help through patience and prayer. Indeed, Allāh is wit
+h the patient.                                                                         
+🇵🇰 Urdu:
+   اے لوگو جو ایمان لائے ہو صبر اور نماز سے مدد لو۔ اللہ صبر کرنے والوں کے ساتھ ہے۔
+
+────────────────────────────────────────────────────────────
+Result #4
+────────────────────────────────────────────────────────────
+📍 Location: An-Nahl 16:127
+📊 Score: 0.015 | Type: hybrid_fused
+📖 Juz: 14
+
+🔤 Arabic:
+   وَاصْبِرْ وَمَا صَبْرُكَ اِلَّا بِاللّٰهِ وَلَا تَحْزَنْ عَلَیْهِمْ وَلَا تَكُ فِیْ ضَیْقٍ مِّمَّا یَمْكُرُوْنَ ۟
+
+🇬🇧 English:
+   And be patient, [O Muḥammad], and your patience is not but through Allāh. And do not
+ grieve over them and do not be in distress over what they conspire.                   
+🇵🇰 Urdu:
+   اے محمدؐ، صبر سے کام کیے جاؤ اور تمہارا یہ صبر اللہ ہی کی توفیق سے ہے اِن لوگوں کی حرک
+ات پر ر نج نہ کرو اور نہ ان کی چال بازیوں پر دل تنگ ہو                                 
+────────────────────────────────────────────────────────────
+Result #5
+────────────────────────────────────────────────────────────
+📍 Location: Al-Kahf 18:68
+📊 Score: 0.015 | Type: hybrid_fused
+📖 Juz: 15
+
+🔤 Arabic:
+   وَكَیْفَ تَصْبِرُ عَلٰی مَا لَمْ تُحِطْ بِهٖ خُبْرًا ۟
+
+🇬🇧 English:
+   And how can you have patience for what you do not encompass in knowledge?"
+
+🇵🇰 Urdu:
+   اور جس چیز کی آپ کو خبر نہ ہو آخر آپ اس پر صبر کر بھی کیسے سکتے ہیں"
+
+👉 Show all results? (y/n):

@@ -548,45 +548,6 @@ class E5HybridSearchEngine(QuranSearchEngine):
 
         return q_emb
 
-
-    def semantic_search(self, query: str, top_k: Optional[int] = None, mode: Optional[str] = None) -> List[Dict]:
-        """
-        Semantic-only retrieval using the precomputed E5 verse embeddings.
-
-        This is useful for:
-          - diagnostics (inspect raw semantic neighbors)
-          - count/intents that rely on semantic thresholds (without BM25 fusion)
-
-        Args:
-            query: user query text
-            top_k: number of semantic neighbors to return (defaults to config semantic_topn)
-            mode: override semantic scan mode ("full" or "bm25"); default uses config
-
-        Returns:
-            List of verse dicts including:
-              - match_type="semantic_e5"
-              - e5_raw_similarity (dot product on normalized vectors; cosine if vectors are unit-normalized)
-              - relevance_score = e5_raw_similarity
-        """
-        if not query:
-            return []
-
-        # Keep behavior deterministic; do not mutate config globally.
-        if mode is not None:
-            old_mode = self.hybrid.semantic_scan_mode
-            self.hybrid.semantic_scan_mode = mode
-        else:
-            old_mode = None
-
-        try:
-            # For semantic-only, we do not need BM25 candidates.
-            sem = self._semantic_retrieve(query, bm25_results=[])
-            if top_k is None:
-                return sem
-            return sem[: max(0, int(top_k))]
-        finally:
-            if old_mode is not None:
-                self.hybrid.semantic_scan_mode = old_mode
     def _semantic_retrieve(self, query: str, bm25_results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         mode = (self.hybrid.semantic_scan_mode or "full").lower()
         q_emb = self._get_query_embedding(query)
@@ -615,7 +576,6 @@ class E5HybridSearchEngine(QuranSearchEngine):
                 d = verse.copy()
                 d["match_type"] = "semantic_e5"
                 d["e5_raw_similarity"] = float(sims[int(j)])
-                d["relevance_score"] = float(sims[int(j)])
                 out.append(d)
             return out
 
@@ -635,7 +595,6 @@ class E5HybridSearchEngine(QuranSearchEngine):
             d = verse.copy()
             d["match_type"] = "semantic_e5"
             d["e5_raw_similarity"] = float(sims[int(r)])
-            d["relevance_score"] = float(sims[int(r)])
             out.append(d)
         return out
 

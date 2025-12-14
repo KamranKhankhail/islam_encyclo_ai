@@ -22,6 +22,7 @@ This module is pure-Python reference code. For production mobile:
 
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple, Any
@@ -48,6 +49,26 @@ DEFAULT_DATA_PATH = PROJECT_ROOT / "output" / "processed" / "quran_complete.json
 DEFAULT_EMB_PATH = PROJECT_ROOT / "output" / "processed" / "verse_embeddings_e5.npy"
 DEFAULT_KEYS_PATH = PROJECT_ROOT / "output" / "processed" / "verse_keys_e5.json"
 DEFAULT_COUNT_INDEX_PATH = PROJECT_ROOT / "output" / "processed" / "count_index.pkl.gz"
+
+# Optional numpy import for safe JSON casting (results may contain np scalars).
+try:
+    import numpy as np  # type: ignore
+except Exception:  # pragma: no cover - optional dependency
+    np = None  # type: ignore
+
+
+def _to_jsonable(obj: Any) -> Any:
+    """Recursively cast engine outputs into JSON-serializable types."""
+    if obj is None or isinstance(obj, (bool, int, float, str)):
+        return obj
+    if np is not None and isinstance(obj, np.generic):
+        return obj.item()
+    if isinstance(obj, dict):
+        return {str(k): _to_jsonable(v) for k, v in obj.items()}
+    if isinstance(obj, (list, tuple, set)):
+        return [_to_jsonable(v) for v in obj]
+    # Fallback to string to avoid serialization errors.
+    return str(obj)
 
 
 @dataclass(frozen=True)
@@ -554,7 +575,8 @@ def main():
         if not q or q == ":q":
             break
         ans = ask.answer(q)
-        print("\n", ans)
+        payload = _to_jsonable(ans)
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

@@ -25,6 +25,7 @@ from __future__ import annotations
 import json
 import re
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Any
 
 from query_parser import StructuralQueryParser
@@ -37,12 +38,9 @@ except Exception:
     from hybrid_search_e5 import E5HybridSearchEngine
 
 try:
-    from count_index import QuranCountIndex
+    from count_index import QuranCountIndex, load_count_index
 except Exception:
     QuranCountIndex = None  # type: ignore
-
-# Resolve project-root paths for local artifacts.
-from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_DATA_PATH = PROJECT_ROOT / "output" / "processed" / "quran_complete.json"
@@ -83,6 +81,7 @@ class AskQuranConfig:
     max_list_verses_in_count: int = 50
     semantic_count_candidates: int = 200
     semantic_count_min_keep: int = 10
+    semantic_count_threshold: float = 0.30  # cosine threshold for semantic/theme counts
 
     # Heuristic thresholds for quote detection
     quote_min_len: int = 20
@@ -127,9 +126,9 @@ class AskQuranEngine:
             re.IGNORECASE,
         )
         self._re_story = re.compile(
-            r"\b(what\s+happened|story\s+of|who\s+was|who\s+were|people\s+of)\b|"
-            r"(کیا\s+ہوا|قصہ|واقعہ|قوم\s+)\b|"
-            r"(ماذا\s+حدث|قصة|قوم)\b",
+            r"\b(what\s+happened|story\s+of|who\s+was|who\s+were|people\s+of|why\s+did|why\s+was|why\s+were|reason\s+for|cause\s+of)\b|"
+            r"(کیا\s+ہوا|قصہ|واقعہ|قوم\s+|کیوں)\b|"
+            r"(ماذا\s+حدث|قصة|قوم|لماذا)\b",
             re.IGNORECASE,
         )
 
@@ -232,7 +231,7 @@ class AskQuranEngine:
             return self._semantic_count(query, target)
 
         # Else: exact token/phrase count.
-        return self._exact_count(target)
+        return self._exact_count(full_query=query, target=target)
 
     # -----------------------
     # Count helpers
@@ -247,6 +246,13 @@ class AskQuranEngine:
             re.IGNORECASE,
         ))
 
+    def _infer_count_fields(self, token: str) -> List[str]:
+        """Choose which fields to use for token counts based on script."""
+        if any(self._is_arabic_char(ch) for ch in token):
+            return ["arabic", "urdu"]
+        return ["english", "transliteration"]
+
+
     def _extract_count_target(self, q: str) -> str:
         # English-ish
         s = q
@@ -257,14 +263,14 @@ class AskQuranEngine:
         s = re.sub(r"(?i)\bfrequency\b", " ", s)
         s = re.sub(r"(?i)\b(in\s+quran|in\s+the\s+quran|in\s+al\s*qur'an|in\s+the\s+qur'an)\b", " ", s)
         # Urdu / Arabic common fillers
-        s = re.sub(r"(کتنی\s*بار|کتنی\s*دفعہ|کِنّی\s*وار|قرآن\s*میں|قرآن\s*مجید\s*میں)", " ", s)
+        s = re.sub(r"(کتنی\s*بار|کتنی\s*دفعہ|کنی\s*وار|قرآن\s*میں|قرآن\s*مجید\s*میں)", " ", s)
         s = re.sub(r"(كم\s+مرة|كم\s+مرّة|في\s+القرآن|بالقرآن)", " ", s)
         s = re.sub(r"\s+", " ", s).strip()
         # remove surrounding quotes
         s = s.strip(' "\'“”‘’')
         return s
 
-    def _exact_count(self, target: str) -> Dict[str, Any]:
+    def _exact_count(self, full_query: str, target: str) -> Dict[str, Any]:
         """
         Deterministic count.
         - If the target is a single token: token count (fast via postings if index exists)
@@ -272,20 +278,25 @@ class AskQuranEngine:
         """
         target_norm = target.strip()
         if not target_norm:
-            return {"intent": "count", "query": target, "count": None, "results": [], "error": "empty_target"}
+            return {"intent": "count", "query": full_query, "count": None, "results": [], "error": "empty_target"}
 
         is_single_token = len(target_norm.split()) == 1
 
         if is_single_token and self.count_index is not None:
-            c = self.count_index.count_token(target_norm)
-            verse_keys = self.count_index.lookup_token_verses(target_norm, limit=self.config.max_list_verses_in_count)
-            verses = self._fetch_verses(verse_keys)
+            fields = self._infer_count_fields(target_norm)
+            res = self.count_index.count_token(
+                target_norm,
+                fields=fields,
+                limit_verses=self.config.max_list_verses_in_count,
+            )
+            verses = self._fetch_verses(res.verse_keys)
             return {
                 "intent": "count",
-                "query": target,
+                "query": full_query,
                 "mode": "exact_token",
-                "target": target_norm,
-                "count": c,
+                "target": res.token,
+                "count": res.total,
+                "by_field": res.by_field,
                 "results": self._group_ranges(verses, gap=self.config.group_gap_ayah),
             }
 
@@ -294,58 +305,82 @@ class AskQuranEngine:
         verses = self._fetch_verses(verse_keys[: self.config.max_list_verses_in_count])
         return {
             "intent": "count",
-            "query": target,
+            "query": full_query,
             "mode": "exact_phrase",
             "target": target_norm,
             "count": c,
+            "by_field": {},
             "results": self._group_ranges(verses, gap=self.config.group_gap_ayah),
         }
 
-    def _semantic_count(self, full_query: str, target: str) -> Dict[str, Any]:
+    def _semantic_count(self, full_query: str, target: str) -> Dict:
         """
-        Semantic count of verses for instruction/theme queries.
+        Semantic/theme count: count verses semantically matching a concept or instruction.
 
-        Method (no brittle hardcoding):
-        - Retrieve candidates (hybrid)
-        - Keep verses above an adaptive threshold based on score distribution
-
-        Note:
-        - "count" here means "how many verses match this instruction/theme",
-          which is the only defensible offline interpretation without a full
-          Arabic imperative parser + fiqh ontology.
+        Important
+        - This counts VERSES matching the concept, not raw token occurrences.
+        - It is deterministic and offline; quality depends on the embedding model and thresholds.
         """
-        candidates_k = self.config.semantic_count_candidates
+        threshold = float(self.config.semantic_count_threshold)
 
-        # Prefer semantic_search for clean score distributions; otherwise use fused.
-        if hasattr(self.engine, "semantic_search"):
-            cand = self.engine.semantic_search(target, top_k=candidates_k)
-        else:
-            cand = self.engine.search(target, top_k=candidates_k)
+        # Preferred path: exact full-scan scores (fast with N≈6236).
+        if hasattr(self.engine, "semantic_scores_all"):
+            try:
+                scores = self.engine.semantic_scores_all(target)
+            except Exception:
+                scores = None
+            if scores is not None:
+                import numpy as _np  # local import to keep base import surface small
 
-        if not cand:
-            return {"intent": "count", "query": full_query, "mode": "semantic_theme", "target": target, "count": 0, "results": []}
+                scores = _np.asarray(scores, dtype=_np.float32)
+                count = int(_np.sum(scores >= threshold))
 
-        # Use relevance_score if present, else fall back to e5_raw_similarity, else 0.
-        scores = [float(v.get("relevance_score", v.get("e5_raw_similarity", 0.0))) for v in cand]
-        keep_idx = self._adaptive_keep(scores, min_keep=self.config.semantic_count_min_keep)
+                # Pick candidate verses for display
+                order = _np.argsort(scores)[::-1]
+                cand: List[int] = []
+                for idx in order[: int(self.config.semantic_count_candidates)]:
+                    if scores[idx] >= threshold:
+                        cand.append(int(idx))
+                if len(cand) < int(self.config.semantic_count_min_keep):
+                    # Adaptive keep on top candidates even if below threshold (for UX stability).
+                    top_scores = [float(scores[i]) for i in order[: int(self.config.semantic_count_candidates)]]
+                    keep = self._adaptive_keep(top_scores, min_keep=self.config.semantic_count_min_keep)
+                    cand = [int(order[i]) for i in keep]
 
-        kept = [cand[i] for i in keep_idx]
-        verse_keys = [v["verse_key"] for v in kept]
+                emb_keys = getattr(self.engine, "_emb_keys_list", None) or getattr(self.engine, "emb_keys_list", None)
+                lookup = getattr(self.engine, "verse_lookup", {})
+                verses = []
+                if isinstance(emb_keys, list) and emb_keys:
+                    for idx in cand:
+                        if 0 <= idx < len(emb_keys):
+                            vk = emb_keys[idx]
+                            v = (lookup.get(vk) or {"verse_key": vk}).copy()
+                            v["relevance_score"] = float(scores[idx])
+                            v["match_type"] = "semantic_theme"
+                            verses.append(v)
 
+                return {
+                    "intent": "count",
+                    "query": full_query,
+                    "mode": "semantic_theme",
+                    "target": target,
+                    "count": count,
+                    "by_field": {},
+                    "results": self._group_ranges(verses, gap=self.config.group_gap_ayah),
+                }
+
+        # Fallback: approximate semantic count via search candidates only.
+        sem = self.engine.search(target, top_k=int(self.config.semantic_count_candidates))
+        kept = [r for r in sem if r.get("relevance_score", r.get("e5_raw_similarity", 0.0)) >= threshold]
         return {
             "intent": "count",
             "query": full_query,
-            "mode": "semantic_theme",
+            "mode": "semantic_theme_approx",
             "target": target,
-            "count": len(verse_keys),
+            "count": len(kept),
+            "by_field": {},
             "results": self._group_ranges(kept, gap=self.config.group_gap_ayah),
-            "debug": {
-                "candidates": len(cand),
-                "kept": len(kept),
-                "thresholding": "adaptive",
-            },
         }
-
     def _adaptive_keep(self, scores: List[float], min_keep: int = 10) -> List[int]:
         """
         Adaptive thresholding:
@@ -556,11 +591,10 @@ def main():
     )
 
     count_idx = None
-    if args.count_index:
-        from count_index import QuranCountIndex
+    if args.count_index and Path(args.count_index).exists():
         try:
-            count_idx = QuranCountIndex.load(args.count_index)
-        except FileNotFoundError:
+            count_idx = load_count_index(args.count_index)
+        except Exception:
             count_idx = None
 
     ask = AskQuranEngine(engine=engine, count_index=count_idx)

@@ -43,6 +43,18 @@ class StructuralQueryParser:
         "آية", "اية", "آیت", "آیہ",
     }
 
+    # Tokens that strongly suggest a *semantic* question rather than navigation.
+    # Keep this list high-signal (avoid adding generic words like "about" alone).
+    _QUESTION_TOKENS = {
+        # English
+        "why", "what", "who", "when", "where", "how",
+        "explain", "meaning", "happened", "happen", "story",
+        # Urdu (common)
+        "کیوں", "کیا", "کون", "کب", "کہاں", "کیسے", "واقعہ", "قصہ", "کیاہوا",
+        # Arabic (common)
+        "لماذا", "ماذا", "من", "متى", "اين", "كيف", "قصة", "حدث",
+    }
+
     # Nickname normalization helper
     _NICKNAME_NORM_RE = re.compile(r"[^a-z0-9\s]+", re.IGNORECASE)
 
@@ -288,6 +300,12 @@ class StructuralQueryParser:
         q_num = self._normalize_numbers_nfkc(raw)
         q_norm = self._normalize_for_matching(raw)  # token-safe form
 
+        toks = q_norm.split()
+        has_struct_intent = any(t in self._STRUCTURE_TOKENS for t in toks)
+        has_question_intent = (
+            ("?" in raw) or ("؟" in raw) or any(t in self._QUESTION_TOKENS for t in toks)
+        )
+
         # 1) Verse nicknames (high confidence)
         nick = self._match_nickname(q_norm)
         if nick:
@@ -319,7 +337,21 @@ class StructuralQueryParser:
                 ayah = maybe_ayah
 
             if ayah is None:
-                # Surah-only intent
+                # Surah-only intent.
+                # Precision guard:
+                # - If query looks like a semantic question ("why/what/how..."), do NOT treat as navigation.
+                # - If query contains extra tokens beyond the surah alias and there's no explicit structural
+                #   intent token, do NOT treat as navigation (prevents "why ibrahim ..." → 14:1).
+                if has_question_intent and not has_struct_intent:
+                    return None
+
+                if not has_struct_intent and len(toks) > 1:
+                    # Accept only when the entire query is exactly a known alias
+                    # (e.g., "al fatiha" / "al baqarah"), not when alias is embedded in a longer query.
+                    ttuple = tuple(toks)
+                    if (ttuple not in self._strict_alias_index) and (ttuple not in self._loose_alias_index):
+                        return None
+
                 return {
                     "type": "surah_name",
                     "surah": surah,

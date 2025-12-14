@@ -71,6 +71,14 @@ class _FieldIndex:
 
 
 @dataclass
+class CountResult:
+    token: str
+    total: int
+    by_field: Dict[str, int]
+    verse_keys: List[str]
+
+
+@dataclass
 class QuranCountIndex:
     version: int
     verse_keys: List[str]
@@ -174,26 +182,18 @@ class QuranCountIndex:
     # Query API
     # ---------------------
 
-    def count_token(self, token: str) -> Dict[str, Any]:
+    def count_token(self, token: str, fields: Optional[List[str]] = None, limit_verses: int = 50) -> CountResult:
         """
-        Count occurrences of a token.
-
-        Returns:
-            {
-              "token": "...",
-              "total": int,
-              "by_field": { field: int, ... }
-            }
+        Count occurrences of a token and return postings (verse_keys) for display.
         """
         tok = self._normalize_token(token)
         by_field: Dict[str, int] = {}
-        total = 0
 
         # Choose fields based on script, but also allow latin token to appear in english+transliteration.
-        if _is_arabic_script(tok):
-            candidates = ["arabic", "urdu"]
-        else:
-            candidates = ["english", "transliteration"]
+        candidates = fields or (["arabic", "urdu"] if _is_arabic_script(tok) else ["english", "transliteration"])
+
+        verse_ids: List[int] = []
+        seen = set()
 
         for field in candidates:
             fi = self.fields.get(field)
@@ -202,9 +202,22 @@ class QuranCountIndex:
             c = int(fi.token_counts.get(tok, 0))
             if c:
                 by_field[field] = c
-                total += c
+            for vid in fi.token_postings.get(tok, []):
+                if vid not in seen:
+                    seen.add(vid)
+                    verse_ids.append(int(vid))
+                if len(verse_ids) >= limit_verses:
+                    break
+            if len(verse_ids) >= limit_verses:
+                break
 
-        return {"token": tok, "total": total, "by_field": by_field}
+        total = sum(by_field.values())
+        verse_keys = []
+        for vid in verse_ids[:limit_verses]:
+            if 0 <= vid < len(self.verse_keys):
+                verse_keys.append(self.verse_keys[vid])
+
+        return CountResult(token=tok, total=total, by_field=by_field, verse_keys=verse_keys)
 
     def lookup_token_verses(self, token: str, limit: int = 50) -> List[str]:
         """
@@ -251,6 +264,27 @@ class QuranCountIndex:
         t = t.lower()
         t = re.sub(r"[^a-z0-9']+", "", t)
         return t
+
+def load_count_index(path: str) -> QuranCountIndex:
+    """
+    Load a count index from gzipped pickle (default) or JSON(.gz) payload.
+    """
+    p = Path(path)
+    suffixes = "".join(p.suffixes[-2:]) if len(p.suffixes) >= 2 else p.suffix
+
+    if suffixes in {".json.gz", ".json"}:
+        opener = gzip.open if suffixes == ".json.gz" else open
+        with opener(p, "rt", encoding="utf-8") as f:
+            payload = json.load(f)
+        fields: Dict[str, _FieldIndex] = {}
+        for k, v in payload["fields"].items():
+            fi = _FieldIndex()
+            fi.token_counts = v["token_counts"]
+            fi.token_postings = v["token_postings"]
+            fields[k] = fi
+        return QuranCountIndex(version=int(payload["version"]), verse_keys=list(payload["verse_keys"]), fields=fields)
+
+    return QuranCountIndex.load(str(p))
 
 
 if __name__ == "__main__":

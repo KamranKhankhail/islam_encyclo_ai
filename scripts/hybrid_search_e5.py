@@ -254,7 +254,7 @@ class HybridConfig:
     fusion_method: str = "rrf"  # "rrf" recommended; "weighted_norm" optional
     rrf_k: int = 60             # typical starting constant
     bm25_weight: float = 0.70
-    semantic_weight: float = 0.30
+    semantic_weight: float = 0.90
 
     # Embeddings loading/perf
     mmap_embeddings: bool = True

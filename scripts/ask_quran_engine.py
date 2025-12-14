@@ -40,6 +40,15 @@ try:
 except Exception:
     QuranCountIndex = None  # type: ignore
 
+# Resolve project-root paths for local artifacts.
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DEFAULT_DATA_PATH = PROJECT_ROOT / "output" / "processed" / "quran_complete.json"
+DEFAULT_EMB_PATH = PROJECT_ROOT / "output" / "processed" / "verse_embeddings_e5.npy"
+DEFAULT_KEYS_PATH = PROJECT_ROOT / "output" / "processed" / "verse_keys_e5.json"
+DEFAULT_COUNT_INDEX_PATH = PROJECT_ROOT / "output" / "processed" / "count_index.pkl.gz"
+
 
 @dataclass(frozen=True)
 class AskQuranConfig:
@@ -509,20 +518,18 @@ class AskQuranEngine:
 
 
 def main():
-    # Example usage:
-    #   python ask_quran_engine.py /path/to/quran_complete.json --emb verse_embeddings_e5.npy --keys verse_keys_e5.json
+    # Defaults to local repo artifacts; can be overridden via CLI.
     import argparse
-    from pathlib import Path
 
-    p = argparse.ArgumentParser()
-    p.add_argument("data_path", help="Path to quran_complete.json")
-    p.add_argument("--emb", default=str(Path(__file__).parent / "verse_embeddings_e5.npy"))
-    p.add_argument("--keys", default=str(Path(__file__).parent / "verse_keys_e5.json"))
-    p.add_argument("--count_index", default=None, help="Optional path to count_index.pkl.gz")
+    p = argparse.ArgumentParser(description="Ask Qur'an offline orchestrator (uses local repo artifacts by default).")
+    p.add_argument("--data", default=str(DEFAULT_DATA_PATH), help="Path to quran_complete.json (defaults to repo artifact).")
+    p.add_argument("--emb", default=str(DEFAULT_EMB_PATH), help="Path to verse_embeddings_e5.npy (defaults to repo artifact).")
+    p.add_argument("--keys", default=str(DEFAULT_KEYS_PATH), help="Path to verse_keys_e5.json (defaults to repo artifact).")
+    p.add_argument("--count_index", default=str(DEFAULT_COUNT_INDEX_PATH), help="Optional path to count_index.pkl.gz (defaults to repo artifact if present).")
     args = p.parse_args()
 
     engine = E5HybridSearchEngine(
-        data_path=args.data_path,
+        data_path=args.data,
         embeddings_path=args.emb,
         verse_keys_path=args.keys,
     )
@@ -530,7 +537,10 @@ def main():
     count_idx = None
     if args.count_index:
         from count_index import QuranCountIndex
-        count_idx = QuranCountIndex.load(args.count_index)
+        try:
+            count_idx = QuranCountIndex.load(args.count_index)
+        except FileNotFoundError:
+            count_idx = None
 
     ask = AskQuranEngine(engine=engine, count_index=count_idx)
 

@@ -19,19 +19,23 @@ Files included:
 - hybrid_search_e5.py  (patched: semantic results now include relevance_score; exposes semantic_search)
 - ask_quran_engine.py     (orchestrator)
 - count_index.py          (count index build/load/query)
-- build_count_index.py    (CLI builder for count index)
+- build_count_index.py    (builder for count index)
 
-How to run (Python reference):
-1) Put quran_complete.json next to these scripts or pass absolute path.
-2) Build count index (optional but recommended):
-   python build_count_index.py --data /path/to/quran_complete.json --out count_index.pkl.gz
+Local paths (defaults wired into scripts):
+- Data: output/processed/quran_complete.json
+- Embeddings: output/processed/verse_embeddings_e5.npy
+- Verse keys: output/processed/verse_keys_e5.json
+- Count index (optional): output/processed/count_index.pkl.gz (created by builder)
 
-3) Run Ask Qur'an interactive:
-   python ask_quran_engine.py /path/to/quran_complete.json --emb /path/to/verse_embeddings_e5.npy --keys /path/to/verse_keys_e5.json --count_index count_index.pkl.gz
+How to run (Python reference, no args needed when repo artifacts are present):
+1) Build count index (optional but recommended):
+   python build_count_index.py
+
+2) Run Ask Qur'an interactive (uses defaults above):
+   python ask_quran_engine.py
 
 Notes for mobile:
 - Keep interfaces identical: router → retrieval → grouping → response.
 - Replace Python embedding inference with on-device ONNX/NNAPI/CoreML.
 - Memory-map verse embeddings (float16) for constant memory usage.
 - Count index can be converted to a compact binary format later.
-

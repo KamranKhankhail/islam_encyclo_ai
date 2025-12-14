@@ -22,6 +22,7 @@ import gzip
 import json
 import re
 import pickle
+from pathlib import Path
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Iterable, Tuple, Any
 
@@ -255,12 +256,19 @@ class QuranCountIndex:
 if __name__ == "__main__":
     # Minimal self-test (build speed sanity)
     import argparse
-    p = argparse.ArgumentParser()
-    p.add_argument("quran_path")
-    p.add_argument("--out", default="count_index.pkl.gz")
+    project_root = Path(__file__).resolve().parent.parent
+    default_quran = project_root / "output" / "processed" / "quran_complete.json"
+    default_out = project_root / "output" / "processed" / "count_index.pkl.gz"
+
+    p = argparse.ArgumentParser(description="Build count index using local repo data by default.")
+    p.add_argument("--data", default=str(default_quran))
+    p.add_argument("--out", default=str(default_out))
     p.add_argument("--max_verses", type=int, default=None)
     args = p.parse_args()
 
-    idx = QuranCountIndex.build_from_quran_json(args.quran_path, max_verses=args.max_verses)
-    idx.save(args.out)
-    print(f"Saved {args.out} | verse_keys={len(idx.verse_keys)} | fields={list(idx.fields.keys())}")
+    out_path = Path(args.out)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    idx = QuranCountIndex.build_from_quran_json(args.data, max_verses=args.max_verses)
+    idx.save(out_path)
+    print(f"Saved {out_path} | verse_keys={len(idx.verse_keys)} | fields={list(idx.fields.keys())}")

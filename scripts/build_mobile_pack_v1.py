@@ -46,7 +46,7 @@ import numpy as np
 # ----------------------------
 
 # Display translation preference lists (used when policy="fixed")
-EN_DISPLAY_PREF = ["yusuf-ali", "sahih-international"]
+EN_DISPLAY_PREF = ["sahih-international"]
 UR_DISPLAY_PREF = ["fatah-muhammad-jalandhari"]
 
 # Translation selection policy:
@@ -59,7 +59,7 @@ DEFAULT_UR_POLICY = "fixed"
 DEFAULT_MAX_SEARCHABLE_CHARS = 1600
 
 # Include transliteration in packed verse payload? (increases size; keep off unless you need it in UI/search)
-DEFAULT_INCLUDE_TRANSLITERATION = False
+DEFAULT_INCLUDE_TRANSLITERATION = True
 
 
 # ----------------------------
@@ -133,8 +133,10 @@ def load_normalizer(repo_root: Path):
     """
     try:
         # Ensure repo_root is on sys.path so `import arabic_normalizer` works.
-        if str(repo_root) not in sys.path:
-            sys.path.insert(0, str(repo_root))
+        for p in (repo_root, repo_root / "scripts"):
+            ps = str(p)
+            if ps not in sys.path:
+                sys.path.insert(0, ps)
 
         import arabic_normalizer  # type: ignore
 
@@ -219,9 +221,11 @@ def load_default_alias_map(repo_root: Path) -> Dict[str, str]:
     We do this so mobile aliases match exactly what your engine uses.
     """
     try:
-        # Ensure repo root in sys.path, then import.
-        if str(repo_root) not in sys.path:
-            sys.path.insert(0, str(repo_root))
+        # Ensure repo root + scripts in sys.path, then import.
+        for p in (repo_root, repo_root / "scripts"):
+            ps = str(p)
+            if ps not in sys.path:
+                sys.path.insert(0, ps)
 
         import hybrid_search_e5  # type: ignore
 
@@ -256,12 +260,17 @@ class PackPaths:
 def resolve_paths(repo_root: Path, processed_dir: Optional[Path], out_dir: Optional[Path]) -> PackPaths:
     proc = processed_dir or (repo_root / "output" / "processed")
     out = out_dir or (repo_root / "output" / "mobile_pack" / "v1")
+    data_dir = repo_root / "data"
+
+    metadata_default = proc / "metadata.json"
+    if not metadata_default.exists():
+        metadata_default = data_dir / "metadata.json"
 
     return PackPaths(
         processed_dir=proc,
         out_dir=out,
         quran_complete=proc / "quran_complete.json",
-        metadata=proc / "metadata.json",
+        metadata=metadata_default,
         emb_npy=proc / "verse_embeddings_e5.npy",
         emb_keys=proc / "verse_keys_e5.json",
         emb_meta=proc / "embeddings_meta_e5.json",

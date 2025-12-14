@@ -15,3 +15,12 @@ Thumbs.db
 # Generated data/outputs
 output/
 .bm25_cache/
+
+# Generated packs/artifacts
+askquran_pack/
+tools/askquran_pack/
+
+# Local run results/logs
+results.txt
+*.log
+*.tmp

@@ -135,6 +135,15 @@ def sha256_of_array(arr: np.ndarray) -> str:
     return hashlib.sha256(arr_c.tobytes()).hexdigest()
 
 
+def write_json(path: Path, obj: Any, *, indent: int | None = None) -> None:
+    """
+    Write JSON bytes with stable UTF-8 + LF newlines (no text-mode translation).
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    data = json.dumps(obj, ensure_ascii=False, indent=indent)
+    path.write_bytes(data.encode("utf-8"))
+
+
 def detect_device_and_log() -> Tuple[str, Dict[str, Any]]:
     info: Dict[str, Any] = {}
     device = "cpu"
@@ -412,8 +421,7 @@ def main():
 
     print("\n6) Saving artifacts...")
     np.save(embeddings_path, embeddings)
-    with open(keys_path, "w", encoding="utf-8") as f:
-        json.dump(verse_keys, f, ensure_ascii=False)
+    write_json(keys_path, verse_keys)
 
     sha = sha256_of_array(embeddings)
     meta = {
@@ -445,8 +453,7 @@ def main():
         "batch_size": batch_size,
     }
 
-    with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(meta, f, ensure_ascii=False, indent=2)
+    write_json(meta_path, meta, indent=2)
 
     size_mb = embeddings_path.stat().st_size / (1024 * 1024)
     print(f"   ✓ Embeddings: {embeddings_path} ({size_mb:.2f} MB)")
@@ -472,8 +479,7 @@ def main():
             queries=GOLDEN_QUERIES,
             topk_list=[1, 3, 5, 10],
         )
-        with open(eval_path, "w", encoding="utf-8") as f:
-            json.dump(report, f, ensure_ascii=False, indent=2)
+        write_json(eval_path, report, indent=2)
 
         print(f"   ✓ Eval saved: {eval_path}")
         print("   Metrics:")

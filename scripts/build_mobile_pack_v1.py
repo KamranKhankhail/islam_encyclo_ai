@@ -81,16 +81,18 @@ def read_json(path: Path) -> Any:
 
 def write_json(path: Path, obj: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="\n") as f:
-        json.dump(obj, f, ensure_ascii=False, separators=(",", ":"))
+    with path.open("wb") as f:
+        payload = json.dumps(obj, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+        f.write(payload)
 
 
 def ndjson_write(path: Path, rows: List[Dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="\n") as f:
+    with path.open("wb") as f:
         for r in rows:
-            f.write(json.dumps(r, ensure_ascii=False, separators=(",", ":")))
-            f.write("\n")
+            line = json.dumps(r, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+            f.write(line)
+            f.write(b"\n")
 
 
 def stable_int_hash(s: str) -> int:

@@ -1,0 +1,4 @@
+# Mobile pack assets must be byte-identical across platforms
+*.ndjson text eol=lf
+output/mobile_pack/** -text
+src/features/ieaiAskQuran/assets/** -text

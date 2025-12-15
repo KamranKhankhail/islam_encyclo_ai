@@ -14,12 +14,12 @@
       "sha256": "478335805761fc292bd8a692d6aa4965658af52a11117aeb1e296685ccb47282"
     },
     "embeddings_meta_e5.json": {
-      "bytes": 1161,
-      "sha256": "e68b3bd0efeda2a5a66247a353644ab405dd0858041087d7a52979613b8bf239"
+      "bytes": 1134,
+      "sha256": "7c146dab08b24e2541966098708d452bca829df661cf988608adde4e404b3320"
     },
     "verse_embeddings_e5.f16.bin": {
       "bytes": 4789248,
-      "sha256": "7423126b91aff7aaaa77233dff13b43e32fa0ff4769c4467ac09af6855475de6",
+      "sha256": "9ac521c13b8717f112dd39354da93321f68f91e224eced78d20bfc11e242a6c0",
       "dtype": "float16",
       "shape": [
         6236,

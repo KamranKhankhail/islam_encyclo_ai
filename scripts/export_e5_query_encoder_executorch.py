@@ -91,7 +91,10 @@ def get_package_version(package: str, attr_name: str = "__version__") -> str:
 class E5QueryEncoder(torch.nn.Module):
     def __init__(self, model_id: str) -> None:
         super().__init__()
-        self.encoder = AutoModel.from_pretrained(model_id)
+        self.encoder = AutoModel.from_pretrained(model_id, torch_dtype=torch.float32)
+        self.encoder.config.use_cache = False
+        self.encoder.config.output_hidden_states = False
+        self.encoder.config.output_attentions = False
 
     def forward(self, input_ids: torch.LongTensor, attention_mask: torch.LongTensor) -> torch.FloatTensor:
         outputs = self.encoder(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
@@ -112,11 +115,19 @@ def build_tokenizer(output_path: Path):
         raise RuntimeError("AutoTokenizer did not load a fast tokenizer; required for tokenizer.json export.")
     if getattr(tokenizer, "pad_token_id", None) is None:
         raise RuntimeError("Tokenizer missing pad_token_id; cannot enable fixed-length padding.")
+    if getattr(tokenizer, "pad_token", None) is None:
+        raise RuntimeError("Tokenizer missing pad_token; cannot enable fixed-length padding.")
     backend = getattr(tokenizer, "backend_tokenizer", None)
     if backend is None:
         raise RuntimeError("Fast tokenizer missing backend_tokenizer; cannot export tokenizer.json.")
-    backend.enable_truncation(max_length=MAX_TOKENS)
-    backend.enable_padding(length=MAX_TOKENS)
+    backend.enable_truncation(max_length=MAX_TOKENS, strategy="longest_first")
+    backend.enable_padding(
+        length=MAX_TOKENS,
+        direction="right",
+        pad_id=int(tokenizer.pad_token_id),
+        pad_type_id=int(getattr(tokenizer, "pad_token_type_id", 0) or 0),
+        pad_token=str(tokenizer.pad_token),
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     backend.save(str(output_path))
     return tokenizer
@@ -132,6 +143,8 @@ def tokenize_queries(tokenizer, queries: Iterable[str]) -> Tuple[torch.Tensor, t
     )
     if "input_ids" not in encoded or "attention_mask" not in encoded:
         raise RuntimeError("Tokenizer output missing input_ids or attention_mask.")
+    if encoded["input_ids"].shape[-1] != MAX_TOKENS:
+        raise RuntimeError("Tokenizer output sequence length does not match MAX_TOKENS.")
     return encoded["input_ids"], encoded["attention_mask"]
 
 
@@ -149,6 +162,30 @@ def compare_embeddings(label: str, ref: np.ndarray, cand: np.ndarray) -> None:
             raise RuntimeError(
                 f"{label}: mismatch at index {idx} (cos={cos:.6f}, max_diff={max_diff:.6f})."
             )
+
+
+def run_executorch_forward(program: Any, inputs: Tuple[torch.Tensor, torch.Tensor]) -> Any:
+    if hasattr(program, "forward"):
+        try:
+            return program.forward(inputs)
+        except TypeError:
+            print("ExecuTorch runtime forward rejected tuple inputs; retrying with positional args.")
+            try:
+                return program.forward(*inputs)
+            except TypeError:
+                print("ExecuTorch runtime forward rejected positional args; retrying with list inputs.")
+                return program.forward(list(inputs))
+            except Exception as exc:
+                raise RuntimeError("ExecuTorch runtime forward failed for tuple and positional args.") from exc
+    if hasattr(program, "run_method"):
+        try:
+            return program.run_method("forward", inputs)
+        except TypeError:
+            print("ExecuTorch runtime run_method rejected tuple inputs; retrying with list inputs.")
+            return program.run_method("forward", list(inputs))
+        except Exception as exc:
+            raise RuntimeError("ExecuTorch runtime run_method failed for tuple inputs.") from exc
+    raise RuntimeError("ExecuTorch runtime module missing forward/run_method.")
 
 
 def export_executorch(model: torch.nn.Module, example_inputs: Tuple[torch.Tensor, torch.Tensor], out_path: Path) -> None:
@@ -184,7 +221,14 @@ def export_executorch(model: torch.nn.Module, example_inputs: Tuple[torch.Tensor
     exported = torch.export.export(model, example_inputs)
     if has_to_edge_transform:
         print("ExecuTorch: using to_edge_transform_and_lower")
-        edge_prog = to_edge_transform_and_lower(exported, partitioner=[partitioner])
+        try:
+            edge_prog = to_edge_transform_and_lower(exported, partitioner=[partitioner])
+        except TypeError:
+            print("ExecuTorch: to_edge_transform_and_lower rejected list; retrying with single partitioner.")
+            try:
+                edge_prog = to_edge_transform_and_lower(exported, partitioner=partitioner)
+            except Exception as exc:
+                raise RuntimeError("ExecuTorch to_edge_transform_and_lower failed for both list and single partitioner.") from exc
     else:
         print("ExecuTorch: using to_edge + transform")
         edge_prog = to_edge(exported)
@@ -229,10 +273,10 @@ def run_self_test(
     )
 
     input_ids, attention_mask = tokenize_queries(tokenizer, TEST_QUERIES)
-    input_ids = input_ids.to(device)
-    attention_mask = attention_mask.to(device)
+    input_ids = input_ids.to(device).contiguous()
+    attention_mask = attention_mask.to(device).contiguous()
 
-    with torch.no_grad():
+    with torch.inference_mode():
         torch_embeddings = model(input_ids=input_ids, attention_mask=attention_mask)
 
     if torch_embeddings.dtype != torch.float32:
@@ -257,17 +301,12 @@ def run_self_test(
     runtime = Runtime()
     program = runtime.load_program(str(output_path))
 
-    input_ids_one = input_ids[:1]
-    attention_mask_one = attention_mask[:1]
-    with torch.no_grad():
+    input_ids_one = input_ids[:1].contiguous()
+    attention_mask_one = attention_mask[:1].contiguous()
+    with torch.inference_mode():
         torch_one = model(input_ids=input_ids_one, attention_mask=attention_mask_one).cpu().numpy()
 
-    if hasattr(program, "forward"):
-        et_out = program.forward((input_ids_one, attention_mask_one))
-    elif hasattr(program, "run_method"):
-        et_out = program.run_method("forward", (input_ids_one, attention_mask_one))
-    else:
-        raise RuntimeError("ExecuTorch runtime module missing forward/run_method.")
+    et_out = run_executorch_forward(program, (input_ids_one, attention_mask_one))
 
     if isinstance(et_out, (list, tuple)):
         et_out = et_out[0]
@@ -287,6 +326,7 @@ def run_self_test(
 def main() -> None:
     torch.manual_seed(0)
     np.random.seed(0)
+    torch.set_grad_enabled(False)
 
     repo_root = Path(__file__).resolve().parents[1]
     output_dir = repo_root / "output" / "processed" / "models"

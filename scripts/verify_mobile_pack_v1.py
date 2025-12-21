@@ -87,6 +87,8 @@ def main() -> None:
     if not isinstance(files, list) or not files:
         raise ValueError("manifest.files must be a non-empty list")
 
+    manifest_names = set()
+
     # 1) File integrity (sha256 + bytes)
     for entry in files:
         if not isinstance(entry, dict):
@@ -109,6 +111,8 @@ def main() -> None:
         if actual_sha != exp_sha:
             raise ValueError(f"SHA256 mismatch for {name}: manifest={exp_sha}, actual={actual_sha}")
 
+        manifest_names.add(name)
+
     # 2) Required semantic files exist
     verses_path = pack_dir / "verses_mobile_v1.ndjson"
     idx_path = pack_dir / "verse_index_v1.json"
@@ -118,6 +122,13 @@ def main() -> None:
     for p in [verses_path, idx_path, keys_path, emb_bin_path]:
         if not p.exists():
             raise FileNotFoundError(f"Missing required pack file: {p}")
+
+    # Optional: verify new artifacts if present in folder
+    optional_names = ["variant_map_v1.json", "topic_pack_v1.json", "answer_templates_v1.json"]
+    for name in optional_names:
+        p = pack_dir / name
+        if p.exists() and name not in manifest_names:
+            raise ValueError(f"Optional file {name} exists but is missing from manifest")
 
     # 3) Count lines
     n_lines = count_lines(verses_path)
@@ -174,7 +185,7 @@ def main() -> None:
         if exp_arr_sha and actual_arr_sha != exp_arr_sha:
             raise ValueError(f"sha256_array mismatch: meta={exp_arr_sha}, actual={actual_arr_sha}")
 
-    print("✓ MOBILE PACK v1 VERIFIED")
+    print("OK MOBILE PACK v1 VERIFIED")
 
 
 if __name__ == "__main__":

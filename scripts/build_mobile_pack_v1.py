@@ -289,6 +289,9 @@ def main():
     ap.add_argument("--seed", type=int, default=0, help="Base seed used when policy=random_seeded (0 means derive from embeddings sha256)")
     ap.add_argument("--max-searchable-chars", type=int, default=DEFAULT_MAX_SEARCHABLE_CHARS)
     ap.add_argument("--include-transliteration", action="store_true", default=DEFAULT_INCLUDE_TRANSLITERATION)
+    ap.add_argument("--variant_map", type=str, default=None, help="Optional variant_map_v1.json to include")
+    ap.add_argument("--topic_pack", type=str, default=None, help="Optional topic_pack_v1.json to include")
+    ap.add_argument("--answer_templates", type=str, default=None, help="Optional answer_templates_v1.json to include")
     args = ap.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -469,6 +472,22 @@ def main():
     ndjson_write(paths.out_dir / "verses_mobile_v1.ndjson", out_rows)
     write_json(paths.out_dir / "verse_index_v1.json", verse_index)
 
+    # Optional: include offline packs if provided
+    optional_files: List[str] = []
+
+    def copy_optional(src: str | None, name: str) -> None:
+        if not src:
+            return
+        src_path = Path(src)
+        if not src_path.exists():
+            raise FileNotFoundError(f"Missing optional pack file: {src_path}")
+        shutil.copy2(src_path, paths.out_dir / name)
+        optional_files.append(name)
+
+    copy_optional(args.variant_map, "variant_map_v1.json")
+    copy_optional(args.topic_pack, "topic_pack_v1.json")
+    copy_optional(args.answer_templates, "answer_templates_v1.json")
+
     # Manifest: sha256 + bytes
     manifest_files = [
         "pack_manifest_v1.json",  # placeholder; written last
@@ -479,7 +498,7 @@ def main():
         "verse_keys_e5.json",
         "embeddings_meta_e5.json",
         "verse_embeddings_e5.f16.bin",
-    ]
+    ] + optional_files
 
     # Compute file hashes (except manifest itself, computed last)
     file_entries: List[Dict[str, Any]] = []
@@ -531,7 +550,7 @@ def main():
 
     total_bytes = sum(e["bytes"] for e in file_entries) + manifest_path.stat().st_size
     print("=" * 80)
-    print("✓ MOBILE PACK v1 BUILT")
+    print("OK MOBILE PACK v1 BUILT")
     print(f"Out: {paths.out_dir}")
     print(f"Verses: {len(out_rows)}")
     print(f"Embeddings: rows={n} dim={d} dtype=float16 bin_bytes={emb_bin_path.stat().st_size}")

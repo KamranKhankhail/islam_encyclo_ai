@@ -1,0 +1,41 @@
+{
+  "schema": "askquran_variant_map_v1",
+  "version": 1,
+  "created_at_utc": "2025-12-21T20:42:49Z",
+  "source": {
+    "name": "ie-ai-py",
+    "input": "quran_complete.json"
+  },
+  "variants": {
+    "dua": [
+      "du'a",
+      "duaa"
+    ],
+    "ibrahim": [
+      "ibraheem",
+      "Ibrahim"
+    ],
+    "iman": [
+      "eeman"
+    ],
+    "lut": [
+      "lot"
+    ],
+    "musa": [
+      "moosa"
+    ],
+    "salah": [
+      "salaah",
+      "salat"
+    ],
+    "yusuf": [
+      "yoosuf",
+      "yousuf",
+      "Yusuf"
+    ],
+    "zakat": [
+      "zakaat",
+      "zakah"
+    ]
+  }
+}

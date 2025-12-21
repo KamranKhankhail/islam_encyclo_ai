@@ -1,0 +1,3374 @@
+version: 1
+topics:
+- id: topic.faith
+  names:
+    en: Faith
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - belief
+    - believe
+    - believers
+    - faith
+    ur:
+    - "\u0627\u06CC\u0645\u0627\u0646"
+    ar:
+    - "\u0625\u064A\u0645\u0627\u0646"
+    tr:
+    - eemaan
+    - iman
+  anchors:
+  - '2:2'
+  - '2:3'
+  - '2:4'
+  - '2:6'
+  - '2:8'
+- id: topic.disbelief
+  names:
+    en: Disbelief
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - deniers
+    - deny
+    - disbelief
+    - disbelieve
+    - disbeliever
+    - reject
+    - unbelievers
+    ur:
+    - "\u06A9\u0627\u0641\u0631"
+    - "\u06A9\u0641\u0631"
+    ar:
+    - "\u0643\u0641\u0631"
+    tr:
+    - kaafir
+    - kafir
+    - kufr
+  anchors:
+  - '2:6'
+  - '2:10'
+  - '2:19'
+  - '2:24'
+  - '2:26'
+- id: topic.hypocrisy
+  names:
+    en: Hypocrisy
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - hypocrisy
+    - hypocrite
+    - hypocrites
+    ur:
+    - "\u0645\u0646\u0627\u0641\u0642"
+    - "\u0646\u0641\u0627\u0642"
+    ar:
+    - "\u0646\u0641\u0627\u0642"
+    tr:
+    - munafiq
+    - nifaq
+  anchors:
+  - '2:8'
+  - '2:10'
+  - '2:13'
+  - '2:14'
+  - 2:142
+- id: topic.tawhid
+  names:
+    en: Tawhid
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - monotheism
+    - oneness
+    ur:
+    - "\u062A\u0648\u062D\u06CC\u062F"
+    ar:
+    - "\u062A\u0648\u062D\u064A\u062F"
+    tr:
+    - tawhid
+  anchors:
+  - '2:2'
+  - '2:27'
+  - 2:82
+  - 2:105
+  - 2:112
+- id: topic.shirk
+  names:
+    en: Shirk
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - associate
+    - associating
+    - partner
+    - partners
+    ur:
+    - "\u0634\u0631\u06A9"
+    ar:
+    - "\u0634\u0631\u0643"
+    tr:
+    - shirk
+  anchors:
+  - '2:30'
+  - 2:96
+  - 2:105
+  - 2:116
+  - 2:135
+- id: topic.angels
+  names:
+    en: Angels
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - angel
+    - angels
+    ur:
+    - "\u0641\u0631\u0634\u062A\u06D2"
+    - "\u0645\u0644\u0627\u0626\u06A9\u06C1"
+    ar:
+    - "\u0627\u0644\u0645\u0644\u0627\u0626\u0643\u0629"
+    - "\u0645\u0644\u0627\u0626\u0643\u0629"
+    tr:
+    - malaika
+    - malak
+  anchors:
+  - '2:30'
+  - '2:31'
+  - '2:32'
+  - '2:33'
+  - '2:34'
+- id: topic.jinn
+  names:
+    en: Jinn
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - genie
+    - jinn
+    ur:
+    - "\u062C\u0646"
+    ar:
+    - "\u062C\u0646"
+    tr:
+    - jinn
+  anchors:
+  - '1:2'
+  - '1:7'
+  - '2:6'
+  - '2:25'
+  - '2:27'
+- id: topic.shaitan
+  names:
+    en: Shaitan
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - devil
+    - satan
+    ur:
+    - "\u0634\u06CC\u0637\u0627\u0646"
+    ar:
+    - "\u0627\u0644\u0634\u064A\u0637\u0627\u0646"
+    - "\u0634\u064A\u0637\u0627\u0646"
+    tr:
+    - shaitan
+    - shaytan
+  anchors:
+  - '2:34'
+  - '2:36'
+  - 2:102
+  - 2:168
+  - 2:169
+- id: topic.quran
+  names:
+    en: Quran
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - qur'an
+    - quran
+    ur:
+    - "\u0642\u0631\u0622\u0646"
+    ar:
+    - "\u0627\u0644\u0642\u0631\u0622\u0646"
+    - "\u0642\u0631\u0622\u0646"
+    tr:
+    - quran
+  anchors:
+  - '2:1'
+  - '2:2'
+  - '2:4'
+  - '2:23'
+  - '2:41'
+- id: topic.revelation
+  names:
+    en: Revelation
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - reveal
+    - revealed
+    - revelation
+    ur:
+    - "\u0648\u062D\u06CC"
+    ar:
+    - "\u0648\u062D\u064A"
+    tr:
+    - wahy
+  anchors:
+  - '2:1'
+  - '2:4'
+  - '2:23'
+  - '2:33'
+  - '2:37'
+- id: topic.prophets
+  names:
+    en: Prophets
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - prophet
+    - prophets
+    ur:
+    - "\u0627\u0646\u0628\u06CC\u0627\u0621"
+    - "\u0646\u0628\u06CC"
+    ar:
+    - "\u0623\u0646\u0628\u064A\u0627\u0621"
+    - "\u0646\u0628\u064A"
+    tr:
+    - anbiya
+    - nabi
+  anchors:
+  - '1:7'
+  - '2:4'
+  - '2:23'
+  - '2:25'
+  - '2:30'
+- id: topic.messengers
+  names:
+    en: Messengers
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - apostle
+    - apostles
+    - messenger
+    - messengers
+    ur:
+    - "\u0631\u0633\u0648\u0644"
+    ar:
+    - "\u0631\u0633\u0644"
+    - "\u0631\u0633\u0648\u0644"
+    tr:
+    - rasul
+    - rusul
+  anchors:
+  - '2:40'
+  - '2:41'
+  - '2:42'
+  - '2:47'
+  - 2:61
+- id: topic.scripture
+  names:
+    en: Scripture
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - book
+    - books
+    - scripture
+    ur:
+    - "\u06A9\u062A\u0627\u0628"
+    ar:
+    - "\u0627\u0644\u0643\u062A\u0627\u0628"
+    - "\u0643\u062A\u0627\u0628"
+    tr:
+    - kitab
+  anchors:
+  - '2:2'
+  - '2:4'
+  - '2:23'
+  - '2:25'
+  - '2:40'
+- id: topic.torah
+  names:
+    en: Torah
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - torah
+    ur:
+    - "\u062A\u0648\u0631\u0627\u062A"
+    ar:
+    - "\u0627\u0644\u062A\u0648\u0631\u0627\u0629"
+    - "\u062A\u0648\u0631\u0627\u0629"
+    tr:
+    - tawrat
+  anchors:
+  - '2:4'
+  - '2:41'
+  - '2:42'
+  - '2:44'
+  - '2:53'
+- id: topic.gospel
+  names:
+    en: Gospel
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - gospel
+    ur:
+    - "\u0627\u0646\u062C\u06CC\u0644"
+    ar:
+    - "\u0625\u0646\u062C\u064A\u0644"
+    tr:
+    - injil
+  anchors:
+  - '2:4'
+  - '2:41'
+  - '2:42'
+  - 2:89
+  - 2:97
+- id: topic.afterlife
+  names:
+    en: Afterlife
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - afterlife
+    - hereafter
+    ur:
+    - "\u0622\u062E\u0631\u062A"
+    ar:
+    - "\u0622\u062E\u0631\u0629"
+    - "\u0627\u0644\u0622\u062E\u0631\u0629"
+    tr:
+    - akhirah
+    - akhirat
+  anchors:
+  - '2:4'
+  - '2:8'
+  - '2:40'
+  - 2:62
+  - 2:85
+- id: topic.judgment
+  names:
+    en: Judgment
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - account
+    - judgement
+    - judgment
+    - reckoning
+    ur:
+    - "\u062D\u0633\u0627\u0628"
+    ar:
+    - "\u062D\u0633\u0627\u0628"
+    tr:
+    - hisab
+  anchors:
+  - '1:4'
+  - '2:8'
+  - '2:10'
+  - '2:28'
+  - '2:36'
+- id: topic.resurrection
+  names:
+    en: Resurrection
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - raised
+    - resurrection
+    - revival
+    - revive
+    ur:
+    - "\u0628\u0639\u062B"
+    - "\u0642\u06CC\u0627\u0645\u062A"
+    ar:
+    - "\u0628\u0639\u062B"
+    tr: []
+  anchors:
+  - '1:4'
+  - '2:4'
+  - '2:8'
+  - '2:28'
+  - '2:56'
+- id: topic.paradise
+  names:
+    en: Paradise
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - garden
+    - gardens
+    - paradise
+    ur:
+    - "\u062C\u0646\u0627\u062A"
+    - "\u062C\u0646\u062A"
+    ar:
+    - "\u062C\u0646\u0627\u062A"
+    - "\u062C\u0646\u0629"
+    tr:
+    - jannah
+  anchors:
+  - '2:4'
+  - '2:25'
+  - '2:35'
+  - '2:36'
+  - '2:38'
+- id: topic.hell
+  names:
+    en: Hell
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - fire
+    - hell
+    ur:
+    - "\u062C\u06C1\u0646\u0645"
+    - "\u062F\u0648\u0632\u062E"
+    ar:
+    - "\u062C\u0647\u0646\u0645"
+    - "\u0646\u0627\u0631"
+    tr:
+    - jahannam
+    - nar
+  anchors:
+  - '2:2'
+  - '2:4'
+  - '2:17'
+  - '2:21'
+  - '2:24'
+- id: topic.mercy
+  names:
+    en: Mercy
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - merciful
+    - mercy
+    ur:
+    - "\u0631\u062D\u0645\u062A"
+    ar:
+    - "\u0631\u062D\u0645\u0629"
+    tr:
+    - rahma
+    - rahmah
+  anchors:
+  - '1:1'
+  - '1:3'
+  - '2:37'
+  - '2:54'
+  - 2:64
+- id: topic.forgiveness
+  names:
+    en: Forgiveness
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - forgive
+    - forgiveness
+    - forgiving
+    ur:
+    - "\u0645\u063A\u0641\u0631\u062A"
+    ar:
+    - "\u063A\u0641\u0631\u0627\u0646"
+    - "\u0645\u063A\u0641\u0631\u0629"
+    tr:
+    - ghafur
+    - maghfirah
+  anchors:
+  - '2:37'
+  - '2:52'
+  - '2:54'
+  - '2:58'
+  - 2:109
+- id: topic.repentance
+  names:
+    en: Repentance
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - repent
+    - repentance
+    ur:
+    - "\u062A\u0648\u0628\u06C1"
+    ar:
+    - "\u062A\u0648\u0628\u0629"
+    tr:
+    - tawba
+    - tawbah
+  anchors:
+  - '2:37'
+  - '2:54'
+  - '2:58'
+  - 2:128
+  - 2:160
+- id: topic.gratitude
+  names:
+    en: Gratitude
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - grateful
+    - gratitude
+    - thankful
+    - thanks
+    ur:
+    - "\u0634\u06A9\u0631"
+    ar:
+    - "\u0634\u0643\u0631"
+    tr:
+    - shukr
+  anchors:
+  - '1:2'
+  - '2:30'
+  - '2:52'
+  - '2:56'
+  - 2:152
+- id: topic.patience
+  names:
+    en: Patience
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - patience
+    - patient
+    ur:
+    - "\u0635\u0628\u0631"
+    ar:
+    - "\u0635\u0628\u0631"
+    tr:
+    - sabr
+  anchors:
+  - '2:45'
+  - 2:61
+  - 2:104
+  - 2:153
+  - 2:155
+- id: topic.trust
+  names:
+    en: Trust in Allah
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - reliance
+    - rely
+    - trust
+    ur:
+    - "\u062A\u0648\u06A9\u0644"
+    ar:
+    - "\u062A\u0648\u0643\u0644"
+    tr:
+    - tawakkul
+  anchors:
+  - '1:5'
+  - 2:78
+  - 2:186
+  - 2:282
+  - 2:283
+- id: topic.taqwa
+  names:
+    en: Taqwa (Piety)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - godfearing
+    - piety
+    - righteous
+    - righteousness
+    ur:
+    - "\u062A\u0642\u0648\u06CC\u0670"
+    ar:
+    - "\u062A\u0642\u0648\u0649"
+    tr:
+    - taqwa
+  anchors:
+  - '2:2'
+  - '2:11'
+  - '2:21'
+  - '2:25'
+  - '2:41'
+- id: topic.sincerity
+  names:
+    en: Sincerity
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - sincere
+    - sincerity
+    ur:
+    - "\u0627\u062E\u0644\u0627\u0635"
+    ar:
+    - "\u0625\u062E\u0644\u0627\u0635"
+    tr:
+    - ikhlas
+  anchors:
+  - '2:23'
+  - '2:31'
+  - 2:94
+  - 2:111
+  - 2:139
+- id: topic.justice
+  names:
+    en: Justice
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - equitable
+    - equity
+    - just
+    - justice
+    ur:
+    - "\u0627\u0646\u0635\u0627\u0641"
+    - "\u0639\u062F\u0644"
+    ar:
+    - "\u0639\u062F\u0644"
+    tr:
+    - adl
+  anchors:
+  - '1:4'
+  - '2:5'
+  - '2:13'
+  - '2:23'
+  - '2:25'
+- id: topic.kindness
+  names:
+    en: Kindness
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - benevolence
+    - compassion
+    - kind
+    - kindness
+    ur:
+    - "\u0627\u062D\u0633\u0627\u0646"
+    ar:
+    - "\u0625\u062D\u0633\u0627\u0646"
+    tr:
+    - ihsan
+  anchors:
+  - '2:22'
+  - '2:40'
+  - '2:47'
+  - '2:49'
+  - '2:52'
+- id: topic.truthfulness
+  names:
+    en: Truthfulness
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - honest
+    - honesty
+    - truth
+    - truthful
+    ur:
+    - "\u0633\u0686"
+    - "\u0635\u062F\u0642"
+    ar:
+    - "\u0635\u062F\u0642"
+    tr:
+    - sidq
+  anchors:
+  - '1:7'
+  - '2:6'
+  - '2:9'
+  - '2:19'
+  - '2:22'
+- id: topic.knowledge
+  names:
+    en: Knowledge
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - knowledge
+    - learn
+    - learned
+    ur:
+    - "\u0639\u0644\u0645"
+    ar:
+    - "\u0639\u0644\u0645"
+    tr:
+    - ilm
+  anchors:
+  - '2:13'
+  - '2:21'
+  - '2:29'
+  - '2:32'
+  - '2:33'
+- id: topic.wisdom
+  names:
+    en: Wisdom
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - wisdom
+    - wise
+    ur:
+    - "\u062D\u06A9\u0645\u062A"
+    ar:
+    - "\u062D\u0643\u0645\u0629"
+    tr:
+    - hikmah
+  anchors:
+  - '2:32'
+  - 2:129
+  - 2:143
+  - 2:151
+  - 2:164
+- id: topic.humility
+  names:
+    en: Humility
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - humble
+    - humility
+    ur:
+    - "\u062A\u0648\u0627\u0636\u0639"
+    ar:
+    - "\u062A\u0648\u0627\u0636\u0639"
+    tr:
+    - tawadu
+  anchors:
+  - '2:45'
+  - '2:58'
+  - 2:74
+  - '3:26'
+  - '3:43'
+- id: topic.salah
+  names:
+    en: Prayer (Salah)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - pray
+    - prayer
+    ur:
+    - "\u0635\u0644\u0627\u0629"
+    - "\u0646\u0645\u0627\u0632"
+    ar:
+    - "\u0635\u0644\u0627\u0629"
+    tr:
+    - salah
+    - salat
+  anchors:
+  - '1:5'
+  - '2:3'
+  - '2:37'
+  - '2:43'
+  - '2:45'
+- id: topic.zakat
+  names:
+    en: Zakat
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - alms
+    - almsgiving
+    ur:
+    - "\u0632\u06A9\u0627\u062A"
+    ar:
+    - "\u0632\u0643\u0627\u0629"
+    tr:
+    - zakah
+    - zakat
+  anchors:
+  - '2:43'
+  - 2:83
+  - 2:110
+  - 2:177
+  - 2:196
+- id: topic.charity
+  names:
+    en: Charity
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - almsgiving
+    - charity
+    ur:
+    - "\u0635\u062F\u0642\u06C1"
+    ar:
+    - "\u0635\u062F\u0642\u0629"
+    tr:
+    - sadaqa
+    - sadaqah
+  anchors:
+  - '2:3'
+  - '2:43'
+  - 2:83
+  - 2:105
+  - 2:110
+- id: topic.fasting
+  names:
+    en: Fasting
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - fast
+    - fasting
+    ur:
+    - "\u0631\u0648\u0632\u06C1"
+    - "\u0635\u0648\u0645"
+    ar:
+    - "\u0635\u0648\u0645"
+    - "\u0635\u064A\u0627\u0645"
+    tr:
+    - sawm
+    - siyam
+  anchors:
+  - 2:63
+  - 2:93
+  - 2:126
+  - 2:183
+  - 2:184
+- id: topic.hajj
+  names:
+    en: Hajj
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - hajj
+    - pilgrimage
+    ur:
+    - "\u062D\u062C"
+    ar:
+    - "\u062D\u062C"
+    tr:
+    - hajj
+  anchors:
+  - 2:125
+  - 2:128
+  - 2:158
+  - 2:189
+  - 2:196
+- id: topic.dua
+  names:
+    en: Supplication (Dua)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - invoke
+    - supplication
+    ur:
+    - "\u062F\u0639\u0627"
+    ar:
+    - "\u062F\u0639\u0627\u0621"
+    tr:
+    - dua
+    - duaa
+  anchors:
+  - '2:23'
+  - 2:60
+  - 2:61
+  - 2:68
+  - 2:69
+- id: topic.dhikr
+  names:
+    en: Remembrance (Dhikr)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - remembrance
+    ur:
+    - "\u0630\u06A9\u0631"
+    ar:
+    - "\u0630\u0643\u0631"
+    tr:
+    - dhikr
+    - zikr
+  anchors:
+  - 2:63
+  - 2:114
+  - 2:152
+  - 2:198
+  - 2:200
+- id: topic.qibla
+  names:
+    en: Qibla
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - direction
+    - qibla
+    ur:
+    - "\u0642\u0628\u0644\u06C1"
+    ar:
+    - "\u0642\u0628\u0644\u0629"
+    tr:
+    - qibla
+  anchors:
+  - '2:16'
+  - 2:108
+  - 2:115
+  - 2:125
+  - 2:142
+- id: topic.mosque
+  names:
+    en: Mosque
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - masjid
+    - mosque
+    ur:
+    - "\u0645\u0633\u062C\u062F"
+    ar:
+    - "\u0645\u0633\u062C\u062F"
+    tr:
+    - masjid
+  anchors:
+  - 2:114
+  - 2:144
+  - 2:149
+  - 2:150
+  - 2:187
+- id: topic.purification
+  names:
+    en: Purification
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ablution
+    - cleanse
+    - purification
+    - purify
+    ur:
+    - "\u062A\u06CC\u0645\u0645"
+    - "\u0637\u06C1\u0627\u0631\u062A"
+    - "\u0648\u0636\u0648"
+    ar:
+    - "\u062A\u064A\u0645\u0645"
+    - "\u0637\u0647\u0627\u0631\u0629"
+    - "\u0648\u0636\u0648\u0621"
+    tr:
+    - taharah
+    - tayammum
+    - wudu
+  anchors:
+  - 2:125
+  - 2:129
+  - 2:138
+  - 2:151
+  - 2:174
+- id: topic.sacrifice
+  names:
+    en: Sacrifice
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - offering
+    - sacrifice
+    - slaughter
+    ur:
+    - "\u0642\u0631\u0628\u0627\u0646"
+    - "\u0642\u0631\u0628\u0627\u0646\u06CC"
+    ar:
+    - "\u0623\u0636\u062D\u064A\u0629"
+    - "\u0642\u0631\u0628\u0627\u0646"
+    - "\u0646\u062D\u0631"
+    tr:
+    - qurban
+    - udhiyah
+  anchors:
+  - 2:67
+  - 2:68
+  - 2:71
+  - 2:173
+  - 2:184
+- id: topic.ramadan
+  names:
+    en: Ramadan
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ramadan
+    - ramadhan
+    ur:
+    - "\u0631\u0645\u0636\u0627\u0646"
+    ar:
+    - "\u0631\u0645\u0636\u0627\u0646"
+    tr:
+    - ramadan
+  anchors:
+  - 2:185
+  - '33:35'
+  - '44:3'
+  - '89:2'
+- id: topic.marriage
+  names:
+    en: Marriage
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - husband
+    - marriage
+    - marry
+    - spouse
+    - wife
+    - wives
+    ur:
+    - "\u0646\u06A9\u0627\u062D"
+    ar:
+    - "\u0646\u0643\u0627\u062D"
+    tr:
+    - nikah
+  anchors:
+  - '2:3'
+  - '2:25'
+  - '2:35'
+  - '2:36'
+  - 2:102
+- id: topic.divorce
+  names:
+    en: Divorce
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - divorce
+    - divorced
+    - separation
+    ur:
+    - "\u0637\u0644\u0627\u0642"
+    ar:
+    - "\u0637\u0644\u0627\u0642"
+    tr:
+    - talaq
+  anchors:
+  - 2:102
+  - 2:227
+  - 2:228
+  - 2:229
+  - 2:230
+- id: topic.inheritance
+  names:
+    en: Inheritance
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - heir
+    - heirs
+    - inherit
+    - inheritance
+    ur:
+    - "\u0645\u06CC\u0631\u0627\u062B"
+    ar:
+    - "\u0645\u064A\u0631\u0627\u062B"
+    tr:
+    - mirath
+  anchors:
+  - '2:30'
+  - 2:82
+  - 2:178
+  - 2:182
+  - 2:233
+- id: topic.orphans
+  names:
+    en: Orphans
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - orphan
+    - orphans
+    ur:
+    - "\u06CC\u062A\u06CC\u0645"
+    ar:
+    - "\u064A\u062A\u0627\u0645\u0649"
+    - "\u064A\u062A\u064A\u0645"
+    tr:
+    - yatim
+  anchors:
+  - 2:83
+  - 2:177
+  - 2:215
+  - 2:220
+  - '4:2'
+- id: topic.parents
+  names:
+    en: Parents
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - parent
+    - parents
+    ur:
+    - "\u0648\u0627\u0644\u062F\u06CC\u0646"
+    ar:
+    - "\u0648\u0627\u0644\u062F\u064A\u0646"
+    tr: []
+  anchors:
+  - '2:3'
+  - 2:83
+  - 2:180
+  - 2:215
+  - 2:233
+- id: topic.women
+  names:
+    en: Women
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - wives
+    - woman
+    - women
+    ur:
+    - "\u0639\u0648\u0631\u062A"
+    - "\u0646\u0633\u0627\u0621"
+    ar:
+    - "\u0646\u0633\u0627\u0621"
+    tr: []
+  anchors:
+  - '2:3'
+  - '2:25'
+  - '2:35'
+  - '2:49'
+  - 2:102
+- id: topic.hijab
+  names:
+    en: Hijab
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - hijab
+    - veil
+    - veiling
+    ur:
+    - "\u062D\u062C\u0627\u0628"
+    ar:
+    - "\u062D\u062C\u0627\u0628"
+    tr:
+    - hijab
+  anchors:
+  - '2:7'
+  - 2:187
+  - 2:197
+  - 2:263
+  - '6:46'
+- id: topic.adultery
+  names:
+    en: Adultery
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - adultery
+    - fornication
+    - unchastity
+    ur:
+    - "\u0632\u0646\u0627"
+    ar:
+    - "\u0632\u0646\u0627"
+    tr:
+    - zina
+  anchors:
+  - 2:197
+  - '4:15'
+  - '4:16'
+  - '4:19'
+  - '4:24'
+- id: topic.usury
+  names:
+    en: Usury (Riba)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - interest
+    - usury
+    ur:
+    - "\u0631\u0628\u0627"
+    ar:
+    - "\u0631\u0628\u0627"
+    tr:
+    - riba
+  anchors:
+  - 2:275
+  - 2:276
+  - 2:278
+  - 2:279
+  - 3:130
+- id: topic.debt
+  names:
+    en: Debt
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - debt
+    - debts
+    ur:
+    - "\u0642\u0631\u0636"
+    ar:
+    - "\u0642\u0631\u0636"
+    tr: []
+  anchors:
+  - 2:245
+  - 2:280
+  - 2:282
+  - 2:283
+  - '4:11'
+- id: topic.contracts
+  names:
+    en: Contracts
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - agreement
+    - contract
+    - covenant
+    - pledge
+    ur:
+    - "\u0645\u06CC\u062B\u0627\u0642"
+    ar:
+    - "\u0639\u0642\u0648\u062F"
+    - "\u0645\u064A\u062B\u0627\u0642"
+    tr: []
+  anchors:
+  - '2:27'
+  - '2:40'
+  - 2:63
+  - 2:64
+  - 2:80
+- id: topic.trade
+  names:
+    en: Trade
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - buy
+    - commerce
+    - sell
+    - trade
+    ur:
+    - "\u062A\u062C\u0627\u0631\u062A"
+    ar:
+    - "\u062A\u062C\u0627\u0631\u0629"
+    tr:
+    - tijarah
+  anchors:
+  - '2:16'
+  - '2:41'
+  - 2:79
+  - 2:86
+  - 2:90
+- id: topic.testimony
+  names:
+    en: Testimony
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - testimony
+    - witness
+    - witnesses
+    ur:
+    - "\u0634\u06C1\u0627\u062F\u062A"
+    - "\u06AF\u0648\u0627\u06C1\u06CC"
+    ar:
+    - "\u0634\u0647\u0627\u062F\u0629"
+    tr: []
+  anchors:
+  - '2:23'
+  - 2:84
+  - 2:133
+  - 2:140
+  - 2:143
+- id: topic.theft
+  names:
+    en: Theft
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - steal
+    - stolen
+    - theft
+    - thief
+    ur:
+    - "\u0686\u0648\u0631\u06CC"
+    ar:
+    - "\u0633\u0631\u0642\u0629"
+    tr: []
+  anchors:
+  - '4:25'
+  - '5:5'
+  - '5:38'
+  - '5:39'
+  - '12:52'
+- id: topic.murder
+  names:
+    en: Murder
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - kill
+    - killing
+    - murder
+    - slain
+    ur:
+    - "\u0642\u062A\u0644"
+    ar:
+    - "\u0642\u062A\u0644"
+    tr: []
+  anchors:
+  - '2:49'
+  - '2:54'
+  - 2:61
+  - 2:72
+  - 2:73
+- id: topic.intoxicants
+  names:
+    en: Intoxicants
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - alcohol
+    - drunk
+    - intoxicants
+    - wine
+    ur:
+    - "\u0634\u0631\u0627\u0628"
+    ar:
+    - "\u062E\u0645\u0631"
+    tr:
+    - khamr
+  anchors:
+  - 2:219
+  - '4:43'
+  - 5:90
+  - 5:91
+  - 5:93
+- id: topic.gambling
+  names:
+    en: Gambling
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - gambling
+    - lottery
+    ur:
+    - "\u062C\u0648\u0627"
+    - "\u0642\u0645\u0627\u0631"
+    ar:
+    - "\u0645\u064A\u0633\u0631"
+    tr:
+    - maisir
+  anchors:
+  - 2:196
+  - 2:219
+  - 2:239
+  - '4:38'
+  - 4:69
+- id: topic.pork
+  names:
+    en: Pork
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - pork
+    - swine
+    ur:
+    - "\u062E\u0646\u0632\u06CC\u0631"
+    ar:
+    - "\u062E\u0646\u0632\u064A\u0631"
+    tr: []
+  anchors:
+  - 2:173
+  - '5:3'
+  - 5:60
+  - 6:145
+  - 16:115
+- id: topic.halal
+  names:
+    en: Halal
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - lawful
+    - permitted
+    ur:
+    - "\u062D\u0644\u0627\u0644"
+    ar:
+    - "\u062D\u0644\u0627\u0644"
+    tr:
+    - halal
+  anchors:
+  - '2:57'
+  - 2:85
+  - 2:168
+  - 2:172
+  - 2:187
+- id: topic.haram
+  names:
+    en: Haram
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - forbidden
+    - prohibited
+    - unlawful
+    ur:
+    - "\u062D\u0631\u0627\u0645"
+    ar:
+    - "\u062D\u0631\u0627\u0645"
+    tr:
+    - haram
+  anchors:
+  - '2:2'
+  - 2:85
+  - 2:144
+  - 2:149
+  - 2:150
+- id: topic.jihad
+  names:
+    en: Jihad
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - jihad
+    - strive
+    - striving
+    ur:
+    - "\u062C\u06C1\u0627\u062F"
+    ar:
+    - "\u062C\u0647\u0627\u062F"
+    tr:
+    - jihad
+  anchors:
+  - '2:3'
+  - '2:25'
+  - 2:62
+  - 2:82
+  - 2:114
+- id: topic.war
+  names:
+    en: War
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - battle
+    - fight
+    - fighting
+    - war
+    ur:
+    - "\u062C\u0646\u06AF"
+    - "\u0642\u062A\u0627\u0644"
+    ar:
+    - "\u0642\u062A\u0627\u0644"
+    tr:
+    - qital
+  anchors:
+  - 2:119
+  - 2:177
+  - 2:190
+  - 2:191
+  - 2:192
+- id: topic.peace
+  names:
+    en: Peace
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - peace
+    - reconcile
+    - reconciliation
+    - truce
+    ur:
+    - "\u0627\u0645\u0646"
+    - "\u0633\u0644\u0627\u0645"
+    ar:
+    - "\u0633\u0644\u0627\u0645"
+    tr:
+    - salam
+  anchors:
+  - '2:4'
+  - '2:6'
+  - '2:11'
+  - '2:13'
+  - '2:23'
+- id: topic.migration
+  names:
+    en: Migration
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - emigrants
+    - emigrate
+    - migrate
+    - migration
+    ur:
+    - "\u06C1\u062C\u0631\u062A"
+    ar:
+    - "\u0647\u062C\u0631\u0629"
+    tr:
+    - hijra
+    - hijrah
+  anchors:
+  - 2:218
+  - 3:195
+  - 4:66
+  - 4:89
+  - 4:97
+- id: topic.slavery
+  names:
+    en: Slavery
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - bondwoman
+    - bondwomen
+    - captives
+    - slave
+    - slaves
+    ur:
+    - "\u063A\u0644\u0627\u0645"
+    ar:
+    - "\u0631\u0642\u0628\u0629"
+    tr: []
+  anchors:
+  - '2:23'
+  - 2:85
+  - 2:90
+  - 2:164
+  - 2:177
+- id: topic.bequest
+  names:
+    en: Bequest
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - bequest
+    - testament
+    ur:
+    - "\u0648\u0635\u06CC\u062A"
+    ar:
+    - "\u0648\u0635\u064A\u0629"
+    tr:
+    - wasiyyah
+  anchors:
+  - 2:132
+  - 2:180
+  - 2:181
+  - 2:182
+  - 2:240
+- id: entity.adam
+  names:
+    en: Adam
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - adam
+    ur:
+    - "\u0622\u062F\u0645"
+    ar:
+    - "\u0622\u062F\u0645"
+    tr:
+    - adam
+  anchors:
+  - '2:31'
+  - '2:33'
+  - '2:34'
+  - '2:35'
+  - '2:36'
+- id: entity.idris
+  names:
+    en: Idris (Enoch)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - enoch
+    - idris
+    ur:
+    - "\u0627\u062F\u0631\u06CC\u0633"
+    ar:
+    - "\u0625\u062F\u0631\u064A\u0633"
+    tr:
+    - idris
+  anchors:
+  - '19:56'
+  - 21:85
+  - '96:4'
+- id: entity.nuh
+  names:
+    en: Nuh (Noah)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - noah
+    - nuh
+    ur:
+    - "\u0646\u0648\u062D"
+    ar:
+    - "\u0646\u0648\u062D"
+    tr:
+    - nooh
+    - nuh
+  anchors:
+  - '3:33'
+  - 4:163
+  - 6:84
+  - '7:59'
+  - 7:61
+- id: entity.hud
+  names:
+    en: Hud
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - hud
+    ur:
+    - "\u06C1\u0648\u062F"
+    ar:
+    - "\u0647\u0648\u062F"
+    tr:
+    - hud
+  anchors:
+  - 7:65
+  - 7:67
+  - 7:70
+  - 7:71
+  - 7:72
+- id: entity.salih
+  names:
+    en: Salih
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - saleh
+    - salih
+    ur:
+    - "\u0635\u0627\u0644\u062D"
+    ar:
+    - "\u0635\u0627\u0644\u062D"
+    tr:
+    - saleh
+    - salih
+  anchors:
+  - 2:130
+  - '3:38'
+  - '3:46'
+  - 3:114
+  - '4:34'
+- id: entity.ibrahim
+  names:
+    en: Ibrahim (Abraham)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - abraham
+    - ibrahim
+    ur:
+    - "\u0627\u0628\u0631\u0627\u06C1\u06CC\u0645"
+    ar:
+    - "\u0625\u0628\u0631\u0627\u0647\u064A\u0645"
+    tr:
+    - ibraheem
+    - ibrahim
+  anchors:
+  - 2:124
+  - 2:125
+  - 2:126
+  - 2:127
+  - 2:130
+- id: entity.lut
+  names:
+    en: Lut (Lot)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - lut
+    ur:
+    - "\u0644\u0648\u0637"
+    ar:
+    - "\u0644\u0648\u0637"
+    tr:
+    - loot
+    - lut
+  anchors:
+  - 2:162
+  - 2:220
+  - 2:269
+  - 3:88
+  - 3:146
+- id: entity.ismail
+  names:
+    en: Ismail (Ishmael)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ishmael
+    - ismail
+    ur:
+    - "\u0627\u0633\u0645\u0627\u0639\u06CC\u0644"
+    ar:
+    - "\u0625\u0633\u0645\u0627\u0639\u064A\u0644"
+    tr:
+    - ismael
+    - ismail
+  anchors:
+  - 2:125
+  - 2:126
+  - 2:127
+  - 2:133
+  - 2:136
+- id: entity.ishaq
+  names:
+    en: Ishaq (Isaac)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - isaac
+    - ishaq
+    ur:
+    - "\u0627\u0633\u062D\u0627\u0642"
+    ar:
+    - "\u0625\u0633\u062D\u0627\u0642"
+    tr:
+    - ishaaq
+    - ishaq
+  anchors:
+  - 2:133
+  - 2:136
+  - 2:140
+  - 3:84
+  - 4:163
+- id: entity.yaqub
+  names:
+    en: Yaqub (Jacob)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - jacob
+    - yaqub
+    ur:
+    - "\u06CC\u0639\u0642\u0648\u0628"
+    ar:
+    - "\u064A\u0639\u0642\u0648\u0628"
+    tr:
+    - yaaqoob
+    - yaqub
+  anchors:
+  - '2:40'
+  - '2:47'
+  - 2:122
+  - 2:132
+  - 2:133
+- id: entity.yusuf
+  names:
+    en: Yusuf (Joseph)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - joseph
+    - yusuf
+    ur:
+    - "\u06CC\u0648\u0633\u0641"
+    ar:
+    - "\u064A\u0648\u0633\u0641"
+    tr:
+    - yousuf
+    - yusuf
+  anchors:
+  - 6:84
+  - 7:160
+  - '12:1'
+  - '12:2'
+  - '12:3'
+- id: entity.shuayb
+  names:
+    en: Shuayb (Jethro)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - jethro
+    - shu'aib
+    - shuayb
+    ur:
+    - "\u0634\u0639\u06CC\u0628"
+    ar:
+    - "\u0634\u0639\u064A\u0628"
+    tr:
+    - shuaib
+    - shuayb
+  anchors:
+  - 7:85
+  - 7:88
+  - 7:90
+  - 7:92
+  - 7:93
+- id: entity.ayyub
+  names:
+    en: Ayyub (Job)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ayyub
+    - job
+    ur:
+    - "\u0627\u06CC\u0648\u0628"
+    ar:
+    - "\u0623\u064A\u0648\u0628"
+    tr:
+    - ayub
+    - ayyub
+  anchors:
+  - 4:163
+  - 6:84
+  - 21:83
+  - 21:85
+  - '38:41'
+- id: entity.dhulkifl
+  names:
+    en: Dhul-Kifl
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - dhulkifl
+    - kifl
+    ur:
+    - "\u0630\u0648\u0627\u0644\u06A9\u0641\u0644"
+    - "\u06A9\u0641\u0644"
+    ar:
+    - "\u0627\u0644\u0643\u0641\u0644"
+    - "\u0630\u0648\u0627\u0644\u0643\u0641\u0644"
+    tr:
+    - dhulkifl
+    - kifl
+  anchors:
+  - 21:85
+  - '38:48'
+- id: entity.musa
+  names:
+    en: Musa (Moses)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - moses
+    - musa
+    ur:
+    - "\u0645\u0648\u0633\u06CC"
+    ar:
+    - "\u0645\u0648\u0633\u0649"
+    tr:
+    - moosa
+    - musa
+  anchors:
+  - '2:4'
+  - '2:51'
+  - '2:53'
+  - '2:54'
+  - '2:55'
+- id: entity.harun
+  names:
+    en: Harun (Aaron)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - aaron
+    - harun
+    ur:
+    - "\u06C1\u0627\u0631\u0648\u0646"
+    ar:
+    - "\u0647\u0627\u0631\u0648\u0646"
+    tr:
+    - haroon
+    - harun
+  anchors:
+  - 2:248
+  - 4:163
+  - '5:25'
+  - 6:84
+  - 7:122
+- id: entity.dawud
+  names:
+    en: Dawud (David)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - david
+    - dawud
+    ur:
+    - "\u062F\u0627\u0624\u062F"
+    ar:
+    - "\u062F\u0627\u0648\u062F"
+    tr:
+    - daud
+    - dawud
+  anchors:
+  - 2:251
+  - 3:184
+  - 4:163
+  - 5:78
+  - 6:84
+- id: entity.sulayman
+  names:
+    en: Sulayman (Solomon)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - solomon
+    - sulayman
+    ur:
+    - "\u0633\u0644\u06CC\u0645\u0627\u0646"
+    ar:
+    - "\u0633\u0644\u064A\u0645\u0627\u0646"
+    tr:
+    - sulaiman
+    - sulayman
+  anchors:
+  - 2:102
+  - 4:163
+  - 6:84
+  - 21:78
+  - 21:79
+- id: entity.ilyas
+  names:
+    en: Ilyas (Elijah)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - elijah
+    - ilyas
+    ur:
+    - "\u0627\u0644\u06CC\u0627\u0633"
+    ar:
+    - "\u0625\u0644\u064A\u0627\u0633"
+    tr:
+    - ilyaas
+    - ilyas
+  anchors:
+  - 6:85
+  - 6:86
+  - 37:123
+  - 37:129
+  - 37:130
+- id: entity.alyasa
+  names:
+    en: Alyasa (Elisha)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - alyasa
+    - elisha
+    ur:
+    - "\u0627\u0644\u06CC\u0633\u0639"
+    ar:
+    - "\u0627\u0644\u064A\u0633\u0639"
+    tr:
+    - alyasa
+  anchors:
+  - 6:84
+  - 6:86
+  - '38:48'
+- id: entity.yunus
+  names:
+    en: Yunus (Jonah)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - jonah
+    - yunus
+    ur:
+    - "\u06CC\u0648\u0646\u0633"
+    ar:
+    - "\u064A\u0648\u0646\u0633"
+    tr:
+    - younus
+    - yunus
+  anchors:
+  - 4:163
+  - 6:84
+  - 6:86
+  - '10:1'
+  - '10:2'
+- id: entity.zakariya
+  names:
+    en: Zakariya (Zechariah)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - zakariya
+    - zechariah
+    ur:
+    - "\u0632\u06A9\u0631\u06CC\u0627"
+    ar:
+    - "\u0632\u0643\u0631\u064A\u0627"
+    tr:
+    - zakaria
+    - zakariya
+  anchors:
+  - '3:37'
+  - '3:38'
+  - '3:39'
+  - '3:40'
+  - '3:41'
+- id: entity.yahya
+  names:
+    en: Yahya (John)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - john
+    - yahya
+    ur:
+    - "\u06CC\u062D\u06CC\u06CC"
+    ar:
+    - "\u064A\u062D\u064A\u0649"
+    tr:
+    - yahya
+    - yahyaa
+  anchors:
+  - '3:39'
+  - 6:84
+  - 6:85
+  - 7:157
+  - '19:7'
+- id: entity.isa
+  names:
+    en: Isa (Jesus)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - isa
+    - jesus
+    ur:
+    - "\u0639\u06CC\u0633\u06CC"
+    ar:
+    - "\u0639\u064A\u0633\u0649"
+    tr:
+    - eesa
+    - isa
+  anchors:
+  - '2:4'
+  - 2:87
+  - 2:136
+  - 2:253
+  - '3:3'
+- id: entity.muhammad
+  names:
+    en: Muhammad
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ahmad
+    - mohammad
+    - muhammad
+    ur:
+    - "\u0645\u062D\u0645\u062F"
+    ar:
+    - "\u0645\u062D\u0645\u062F"
+    tr:
+    - mohammad
+    - muhammad
+  anchors:
+  - '2:4'
+  - '2:6'
+  - '2:13'
+  - '2:23'
+  - '2:25'
+- id: entity.maryam
+  names:
+    en: Maryam (Mary)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - mariam
+    - mary
+    - maryam
+    ur:
+    - "\u0645\u0631\u06CC\u0645"
+    ar:
+    - "\u0645\u0631\u064A\u0645"
+    tr:
+    - mariam
+    - maryam
+  anchors:
+  - 2:87
+  - 2:253
+  - '3:36'
+  - '3:37'
+  - '3:42'
+- id: entity.luqman
+  names:
+    en: Luqman
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - luqman
+    ur:
+    - "\u0644\u0642\u0645\u0627\u0646"
+    ar:
+    - "\u0644\u0642\u0645\u0627\u0646"
+    tr:
+    - luqman
+  anchors:
+  - '31:1'
+  - '31:2'
+  - '31:3'
+  - '31:4'
+  - '31:5'
+- id: entity.dhulqarnayn
+  names:
+    en: Dhul-Qarnayn
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - dhulqarnayn
+    - qarnayn
+    - zulqarnayn
+    ur:
+    - "\u0630\u0648\u0627\u0644\u0642\u0631\u0646\u06CC\u0646"
+    ar:
+    - "\u0627\u0644\u0642\u0631\u0646\u064A\u0646"
+    - "\u0630\u0648\u0627\u0644\u0642\u0631\u0646\u064A\u0646"
+    tr:
+    - dhulqarnayn
+    - qarnayn
+    - zulqarnayn
+  anchors:
+  - 18:83
+  - 18:85
+  - 18:86
+  - 18:87
+  - 18:88
+- id: entity.talut
+  names:
+    en: Talut (Saul)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - saul
+    - talut
+    ur:
+    - "\u0637\u0627\u0644\u0648\u062A"
+    ar:
+    - "\u0637\u0627\u0644\u0648\u062A"
+    tr:
+    - talut
+  anchors:
+  - 2:247
+  - 2:248
+  - 2:249
+  - 2:251
+- id: entity.jalut
+  names:
+    en: Jalut (Goliath)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - goliath
+    - jalut
+    ur:
+    - "\u062C\u0627\u0644\u0648\u062A"
+    ar:
+    - "\u062C\u0627\u0644\u0648\u062A"
+    tr:
+    - jalut
+  anchors:
+  - 2:249
+  - 2:250
+  - 2:251
+- id: entity.qarun
+  names:
+    en: Qarun (Korah)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - korah
+    - qarun
+    ur:
+    - "\u0642\u0627\u0631\u0648\u0646"
+    ar:
+    - "\u0642\u0627\u0631\u0648\u0646"
+    tr:
+    - qarun
+  anchors:
+  - 28:76
+  - 28:78
+  - 28:79
+  - 28:81
+  - 28:82
+- id: entity.firawn
+  names:
+    en: Firawn (Pharaoh)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - pharaoh
+    - pharaohs
+    ur:
+    - "\u0641\u0631\u0639\u0648\u0646"
+    ar:
+    - "\u0641\u0631\u0639\u0648\u0646"
+    tr:
+    - firawn
+    - firon
+  anchors:
+  - '2:49'
+  - '2:50'
+  - '3:11'
+  - 7:103
+  - 7:104
+- id: entity.haman
+  names:
+    en: Haman
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - haman
+    ur:
+    - "\u06C1\u0627\u0645\u0627\u0646"
+    ar:
+    - "\u0647\u0627\u0645\u0627\u0646"
+    tr:
+    - haman
+  anchors:
+  - '28:4'
+  - '28:6'
+  - '28:8'
+  - '28:38'
+  - '29:39'
+- id: entity.samiri
+  names:
+    en: Samiri
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - samaritan
+    - samiri
+    ur:
+    - "\u0633\u0627\u0645\u0631\u06CC"
+    ar:
+    - "\u0633\u0627\u0645\u0631\u064A"
+    tr:
+    - samiri
+  anchors:
+  - 20:85
+  - 20:87
+  - 20:88
+  - 20:95
+  - 20:96
+- id: entity.abu_lahab
+  names:
+    en: Abu Lahab
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - lahab
+    ur:
+    - "\u0627\u0628\u0648\u0644\u06C1\u0628"
+    - "\u0644\u06C1\u0628"
+    ar:
+    - "\u0627\u0628\u0648\u0644\u0647\u0628"
+    - "\u0644\u0647\u0628"
+    tr:
+    - lahab
+  anchors:
+  - '111:1'
+  - '111:3'
+- id: entity.azar
+  names:
+    en: Azar
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - azar
+    ur:
+    - "\u0622\u0632\u0631"
+    ar:
+    - "\u0622\u0632\u0631"
+    tr:
+    - azar
+  anchors:
+  - 6:74
+- id: entity.imran
+  names:
+    en: Imran
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - imran
+    ur:
+    - "\u0639\u0645\u0631\u0627\u0646"
+    ar:
+    - "\u0639\u0645\u0631\u0627\u0646"
+    tr:
+    - imran
+  anchors:
+  - '3:1'
+  - '3:2'
+  - '3:3'
+  - '3:4'
+  - '3:5'
+- id: entity.uzair
+  names:
+    en: Uzair (Ezra)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ezra
+    - uzair
+    ur:
+    - "\u0639\u0632\u06CC\u0631"
+    ar:
+    - "\u0639\u0632\u064A\u0631"
+    tr:
+    - uzair
+  anchors:
+  - 2:259
+  - '9:30'
+  - 12:78
+  - '17:56'
+  - '17:57'
+- id: place.makkah
+  names:
+    en: Makkah (Mecca)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - makkah
+    - mecca
+    ur:
+    - "\u0645\u06A9\u06C1"
+    ar:
+    - "\u0645\u0643\u0629"
+    tr:
+    - makkah
+  anchors:
+  - 2:125
+  - 2:126
+  - 2:127
+  - 2:142
+  - 2:144
+- id: place.bakkah
+  names:
+    en: Bakkah
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - bakkah
+    ur:
+    - "\u0628\u06A9\u06C1"
+    ar:
+    - "\u0628\u0643\u0629"
+    tr:
+    - bakkah
+  anchors:
+  - 3:96
+- id: place.kaaba
+  names:
+    en: Kaaba
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ka'bah
+    - kaaba
+    - kaba
+    ur:
+    - "\u06A9\u0639\u0628\u06C1"
+    ar:
+    - "\u0627\u0644\u0643\u0639\u0628\u0629"
+    - "\u0643\u0639\u0628\u0629"
+    tr:
+    - kaaba
+    - kaba
+  anchors:
+  - 2:125
+  - 2:127
+  - 2:144
+  - 2:146
+  - 2:158
+- id: place.masjid_haram
+  names:
+    en: Sacred Mosque
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - haram
+    - mosque
+    - sacred
+    - sanctuary
+    ur:
+    - "\u062D\u0631\u0627\u0645"
+    - "\u0645\u0633\u062C\u062F"
+    ar:
+    - "\u0627\u0644\u062D\u0631\u0627\u0645"
+    - "\u0627\u0644\u0645\u0633\u062C\u062F"
+    tr:
+    - haram
+    - masjid
+  anchors:
+  - 2:85
+  - 2:125
+  - 2:126
+  - 2:144
+  - 2:149
+- id: place.masjid_aqsa
+  names:
+    en: Farthest Mosque
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - aqsa
+    - farthest
+    ur:
+    - "\u0627\u0642\u0635\u06CC"
+    ar:
+    - "\u0627\u0644\u0623\u0642\u0635\u0649"
+    - "\u0627\u0644\u0627\u0642\u0635\u0649"
+    tr:
+    - aqsa
+  anchors:
+  - 4:66
+  - 5:60
+  - '8:42'
+  - '14:18'
+  - '17:1'
+- id: place.safa
+  names:
+    en: Safa
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - safa
+    ur:
+    - "\u0635\u0641\u0627"
+    ar:
+    - "\u0635\u0641\u0627"
+    tr:
+    - safa
+  anchors:
+  - 2:158
+  - 2:200
+  - '18:48'
+  - 20:64
+  - '37:1'
+- id: place.marwa
+  names:
+    en: Marwa
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - marwa
+    ur:
+    - "\u0645\u0631\u0648\u06C1"
+    ar:
+    - "\u0645\u0631\u0648\u0629"
+    tr:
+    - marwa
+  anchors:
+  - 2:158
+- id: place.arafat
+  names:
+    en: Arafat
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - arafah
+    - arafat
+    ur:
+    - "\u0639\u0631\u0641\u0627\u062A"
+    ar:
+    - "\u0639\u0631\u0641\u0627\u062A"
+    tr:
+    - arafah
+    - arafat
+  anchors:
+  - 2:198
+  - 2:200
+  - '85:3'
+- id: place.sinai
+  names:
+    en: Sinai
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - sinai
+    ur:
+    - "\u0633\u06CC\u0646\u0627"
+    ar:
+    - "\u0633\u064A\u0646\u0627\u0621"
+    tr:
+    - sinai
+    - tur
+  anchors:
+  - '2:51'
+  - 2:63
+  - 2:93
+  - 4:154
+  - 7:142
+- id: place.egypt
+  names:
+    en: Egypt
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - egypt
+    ur:
+    - "\u0645\u0635\u0631"
+    ar:
+    - "\u0645\u0635\u0631"
+    tr:
+    - misr
+  anchors:
+  - 2:61
+  - 7:105
+  - 7:160
+  - 10:87
+  - '12:20'
+- id: place.madyan
+  names:
+    en: Madyan
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - madyan
+    - midian
+    ur:
+    - "\u0645\u062F\u06CC\u0646"
+    ar:
+    - "\u0645\u062F\u064A\u0646"
+    tr:
+    - madyan
+  anchors:
+  - 7:85
+  - 9:70
+  - 11:84
+  - 11:95
+  - 15:78
+- id: people.bani_israel
+  names:
+    en: Bani Israel
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - israel
+    - israelites
+    ur:
+    - "\u0627\u0633\u0631\u0627\u0626\u06CC\u0644"
+    ar:
+    - "\u0625\u0633\u0631\u0627\u0626\u064A\u0644"
+    tr:
+    - israel
+  anchors:
+  - '2:40'
+  - '2:47'
+  - '2:49'
+  - '2:57'
+  - '2:58'
+- id: people.aad
+  names:
+    en: Aad
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - aad
+    ur:
+    - "\u0639\u0627\u062F"
+    ar:
+    - "\u0639\u0627\u062F"
+    tr:
+    - aad
+  anchors:
+  - 2:173
+  - 2:275
+  - 5:95
+  - 6:145
+  - 7:65
+- id: people.thamud
+  names:
+    en: Thamud
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - thamud
+    ur:
+    - "\u062B\u0645\u0648\u062F"
+    ar:
+    - "\u062B\u0645\u0648\u062F"
+    tr:
+    - thamud
+  anchors:
+  - 7:73
+  - 9:70
+  - 11:61
+  - 11:68
+  - 11:95
+- id: people.madyan
+  names:
+    en: People of Madyan
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - madyan
+    - midian
+    ur:
+    - "\u0645\u062F\u06CC\u0646"
+    ar:
+    - "\u0645\u062F\u064A\u0646"
+    tr:
+    - madyan
+  anchors:
+  - 7:85
+  - 9:70
+  - 11:84
+  - 11:95
+  - 15:78
+- id: people.saba
+  names:
+    en: Saba (Sheba)
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - saba
+    - sheba
+    ur:
+    - "\u0633\u0628\u0627"
+    ar:
+    - "\u0633\u0628\u0623"
+    tr:
+    - saba
+  anchors:
+  - '27:22'
+  - '27:29'
+  - '27:38'
+  - '34:1'
+  - '34:2'
+- id: people.quraysh
+  names:
+    en: Quraysh
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - quraish
+    - quraysh
+    ur:
+    - "\u0642\u0631\u06CC\u0634"
+    ar:
+    - "\u0642\u0631\u064A\u0634"
+    tr:
+    - quraish
+    - quraysh
+  anchors:
+  - 6:91
+  - 7:203
+  - '9:12'
+  - '14:46'
+  - 15:90
+- id: people.people_of_cave
+  names:
+    en: People of the Cave
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - cave
+    - caves
+    ur:
+    - "\u06A9\u06C1\u0641"
+    ar:
+    - "\u0627\u0644\u0643\u0647\u0641"
+    tr:
+    - kahf
+  anchors:
+  - '9:40'
+  - '9:57'
+  - '16:45'
+  - 17:68
+  - '18:1'
+- id: people.people_of_elephant
+  names:
+    en: People of the Elephant
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - elephant
+    ur:
+    - "\u0641\u06CC\u0644"
+    ar:
+    - "\u0627\u0644\u0641\u064A\u0644"
+    tr:
+    - fil
+  anchors:
+  - '105:1'
+  - '105:2'
+  - '105:3'
+  - '105:4'
+  - '105:5'
+- id: people.people_of_trench
+  names:
+    en: People of the Trench
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ditch
+    - trench
+    ur:
+    - "\u0627\u062E\u062F\u0648\u062F"
+    ar:
+    - "\u0627\u0644\u0623\u062E\u062F\u0648\u062F"
+    - "\u0627\u0644\u0627\u062E\u062F\u0648\u062F"
+    tr:
+    - ukhdood
+  anchors:
+  - '12:10'
+  - '33:9'
+  - '85:4'
+- id: people.sabbath_breakers
+  names:
+    en: Sabbath Breakers
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - sabbath
+    ur:
+    - "\u0633\u0628\u062A"
+    ar:
+    - "\u0627\u0644\u0633\u0628\u062A"
+    tr:
+    - sabt
+  anchors:
+  - 2:65
+  - '4:47'
+  - 4:154
+  - 7:163
+  - 7:164
+- id: story.nuh
+  names:
+    en: Story of Nuh
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - ark
+    - flood
+    - noah
+    - nuh
+    ur:
+    - "\u0646\u0648\u062D"
+    ar:
+    - "\u0627\u0644\u0641\u0644\u0643"
+    - "\u0646\u0648\u062D"
+    tr:
+    - nooh
+    - nuh
+  anchors:
+  - 2:248
+  - '3:33'
+  - 4:163
+  - 5:83
+  - 6:84
+  groups:
+  - id: ark
+    title:
+      en: Ark
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:248
+    - 7:64
+    - '10:22'
+  - id: flood
+    title:
+      en: Flood
+      ur: ???
+      ar: ???
+    anchors:
+    - 5:83
+    - 6:93
+    - 7:64
+  - id: salvation
+    title:
+      en: Salvation
+      ur: ???
+      ar: ???
+    anchors:
+    - 7:64
+    - 10:73
+    - 10:90
+- id: story.ibrahim
+  names:
+    en: Story of Ibrahim
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - abraham
+    - fire
+    - ibrahim
+    - kaaba
+    - sacrifice
+    ur:
+    - "\u0627\u0628\u0631\u0627\u06C1\u06CC\u0645"
+    ar:
+    - "\u0625\u0628\u0631\u0627\u0647\u064A\u0645"
+    tr:
+    - ibraheem
+    - ibrahim
+  anchors:
+  - '2:17'
+  - '2:24'
+  - '2:39'
+  - 2:67
+  - 2:71
+  groups:
+  - id: trials
+    title:
+      en: Trials
+      ur: ???
+      ar: ???
+    anchors:
+    - '2:17'
+    - '2:24'
+    - '2:39'
+  - id: house
+    title:
+      en: Sacred House
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:125
+    - 2:126
+    - 2:127
+  - id: legacy
+    title:
+      en: Legacy
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:124
+    - 2:136
+    - 2:140
+- id: story.lut
+  names:
+    en: Story of Lut
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - lewd
+    - lut
+    - stones
+    ur:
+    - "\u0644\u0648\u0637"
+    ar:
+    - "\u0644\u0648\u0637"
+    tr:
+    - loot
+    - lut
+  anchors:
+  - '2:24'
+  - 2:74
+  - 2:162
+  - 2:197
+  - 2:220
+  groups:
+  - id: actions
+    title:
+      en: Actions
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:197
+    - '4:15'
+    - '4:16'
+  - id: warnings
+    title:
+      en: Warnings
+      ur: ???
+      ar: ???
+    anchors:
+    - '7:37'
+    - 7:179
+    - 7:188
+  - id: outcome
+    title:
+      en: Outcome
+      ur: ???
+      ar: ???
+    anchors:
+    - '2:24'
+    - 2:74
+    - '5:3'
+- id: story.musa
+  names:
+    en: Story of Musa
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - moses
+    - musa
+    - pharaoh
+    - sea
+    - staff
+    ur:
+    - "\u0645\u0648\u0633\u06CC"
+    ar:
+    - "\u0645\u0648\u0633\u0649"
+    tr:
+    - moosa
+    - musa
+  anchors:
+  - '2:4'
+  - '2:49'
+  - '2:50'
+  - '2:51'
+  - '2:53'
+  groups:
+  - id: pharaoh
+    title:
+      en: Pharaoh
+      ur: ???
+      ar: ???
+    anchors:
+    - '2:49'
+    - '2:50'
+    - '3:11'
+  - id: signs
+    title:
+      en: Signs
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:60
+    - 7:107
+    - 7:115
+  - id: sea
+    title:
+      en: Sea
+      ur: ???
+      ar: ???
+    anchors:
+    - '2:50'
+    - 2:164
+    - 5:96
+- id: story.yusuf
+  names:
+    en: Story of Yusuf
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - dream
+    - joseph
+    - prison
+    - yusuf
+    ur:
+    - "\u06CC\u0648\u0633\u0641"
+    ar:
+    - "\u064A\u0648\u0633\u0641"
+    tr:
+    - yousuf
+    - yusuf
+  anchors:
+  - 6:84
+  - 7:160
+  - '8:43'
+  - 10:64
+  - '12:1'
+  groups:
+  - id: dream
+    title:
+      en: Dream
+      ur: ???
+      ar: ???
+    anchors:
+    - '8:43'
+    - 10:64
+    - '12:4'
+  - id: prison
+    title:
+      en: Prison
+      ur: ???
+      ar: ???
+    anchors:
+    - '12:25'
+    - '12:32'
+    - '12:33'
+  - id: reunion
+    title:
+      en: Reunion
+      ur: ???
+      ar: ???
+    anchors:
+    - '12:4'
+    - '12:5'
+    - '12:6'
+- id: story.isa
+  names:
+    en: Story of Isa
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - disciples
+    - isa
+    - jesus
+    - messiah
+    ur:
+    - "\u0639\u06CC\u0633\u06CC"
+    ar:
+    - "\u0639\u064A\u0633\u0649"
+    tr:
+    - eesa
+    - isa
+  anchors:
+  - '2:4'
+  - 2:87
+  - 2:136
+  - 2:253
+  - '3:3'
+  groups:
+  - id: birth
+    title:
+      en: Birth
+      ur: ???
+      ar: ???
+    anchors:
+    - '3:39'
+    - '3:45'
+    - '3:49'
+  - id: miracles
+    title:
+      en: Miracles
+      ur: ???
+      ar: ???
+    anchors:
+    - '3:49'
+    - '5:3'
+    - 5:110
+  - id: disciples
+    title:
+      en: Disciples
+      ur: ???
+      ar: ???
+    anchors:
+    - '3:52'
+    - 5:72
+    - 5:111
+- id: story.dhulqarnayn
+  names:
+    en: Story of Dhul-Qarnayn
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - dhulqarnayn
+    - gog
+    - magog
+    - qarnayn
+    - zulqarnayn
+    ur:
+    - "\u0630\u0648\u0627\u0644\u0642\u0631\u0646\u06CC\u0646"
+    ar:
+    - "\u0627\u0644\u0642\u0631\u0646\u064A\u0646"
+    - "\u0630\u0648\u0627\u0644\u0642\u0631\u0646\u064A\u0646"
+    tr:
+    - dhulqarnayn
+    - qarnayn
+    - zulqarnayn
+  anchors:
+  - 18:83
+  - 18:85
+  - 18:86
+  - 18:87
+  - 18:88
+  groups:
+  - id: journeys
+    title:
+      en: Journeys
+      ur: ???
+      ar: ???
+    anchors:
+    - 18:86
+  - id: barrier
+    title:
+      en: Barrier
+      ur: ???
+      ar: ???
+    anchors:
+    - 18:94
+    - 18:95
+    - 18:97
+  - id: justice
+    title:
+      en: Justice
+      ur: ???
+      ar: ???
+    anchors:
+    - 18:86
+    - 18:87
+    - 18:88
+- id: story.talut_jalut
+  names:
+    en: Story of Talut and Jalut
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - goliath
+    - jalut
+    - saul
+    - talut
+    ur:
+    - "\u062C\u0627\u0644\u0648\u062A"
+    - "\u0637\u0627\u0644\u0648\u062A"
+    ar:
+    - "\u062C\u0627\u0644\u0648\u062A"
+    - "\u0637\u0627\u0644\u0648\u062A"
+    tr:
+    - jalut
+    - talut
+  anchors:
+  - 2:247
+  - 2:248
+  - 2:249
+  - 2:250
+  - 2:251
+  groups:
+  - id: selection
+    title:
+      en: Selection
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:247
+    - 2:249
+    - 2:251
+  - id: river
+    title:
+      en: River Test
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:249
+  - id: battle
+    title:
+      en: Battle
+      ur: ???
+      ar: ???
+    anchors:
+    - 2:249
+    - 2:250
+    - 2:251
+- id: story.adam
+  names:
+    en: Story of Adam
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - adam
+    ur:
+    - "\u0622\u062F\u0645"
+    ar:
+    - "\u0622\u062F\u0645"
+    tr:
+    - adam
+  anchors:
+  - '2:31'
+  - '2:33'
+  - '2:34'
+  - '2:35'
+  - '2:36'
+- id: story.maryam
+  names:
+    en: Story of Maryam
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - mariam
+    - mary
+    - maryam
+    - virgin
+    ur:
+    - "\u0645\u0631\u06CC\u0645"
+    ar:
+    - "\u0645\u0631\u064A\u0645"
+    tr:
+    - mariam
+    - maryam
+  anchors:
+  - 2:68
+  - 2:87
+  - 2:253
+  - '3:36'
+  - '3:37'
+- id: story.yunus
+  names:
+    en: Story of Yunus
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - fish
+    - jonah
+    - yunus
+    ur:
+    - "\u06CC\u0648\u0646\u0633"
+    ar:
+    - "\u064A\u0648\u0646\u0633"
+    tr:
+    - younus
+    - yunus
+  anchors:
+  - 4:163
+  - 5:96
+  - 6:84
+  - 6:86
+  - 7:163
+- id: story.people_of_cave
+  names:
+    en: Story of the Cave
+    ur: ???
+    ar: ???
+  triggers:
+    en:
+    - cave
+    - sleep
+    ur:
+    - "\u06A9\u06C1\u0641"
+    ar:
+    - "\u0627\u0644\u0643\u0647\u0641"
+    tr:
+    - kahf
+  anchors:
+  - 2:255
+  - 3:154
+  - 3:191
+  - '4:34'
+  - 6:60

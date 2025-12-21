@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AskQuran Topic Pack v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "created_at_utc",
+    "source",
+    "topics"
+  ],
+  "properties": {
+    "schema": {
+      "const": "askquran_topic_pack_v1"
+    },
+    "version": {
+      "type": "integer"
+    },
+    "created_at_utc": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object"
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/topic"
+      }
+    }
+  },
+  "$defs": {
+    "localizedString": {
+      "type": "object",
+      "properties": {
+        "en": { "type": "string" },
+        "ur": { "type": "string" },
+        "ar": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "triggerMap": {
+      "type": "object",
+      "properties": {
+        "en": { "type": "array", "items": { "type": "string" } },
+        "ur": { "type": "array", "items": { "type": "string" } },
+        "ar": { "type": "array", "items": { "type": "string" } },
+        "tr": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "verseKeyArray": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[0-9]+:[0-9]+$"
+      }
+    },
+    "group": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "verse_keys"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "$ref": "#/$defs/localizedString" },
+        "verse_keys": { "$ref": "#/$defs/verseKeyArray" }
+      },
+      "additionalProperties": true
+    },
+    "topic": {
+      "type": "object",
+      "required": [
+        "id",
+        "names",
+        "triggers",
+        "verse_keys"
+      ],
+      "properties": {
+        "id": { "type": "string" },
+        "names": { "$ref": "#/$defs/localizedString" },
+        "triggers": { "$ref": "#/$defs/triggerMap" },
+        "negative_triggers": { "$ref": "#/$defs/triggerMap" },
+        "verse_keys": { "$ref": "#/$defs/verseKeyArray" },
+        "groups": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/group" }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

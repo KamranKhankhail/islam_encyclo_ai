@@ -1,0 +1,31 @@
+{
+    {"id":"nav_2_255","q":"2:255","expect_any":["2:255"],"type":"navigation"}
+,{"id":"alias_kursi","q":"Ayat ul kursi","expect_any":["2:255"],"type":"alias"}
+,{"id":"alias_kursi_ur","q":"آیت الکرسی","expect_any":["2:255"],"type":"alias"}
+,{"id":"zakat_spend_en","q":"where to spend zakat","expect_any":["9:60","9:103"],"type":"topic"}
+,{"id":"zakat_spend_ur","q":"زکوٰۃ کہاں خرچ کریں","expect_any":["9:60","9:103"],"type":"topic"}
+,{"id":"prayer_command_en","q":"command to establish prayer","expect_any":["2:43","2:110"],"type":"topic"}
+,{"id":"prayer_command_ur","q":"نماز قائم کرنے کا حکم","expect_any":["2:43","2:110"],"type":"topic"}
+,{"id":"qaum_lot_en","q":"what happened to the people of lot","expect_any":["7:80","11:82","26:165"],"type":"story"}
+,{"id":"qaum_lot_ur","q":"قوم لوط کے ساتھ کیا ہوا","expect_any":["7:80","11:82","26:165"],"type":"story"}
+,{"id":"miraj_en","q":"event of miraj","expect_any":["17:1","53:13"],"type":"event"}
+,{"id":"miraj_ur","q":"واقعہ معراج","expect_any":["17:1","53:13"],"type":"event"}
+,{"id":"interest_riba_en","q":"riba is forbidden","expect_any":["2:275","2:278"],"type":"topic"}
+,{"id":"interest_riba_ur","q":"سود حرام ہے","expect_any":["2:275","2:278"],"type":"topic"}
+,{"id":"patience_en","q":"allah is with the patient","expect_any":["2:153"],"type":"topic"}
+,{"id":"patience_ar","q":"إِنَّ اللَّهَ مَعَ الصَّابِرِينَ","expect_any":["2:153"],"type":"topic"}
+,{"id":"forgiveness_en","q":"allah forgives","expect_any":["39:53"],"type":"topic"}
+,{"id":"forgiveness_ur","q":"اللہ معاف کرتا ہے","expect_any":["39:53"],"type":"topic"}
+,{"id":"prophet_musa_en","q":"story of musa","expect_any":["20:9","28:3"],"type":"story"}
+,{"id":"prophet_isa_en","q":"isa alayhis salam","expect_any":["3:45","19:16"],"type":"story"}
+,{"id":"prophet_ibrahim_en","q":"ibrahim and fire","expect_any":["21:69"],"type":"story"}
+,{"id":"hypocrites_en","q":"signs of hypocrites","expect_any":["2:8","63:1"],"type":"topic"}
+,{"id":"jannah_en","q":"description of jannah","expect_any":["47:15","56:12"],"type":"topic"}
+,{"id":"jahannam_en","q":"punishment of hell","expect_any":["4:56","22:19"],"type":"topic"}
+,{"id":"parents_good_en","q":"be good to parents","expect_any":["17:23"],"type":"topic"}
+,{"id":"parents_good_ur","q":"والدین کے ساتھ حسن سلوک","expect_any":["17:23"],"type":"topic"}
+,{"id":"justice_en","q":"stand firmly for justice","expect_any":["4:135","5:8"],"type":"topic"}
+,{"id":"backbiting_en","q":"backbiting is like eating dead brother","expect_any":["49:12"],"type":"topic"}
+,{"id":"fasting_en","q":"fasting is prescribed","expect_any":["2:183"],"type":"topic"}
+,{"id":"hijab_en","q":"women should cover","expect_any":["24:31","33:59"],"type":"topic"}
+}
